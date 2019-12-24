@@ -1,4 +1,4 @@
-# neo-seed-nodes-monitor
+# NEO Nodes
 
 ## Project setup
 ```
