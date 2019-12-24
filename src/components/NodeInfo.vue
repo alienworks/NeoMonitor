@@ -45,22 +45,22 @@ export default {
           sortable: true
         },
         {
-          key: "NodeName",
+          key: "nodeName",
           label: "Nodes",
           sortable: true
         },
         {
-          key: "ExceptionHeight",
+          key: "exceptionHeight",
           label: "Height",
           sortable: true
         },
         {
-          key: "ExceptionTime",
+          key: "exceptionTime",
           label: "Generate Time(GMT +8)",
           sortable: true
         },
         {
-          key: "Intervals",
+          key: "intervals",
           label: "Interval(s)",
           sortable: true
         }
