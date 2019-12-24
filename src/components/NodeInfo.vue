@@ -20,10 +20,10 @@
       :filter="filter"
       :filter-function="filterTable"
     >
-      <template v-slot:cell(ExceptionHeight)="data">
+      <template v-slot:cell(exceptionHeight)="data">
         <a :href="`http://neoscan.io/block/${data.value}`" target="_blank">{{ data.value }}</a>
       </template>
-      <template v-slot:cell(ExceptionTime)="data">
+      <template v-slot:cell(exceptionTime)="data">
         <router-link to="/statistics">
           <span>{{ data.value }}</span>
         </router-link>
@@ -45,22 +45,22 @@ export default {
           sortable: true
         },
         {
-          key: "NodeName",
+          key: "nodeName",
           label: "Nodes",
           sortable: true
         },
         {
-          key: "ExceptionHeight",
+          key: "exceptionHeight",
           label: "Height",
           sortable: true
         },
         {
-          key: "ExceptionTime",
+          key: "exceptionTime",
           label: "Generate Time(GMT +8)",
           sortable: true
         },
         {
-          key: "Intervals",
+          key: "intervals",
           label: "Interval(s)",
           sortable: true
         }
@@ -82,8 +82,8 @@ export default {
       let exceptionTimes = [];
       let intervals = [];
       responses.filter(item => {
-        exceptionTimes.push(item.ExceptionTime);
-        intervals.push(item.Intervals);
+        exceptionTimes.push(item.exceptionTime);
+        intervals.push(item.intervals);
       });
 
       this.setStatisticsData(exceptionTimes, intervals);
@@ -95,7 +95,7 @@ export default {
     filterTable(row, filter) {
       // return true;
       return row.NodeName.toLowerCase().includes(filter.toLowerCase()) ||
-        row.ExceptionHeight.toString()
+        row.exceptionHeight.toString()
           .toLowerCase()
           .includes(filter.toLowerCase())
         ? true
