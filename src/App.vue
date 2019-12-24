@@ -37,6 +37,8 @@
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script>
 import * as signalR from "@aspnet/signalr";
+import NodeService from "@/services/NodeService";
+
 var connection = null;
 export default {
   name: "App",
@@ -59,6 +61,8 @@ export default {
     }
   },
   created: function() {
+    this.getNodesInfo();
+
     // Connect to the hub
     connection = new signalR.HubConnectionBuilder()
       .withUrl(process.env.VUE_APP_SOCKETAPI)
@@ -81,6 +85,13 @@ export default {
     });
   },
   methods: {
+    async getNodesInfo() {
+      const response = await NodeService.getNodesInfo();
+      let responses = response.status === 200 ? response.data : null;
+      this.$store.dispatch("setNeoNodesAction", responses);
+      this.showPage = responses.length === 0 ? false : true;
+      this.onSetFlagNet(this.netFlag);
+    },
     onSetFlagNet(flag) {
       this.netFlag = flag;
 
