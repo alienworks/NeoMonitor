@@ -89,13 +89,26 @@ export default {
   },
   methods: {
     getNodes() {
-      this.nodes = this.$store.getters.getNeoSelectedNetNodes;
+      let data = this.$store.getters.getNeoSelectedNetNodes;
+      if (data.length === 0) return;
+
+      let array = [];
+      data.forEach(item => {
+        if (item.latency == -1) {
+          item.height = "-";
+          item.version = "-";
+          item.latency = "-";
+          item.peers = "-";
+          item.memPool = "-";
+        }
+        array.push(item);
+      });
+      this.nodes = array;
     },
     setNodeID(param) {
       this.$store.dispatch("setNodeIDAction", param);
     },
     filterTable(row, filter) {
-      // return true;
       return row.url.toLowerCase().includes(filter.toLowerCase())
         ? true
         : false;
