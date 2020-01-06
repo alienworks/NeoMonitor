@@ -31,13 +31,11 @@
   </div>
 </template>
 
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/maps.js"></script>
-<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 <script>
 import * as signalR from "@aspnet/signalr";
 import NodeService from "@/services/NodeService";
+import * as am4core from "@amcharts/amcharts4/core";
 
 var connection = null;
 export default {
@@ -52,7 +50,7 @@ export default {
   watch: {
     $route(current, old) {
       this.showMenu =
-        current.name === "Main" || current.name === "Nodes" ? true : false;
+        current.name === "Main" || current.name === "Nodes";
 
       if (old.name === "Main") {
         // Clear
