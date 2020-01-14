@@ -44,7 +44,8 @@ export default {
     return {
       netFlag: "MainNet",
       showMenu: true,
-      showPage: false
+      showPage: false,
+      lengthOfMainNode: 0
     };
   },
   watch: {
@@ -78,6 +79,9 @@ export default {
       // If no data, don't display page
       this.showPage = data.length === 0 ? false : true;
 
+      // set the length of main node
+      this.lengthOfMainNode = filterByNet(data, 'MainNet').length
+
       // Initial netFlag = MainNet
       this.onSetFlagNet(this.netFlag);
     });
@@ -88,22 +92,39 @@ export default {
       let responses = response.status === 200 ? response.data : null;
       this.$store.dispatch("setNeoNodesAction", responses);
       this.showPage = responses.length === 0 ? false : true;
+      this.lengthOfMainNode = filterByNet(data, 'MainNet').length
       this.onSetFlagNet(this.netFlag);
     },
     onSetFlagNet(flag) {
       this.netFlag = flag;
 
-      let data = this.$store.getters.getNeoNodes;
+      const isMainNet = flag === 'MainNet'
+      const data = this.$store.getters.getNeoNodes;
+
+      // filtered to given flag then map to its own id
+      const filteredData = filterByNet(data, flag)
+      const nodes = isMainNet ? filteredData : mapDataId(filteredData, this.lengthOfMainNode)
+
+      console.log('setFlagNet', flag, nodes)
       this.$store.dispatch(
         "setNeoSelectedNetNodesAction",
-        data.filter(item => {
-          if (item.net === this.netFlag) return item;
-        })
+        nodes
       );
       // }
     }
   }
 };
+
+function mapDataId(nodes, length) {
+  return nodes.map(node => ({
+    ...node,
+    id: node.id - length
+  }))
+}
+
+function filterByNet(nodes, net) {
+  return nodes.filter(node => node.net === net)
+}
 </script>
 
 <style lang="scss">
