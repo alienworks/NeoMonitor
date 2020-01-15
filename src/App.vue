@@ -37,7 +37,9 @@ import * as signalR from "@aspnet/signalr";
 import NodeService from "@/services/NodeService";
 import * as am4core from "@amcharts/amcharts4/core";
 
-var connection = null;
+// Connection instance for signalr.
+let connection = null;
+
 export default {
   name: "App",
   data() {
@@ -77,10 +79,10 @@ export default {
       this.$store.dispatch("setNeoNodesAction", data);
 
       // If no data, don't display page
-      this.showPage = data.length === 0 ? false : true;
+      this.showPage = data.length !== 0;
 
       // set the length of main node
-      this.lengthOfMainNode = filterByNet(data, 'MainNet').length
+      this.lengthOfMainNode = filterByNet(data, 'MainNet').length;
 
       // Initial netFlag = MainNet
       this.onSetFlagNet(this.netFlag);
@@ -89,28 +91,23 @@ export default {
   methods: {
     async getNodesInfo() {
       const response = await NodeService.getNodesInfo();
-      let responses = response.status === 200 ? response.data : null;
-      this.$store.dispatch("setNeoNodesAction", responses);
-      this.showPage = responses.length === 0 ? false : true;
-      this.lengthOfMainNode = filterByNet(data, 'MainNet').length
+      const nodes = response.status === 200 ? response.data : null;
+      this.$store.dispatch("setNeoNodesAction", nodes);
+      this.showPage = nodes.length !== 0;
+      this.lengthOfMainNode = filterByNet(nodes, 'MainNet').length;
       this.onSetFlagNet(this.netFlag);
     },
     onSetFlagNet(flag) {
       this.netFlag = flag;
 
-      const isMainNet = flag === 'MainNet'
+      const isMainNet = flag === 'MainNet';
       const data = this.$store.getters.getNeoNodes;
 
       // filtered to given flag then map to its own id
-      const filteredData = filterByNet(data, flag)
-      const nodes = isMainNet ? filteredData : mapDataId(filteredData, this.lengthOfMainNode)
+      const filteredData = filterByNet(data, flag);
+      const nodes = isMainNet ? filteredData : mapDataId(filteredData, this.lengthOfMainNode);
 
-      console.log('setFlagNet', flag, nodes)
-      this.$store.dispatch(
-        "setNeoSelectedNetNodesAction",
-        nodes
-      );
-      // }
+      this.$store.dispatch("setNeoSelectedNetNodesAction", nodes);
     }
   }
 };
