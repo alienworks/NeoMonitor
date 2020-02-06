@@ -3,13 +3,19 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+// TODO: Move it to constants
+const netFlags = {
+  MainNetFlag: 'MainNet',
+  TestNetFlag: "TestNet"
+};
+
 export const store = new Vuex.Store({
   state: {
     nodeID: 0,
     statisticsX: [],
     statisticsY: [],
     neoNodes: [],
-    neoSelectedNetNodes: []
+    netFlag: netFlags.MainNetFlag
   },
 
   mutations: {
@@ -25,8 +31,8 @@ export const store = new Vuex.Store({
     setNeoNodes(state, payload) {
       state.neoNodes = payload;
     },
-    setNeoSelectedNetNodes(state, payload) {
-      state.neoSelectedNetNodes = payload;
+    setNetFlag(state, payload) {
+      state.netFlag = payload
     }
   },
 
@@ -61,8 +67,22 @@ export const store = new Vuex.Store({
     getNeoNodes(state) {
       return state.neoNodes;
     },
-    getNeoSelectedNetNodes(state) {
-      return state.neoSelectedNetNodes;
+    getNetFlag(state) {
+      return state.netFlag;
+    },
+    getMainNodesLength(state) {
+      return state.neoNodes.filter(node => node.net === netFlags.MainNetFlag).length;
+    },
+    getNeoSelectedNetNodes(state, getter) {
+      const currentNetFlag =  state.netFlag;
+      const lengthOfMainNodes = getter.getMainNodesLength;
+      const neoNodes = state.neoNodes.filter(node => node.net === currentNetFlag);
+
+      if (state.netFlag === netFlags.MainNetFlag) return neoNodes;
+      return neoNodes.map(node => ({
+        ...node,
+        id: node.id - lengthOfMainNodes
+      }));
     }
   },
 

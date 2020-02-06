@@ -33,7 +33,10 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 import NodeService from "@/services/NodeService";
+
+
 export default {
   name: "NodeInfo",
   data() {
@@ -74,7 +77,8 @@ export default {
   },
   methods: {
     async getNodeInfo() {
-      const response = await NodeService.getNodeInfo(this.nodeID);
+      const nodeID = this.netFlag === 'MainNet' ? this.nodeID : this.nodeID + this.mainNodesLength;
+      const response = await NodeService.getNodeInfo(nodeID);
       let responses = response.status === 200 ? response.data : null;
       this.nodeInfo = responses;
 
@@ -99,9 +103,12 @@ export default {
     }
   },
   computed: {
-    nodeID() {
-      return this.$store.getters.getNodeID;
-    }
+    // same as: netFlag = getters.getNetFlag
+    ...mapGetters({
+      'netFlag': 'getNetFlag',
+      'nodeID': 'getNodeID',
+      'mainNodesLength': 'getMainNodesLength'
+    })
   }
 };
 </script>
