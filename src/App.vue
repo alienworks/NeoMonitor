@@ -90,7 +90,7 @@ export default {
       for (let i = 0; i < nodes.length; i++) {
         const node = nodes[i];
         const rawMemPool = rawMemPools.find(p => p.Id === node.id);
-        if (rawMemPool) updatedNodes.push({...node, memPool: rawMemPool.MemoryPool || 0});
+        if (rawMemPool) updatedNodes.push({...node, memoryPool: rawMemPool.MemoryPool || 0});
         else updatedNodes.push(node);
       }
 
