@@ -69,8 +69,8 @@ export default {
           sortable: true
         },
         {
-          key: "memPool",
-          label: "Mempool",
+          key: "memoryPool",
+          label: "MemPool",
           sortable: true
         },
         {
@@ -100,7 +100,7 @@ export default {
           newItem.version = "-";
           newItem.latency = "-";
           newItem.peers = "-";
-          newItem.memPool = "-";
+          newItem.memoryPool = "-";
         }
         array.push(item);
       });
