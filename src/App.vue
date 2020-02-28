@@ -66,8 +66,8 @@ export default {
 
     // Connect to the hub
     connection = new signalR.HubConnectionBuilder()
-      .withUrl(process.env.VUE_APP_SOCKETAPI)
-      .build();
+            .withUrl(process.env.VUE_APP_SOCKETAPI)
+            .build();
 
     connection.start().catch(function() {
       setTimeout(function() {
@@ -75,18 +75,27 @@ export default {
       }, 5000);
     });
 
+    // On Receiving Node data
     connection.on("Receive", data => {
       this.$store.dispatch("setNeoNodesAction", data);
-
-      // If no data, don't display page
       this.showPage = data.length !== 0;
-
-      // set the length of main node
-      this.lengthOfMainNode = filterByNet(data, 'MainNet').length;
-
-      // Initial netFlag = MainNet
-      this.onSetFlagNet(this.netFlag);
     });
+
+    // On Receiving RawMemPools
+    connection.on("UpdateRawMemPoolInfos", data => {
+      const rawMemPools = JSON.parse(data);
+      const nodes = this.$store.getters.getNeoNodes;
+
+      let updatedNodes = [];
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        const rawMemPool = rawMemPools.find(p => p.Id === node.id);
+        if (rawMemPool) updatedNodes.push({...node, memPool: rawMemPool.MemoryPool || 0});
+        else updatedNodes.push(node);
+      }
+
+      this.$store.dispatch("setNeoNodesAction", updatedNodes)
+    })
   },
   methods: {
     async getNodesInfo() {
@@ -94,34 +103,13 @@ export default {
       const nodes = response.status === 200 ? response.data : null;
       this.$store.dispatch("setNeoNodesAction", nodes);
       this.showPage = nodes.length !== 0;
-      this.lengthOfMainNode = filterByNet(nodes, 'MainNet').length;
-      this.onSetFlagNet(this.netFlag);
     },
     onSetFlagNet(flag) {
       this.netFlag = flag;
-
-      const isMainNet = flag === 'MainNet';
-      const data = this.$store.getters.getNeoNodes;
-
-      // filtered to given flag then map to its own id
-      const filteredData = filterByNet(data, flag);
-      const nodes = isMainNet ? filteredData : mapDataId(filteredData, this.lengthOfMainNode);
-
-      this.$store.dispatch("setNeoSelectedNetNodesAction", nodes);
+      this.$store.commit("setNetFlag", flag)
     }
   }
 };
-
-function mapDataId(nodes, length) {
-  return nodes.map(node => ({
-    ...node,
-    id: node.id - length
-  }))
-}
-
-function filterByNet(nodes, net) {
-  return nodes.filter(node => node.net === net)
-}
 </script>
 
 <style lang="scss">
