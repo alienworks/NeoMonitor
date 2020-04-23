@@ -22,6 +22,11 @@
         :filter-function="filterTable"
         class="node-table"
       >
+        <template v-slot:cell(memoryPool)="data">
+          <router-link to="/rawmempool">
+            <span v-on:click="setNodeID(data.item.id)">{{ data.value }}</span>
+          </router-link>
+        </template>
         <template v-slot:cell(exceptionCount)="data">
           <router-link to="/nodeinfo">
             <span v-on:click="setNodeID(data.item.id)">{{ data.value }}</span>
