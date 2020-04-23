@@ -14,6 +14,9 @@
             <router-link to="/nodes">
               <b-nav-item href="/nodes" class="px-2">Nodes</b-nav-item>
             </router-link>
+            <router-link to="/matrix">
+              <b-nav-item href="/matrix" class="px-2">Matrix</b-nav-item>
+            </router-link>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
