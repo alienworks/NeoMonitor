@@ -2,7 +2,7 @@
   <div>
     <div class="contanier mt-3 col-12">
       <div class="form-group has-search mb-2 col-3 float-right">
-        <!-- <span class="fa fa-search form-control-feedback"></span> -->
+        <span class="fa fa-search form-control-feedback"></span>
         <input
           type="text"
           v-model="filter"
@@ -111,9 +111,6 @@ export default {
       const response = await NodeService.getMatrixItems();
       this.items = this.transofrmMatrixItems(response.data);
     },
-    filterTable(row, filter) {
-      return row.node.toLowerCase().includes(filter.toLowerCase());
-    },
     transofrmMatrixItems(data) {
       function groupBy(arr, key) {
         return arr.reduce(
@@ -137,7 +134,10 @@ export default {
           {}
         )
       );
-    }
+    },
+		filterTable(row, filter) {
+      return row.url.toLowerCase().includes(filter.toLowerCase());
+    },
   }
 };
 </script>
@@ -145,5 +145,20 @@ export default {
 <style lang="scss" scoped>
 .matrix-table {
   min-height: 50rem;
+}
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #777;
 }
 </style>
