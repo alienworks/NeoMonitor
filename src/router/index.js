@@ -5,6 +5,7 @@ import Nodes from "@/components/Nodes";
 import NodeInfo from "@/components/NodeInfo";
 import Statistics from "@/components/Statistics";
 import RawMempool from "@/components/RawMemPool";
+import Matrix from "@/components/Matrix";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.min.css";
@@ -37,6 +38,11 @@ export default new Router({
       path: "/rawmempool",
       name: "RawMemPool",
       component: RawMempool
+    },
+    {
+      path: "/matrix",
+      name: "Matrix",
+      component: Matrix
     }
   ]
 });
