@@ -33,7 +33,7 @@
 
 
 <script>
-import * as signalR from "@aspnet/signalr";
+import { HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
 import NodeService from "@/services/NodeService";
 import * as am4core from "@amcharts/amcharts4/core";
 
@@ -52,8 +52,7 @@ export default {
   },
   watch: {
     $route(current, old) {
-      this.showMenu =
-        current.name === "Main" || current.name === "Nodes";
+      this.showMenu = current.name === "Main" || current.name === "Nodes";
 
       if (old.name === "Main") {
         // Clear
@@ -61,52 +60,64 @@ export default {
       }
     }
   },
-  created: function() {
+  created: async function() {
     this.getNodesInfo();
 
     // Connect to the hub
-    connection = new signalR.HubConnectionBuilder()
-            .withUrl(process.env.VUE_APP_SOCKETAPI)
-            .build();
+    connection = new HubConnectionBuilder()
+      .withUrl(process.env.VUE_APP_SOCKETAPI)
+      .configureLogging(LogLevel.Information)
+      .build();
 
-    connection.start().catch(function() {
+    // On Receiving Data.
+    connection.on("UpdateNodes", this.updateNodes);
+    connection.on("UpdateRawMemPoolSizeInfo", this.updateRawMemPool)
+
+    await connection.start().catch(function() {
       setTimeout(function() {
         connection.start();
       }, 5000);
     });
 
-    // On Receiving Node data
-    connection.on("Receive", data => {
-      this.$store.dispatch("setNeoNodesAction", data);
-      this.showPage = data.length !== 0;
-    });
-
-    // On Receiving RawMemPools
-    connection.on("UpdateRawMemPoolInfos", data => {
-      const rawMemPools = JSON.parse(data);
-      const nodes = this.$store.getters.getNeoNodes;
-
-      let updatedNodes = [];
-      for (let i = 0; i < nodes.length; i++) {
-        const node = nodes[i];
-        const rawMemPool = rawMemPools.find(p => p.Id === node.id);
-        if (rawMemPool) updatedNodes.push({...node, memoryPool: rawMemPool.MemoryPool || 0});
-        else updatedNodes.push(node);
-      }
-
-      this.$store.dispatch("setNeoNodesAction", updatedNodes)
-    })
+    // Activate subscribe method.
+    await connection.send("SubscribeNodesInfo");
+    await connection.send("SubscribeRawMemPoolSizeInfo");
   },
   methods: {
     async getNodesInfo() {
       const response = await NodeService.getNodesInfo();
-      const nodes = response.status === 200 ? response.data : null;
+      const nodes = response.status === 200 ? response.data : [];
       this.$store.dispatch("setNeoNodesAction", nodes);
       this.showPage = nodes.length !== 0;
     },
     onSetFlagNet(flag) {
       this.netFlag = flag;
-      this.$store.commit("setNetFlag", flag)
+      this.$store.commit("setNetFlag", flag);
+    },
+    updateNodes(data) {
+      this.$store.dispatch("setNeoNodesAction", data);
+      this.showPage = data.length !== 0;
+    },
+    updateRawMemPool(rawMemPools) {
+      const nodes = this.$store.getters.getNeoNodes;
+      const updatedNodes = [];
+
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        const rawMemPool = rawMemPools.find(pool => pool.id === node.id);
+        
+        if (rawMemPool) {
+          updatedNodes.push({
+            ...node, 
+            memoryPool: rawMemPool.memoryPool || 0
+          });
+        }
+        else {
+          updatedNodes.push(node);
+        }
+      }
+
+      this.$store.dispatch("setNeoNodesAction", updatedNodes);
     }
   }
 };
