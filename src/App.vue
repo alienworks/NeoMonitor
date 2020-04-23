@@ -36,9 +36,10 @@
 import { HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
 import NodeService from "@/services/NodeService";
 import * as am4core from "@amcharts/amcharts4/core";
+import { mapGetters } from 'vuex';
 
-// Connection instance for signalr.
-let connection = null;
+// Connection instance for signalr. Exposed for other to use.
+export let connection = null;
 
 export default {
   name: "App",
@@ -58,6 +59,10 @@ export default {
         // Clear
         am4core.disposeAllCharts();
       }
+    },
+    
+    async nodeID(current) {
+      current && await connection.send("SubscribeRawMemPoolItemsInfo", current);
     }
   },
   created: async function() {
@@ -69,9 +74,17 @@ export default {
       .configureLogging(LogLevel.Information)
       .build();
 
-    // On Receiving Data.
-    connection.on("UpdateNodes", this.updateNodes);
-    connection.on("UpdateRawMemPoolSizeInfo", this.updateRawMemPool)
+    // On Receiving Nodes.
+    connection.on("UpdateNodes", async data => {
+      this.$store.dispatch("setNeoNodesAction", data);                     // Update Nodes
+      this.showPage = data.length !== 0;                                   // Update local state
+      await connection.send("SubscribeRawMemPoolItemsInfo", this.nodeID);  // Send new ID to server
+    });
+
+    // On Receiving RawMemPools
+    connection.on("UpdateRawMemPoolSizeInfo", rawMemPools => {
+      this.$store.dispatch("setNeoNodesAction", this.mapMemPoolsToNodes(rawMemPools));
+    });
 
     await connection.start().catch(function() {
       setTimeout(function() {
@@ -94,12 +107,8 @@ export default {
       this.netFlag = flag;
       this.$store.commit("setNetFlag", flag);
     },
-    updateNodes(data) {
-      this.$store.dispatch("setNeoNodesAction", data);
-      this.showPage = data.length !== 0;
-    },
-    updateRawMemPool(rawMemPools) {
-      const nodes = this.$store.getters.getNeoNodes;
+    mapMemPoolsToNodes(rawMemPools) {
+      const nodes = this.nodes;
       const updatedNodes = [];
 
       for (let i = 0; i < nodes.length; i++) {
@@ -117,8 +126,14 @@ export default {
         }
       }
 
-      this.$store.dispatch("setNeoNodesAction", updatedNodes);
+      return updatedNodes;
     }
+  },
+  computed: {
+    ...mapGetters({
+      'nodeID': 'getNodeID',
+      'nodes': 'getNeoNodes'
+    })
   }
 };
 </script>

@@ -9,6 +9,7 @@
 <script>
 import NodeService from "@/services/NodeService";
 import { mapGetters } from 'vuex';
+import { connection } from "@/App";
 
 export default {
   data() {
@@ -18,6 +19,11 @@ export default {
   },
 	mounted: function() {
 		this.getRawMempool();
+    
+    connection.on("UpdateRawMemPoolItems", data => {
+      this.items = data;
+      console.log("Receving rawmempoolitems", data);
+    })
 	},
 	methods: {
 		async getRawMempool() {
@@ -33,7 +39,10 @@ export default {
       const title = "Raw Transactions";
       return this.items.length ? `${this.items.length} ${title}` : title;
     }
-	}
+	},
+  beforeDestroy: function() {
+    connection.send("UnsubscribeRawMemPoolItemsInfo");
+  }
 };
 </script>
 
