@@ -8,6 +8,8 @@ const rawMempoolUrl = combine(nodesUrl, 'rawmempool');
 
 const matrixUrl = combine(baseUrl, 'matrix');
 
+const analysisUrl = combine(baseUrl, 'analysis');
+
 
 export default {
   getNodeInfo(nodeID) {
@@ -21,5 +23,26 @@ export default {
   },
   getMatrixItems() {
     return axios.get(matrixUrl)
+  },
+  registerAnalysis() {
+    return axios.get(analysisUrl, 'register');
+  },
+  getCurrentDailyVisitTimes() {
+    return axios.get(combine(analysisUrl, 'currentDailyVisitTimes'));
+  },
+  getTotalDailyVisitTimes() {
+    return axios.get(combine(analysisUrl, 'totalDailyVisitTimes'));
+  },
+  getTotalDailyIpCount() {
+    return axios.get(combine(analysisUrl, 'totalDailyIpCount'));
+  },
+  getCurrentHourlyVisitTimes() {
+    return axios.get(combine(analysisUrl, 'currentHourlyVisitTimes'));
+  },
+  getTotalHourlyVisitTimes() {
+    return axios.get(combine(analysisUrl, 'totalHourlyVisitTimes'));
+  },
+  getTotalHourlyIpCount() {
+    return axios.get(combine(analysisUrl, 'totalHourlyIpCount'));
   }
 };
