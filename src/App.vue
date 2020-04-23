@@ -68,36 +68,10 @@ export default {
       current && await connection.send("SubscribeRawMemPoolItemsInfo", current);
     }
   },
-  created: async function() {
+  created: function() {
     this.getNodesInfo();
-
-    // Connect to the hub
-    connection = new HubConnectionBuilder()
-      .withUrl(process.env.VUE_APP_SOCKETAPI)
-      .configureLogging(LogLevel.Information)
-      .build();
-
-    // On Receiving Nodes.
-    connection.on("UpdateNodes", async data => {
-      this.$store.dispatch("setNeoNodesAction", data);                     // Update Nodes
-      this.showPage = data.length !== 0;                                   // Update local state
-      await connection.send("SubscribeRawMemPoolItemsInfo", this.nodeID);  // Send new ID to server
-    });
-
-    // On Receiving RawMemPools
-    connection.on("UpdateRawMemPoolSizeInfo", rawMemPools => {
-      this.$store.dispatch("setNeoNodesAction", this.mapMemPoolsToNodes(rawMemPools));
-    });
-
-    await connection.start().catch(function() {
-      setTimeout(function() {
-        connection.start();
-      }, 5000);
-    });
-
-    // Activate subscribe method.
-    await connection.send("SubscribeNodesInfo");
-    await connection.send("SubscribeRawMemPoolSizeInfo");
+    this.setUpSignalR();
+    this.registerAnalysis();
   },
   methods: {
     async getNodesInfo() {
@@ -105,6 +79,38 @@ export default {
       const nodes = response.status === 200 ? response.data : [];
       this.$store.dispatch("setNeoNodesAction", nodes);
       this.showPage = nodes.length !== 0;
+    },
+    async setUpSignalR() {
+      // Connect to the hub
+      connection = new HubConnectionBuilder()
+        .withUrl(process.env.VUE_APP_SOCKETAPI)
+        .configureLogging(LogLevel.Information)
+        .build();
+
+      // On Receiving Nodes.
+      connection.on("UpdateNodes", async data => {
+        this.$store.dispatch("setNeoNodesAction", data);                     // Update Nodes
+        this.showPage = data.length !== 0;                                   // Update local state
+        await connection.send("SubscribeRawMemPoolItemsInfo", this.nodeID);  // Send new ID to server
+      });
+
+      // On Receiving RawMemPools
+      connection.on("UpdateRawMemPoolSizeInfo", rawMemPools => {
+        this.$store.dispatch("setNeoNodesAction", this.mapMemPoolsToNodes(rawMemPools));
+      });
+
+      await connection.start().catch(function() {
+        setTimeout(function() {
+          connection.start();
+        }, 5000);
+      });
+
+      // Activate subscribe method.
+      await connection.send("SubscribeNodesInfo");
+      await connection.send("SubscribeRawMemPoolSizeInfo");
+    },
+    async registerAnalysis() {
+      await NodeService.registerAnalysis();
     },
     onSetFlagNet(flag) {
       this.netFlag = flag;
