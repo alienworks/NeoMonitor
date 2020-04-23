@@ -8,7 +8,7 @@
 
 <script>
 import NodeService from "@/services/NodeService";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 import { connection } from "@/App";
 
 export default {
@@ -17,29 +17,29 @@ export default {
       items: []
     };
   },
-	mounted: function() {
-		this.getRawMempool();
-    
+  mounted: function() {
+    this.getRawMempool();
+
     connection.on("UpdateRawMemPoolItems", data => {
       this.items = data;
       console.log("Receving rawmempoolitems", data);
-    })
-	},
-	methods: {
-		async getRawMempool() {
-			const response = await NodeService.getRawMempool(this.nodeID);
-			this.items = response.status === 200 ? response.data : [];
-		}
-	},
-	computed: {
-		...mapGetters({
-			'nodeID': 'getNodeID'
-		}),
+    });
+  },
+  methods: {
+    async getRawMempool() {
+      const response = await NodeService.getRawMempool(this.nodeID);
+      this.items = response.status === 200 ? response.data : [];
+    }
+  },
+  computed: {
+    ...mapGetters({
+      nodeID: "getNodeID"
+    }),
     title() {
       const title = "Raw Transactions";
       return this.items.length ? `${this.items.length} ${title}` : title;
     }
-	},
+  },
   beforeDestroy: function() {
     connection.send("UnsubscribeRawMemPoolItemsInfo");
   }
@@ -62,7 +62,5 @@ export default {
   @media (min-width: 1200px) {
     padding-left: 10rem;
   }
-
 }
-
 </style>
