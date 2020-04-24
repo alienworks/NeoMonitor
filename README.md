@@ -2,6 +2,13 @@
 
 This project is the frontend website of the product NEO-nodes. NEO-nodes is a network monitor system for NEO blockchain.
 
+## Features
+
+- Monitor nodes worldwide and viewing on the graph.
+- Track each node's specific version, latency, exception, memory pool etc..
+- Monitor each node's API usability status.
+- Analysis client user behavior data.
+
 ## Software Requirements
 
 - node.js v8.11.0+, latest version are recommended
