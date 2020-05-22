@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="contanier mt-3 col-12">
+    <!-- <div class="contanier mt-3 col-12">
       <div class="form-group has-search mb-2 col-3 float-right">
         <span class="fa fa-search form-control-feedback"></span>
         <input
@@ -33,102 +33,143 @@
           </router-link>
         </template>
       </b-table>
-    </div>
+    </div> -->
+    <a-row type="flex" justify="end" class="search-wrapper">
+      <a-input-search 
+        placeholder="filter by name" 
+        style="width: 200px"
+        @change="onSearch" 
+        @search="onSearch" />
+    </a-row>
+
+    <a-table :columns="columns"
+      :data-source="nodes" 
+      size="small"
+      :pagination="false"
+    >
+      <router-link to="/rawmempool" slot="pool" slot-scope="text, record">
+        <span @click="setNodeID(record.id)">{{ text }}</span>
+      </router-link>
+
+      <router-link to="/nodeinfo" slot="exception" slot-scope="text, record">
+        <span @click="setNodeID(record.id)">{{ text }}</span>
+      </router-link>
+    </a-table>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { sorter, debounce } from '@/utils';
+
 export default {
   name: "Nodes",
   data() {
     return {
-      fields: [
+      columns: [
         {
           key: "id",
-          label: "ID",
-          sortable: true
+          dataIndex: "id",
+          title: "ID",
         },
         {
           key: "url",
-          label: "Name",
-          sortable: true
+          dataIndex: "url",
+          title: "Name"
         },
         {
           key: "height",
-          label: "Current Height",
-          sortable: true
+          dataIndex: "height",
+          title: "Current Height"
         },
         {
           key: "version",
-          label: "Version",
-          sortable: true
+          dataIndex: "version",
+          title: "Version"
         },
         {
           key: "latency",
-          label: "Latency",
-          sortable: true
+          dataIndex: "latency",
+          title: "Latency"
         },
         {
           key: "peers",
-          label: "Peers",
-          sortable: true
+          dataIndex: "peers",
+          title: "Peers",
         },
         {
           key: "memoryPool",
+          dataIndex: "memoryPool",
           label: "MemPool",
-          sortable: true
+          title: "MemPool",
+          scopedSlots: { customRender: 'pool' }
         },
         {
           key: "exceptionCount",
-          label: "Exceptions",
-          sortable: true
+          dataIndex: "exceptionCount",
+          title: "Exceptions",
+          scopedSlots: { customRender: 'exception' }
         }
-      ],
+      ].map(column => ({ ...column, sorter: sorter(column.dataIndex), sortDirections: ['descend'] })),
       nodes: [],
       filter: null
     };
   },
   mounted() {
-    this.nodes = this.$store.getters.getNeoSelectedNetNodes;
     this.getNodes();
   },
   methods: {
     getNodes() {
-      let data = this.$store.getters.getNeoSelectedNetNodes;
+      const filter = this.filter
+
+      let data = this.refreshNodes;
       if (data.length === 0) return;
 
       let array = [];
       data.forEach(item => {
-        let newItem = { ...item };
+        let newItem = { ...item, key: item.id };
         if (item.latency === -1) {
-          newItem.height = "-";
+          newItem.height = -1;
           newItem.version = "-";
-          newItem.latency = "-";
-          newItem.peers = "-";
-          newItem.memoryPool = "-";
+          newItem.latency = -1;
+          newItem.peers = -1;
+          newItem.memoryPool = -1;
         }
-        array.push(item);
+        array.push(newItem);
       });
-      this.nodes = array;
+
+      if (filter) {
+        this.nodes = this.nodes.slice().filter(node => 
+          node.url.toLowerCase().includes(filter.toLowerCase())
+        )
+      }
+
+      else this.nodes = array;
     },
-    setNodeID(param) {
-      this.$store.dispatch("setNodeIDAction", param);
+    setNodeID(id) {
+      this.$store.commit("setNodeID", id);
     },
-    filterTable(row, filter) {
-      return row.url.toLowerCase().includes(filter.toLowerCase());
+    onSearch(e) {
+      const text = e.target.value
+
+      if (text && text.trim())
+        this.filter = text
     }
   },
   computed: {
-    nodeID() {
-      return this.$store.getters.getNodeID;
-    },
-    refreshNodes() {
-      return this.$store.getters.getNeoSelectedNetNodes;
-    }
+    ...mapGetters({
+      'nodeID': 'getNodeID',
+      'refreshNodes': 'getNeoSelectedNetNodes'
+    })
   },
   watch: {
-    refreshNodes: function() {
+    refreshNodes() {
       this.getNodes();
+    },
+    filter(old, newVal) {
+      if (newVal)
+        debounce(this.getNodes, 300)()
+      else this.getNodes()
     }
   }
 };
@@ -150,5 +191,9 @@ export default {
   text-align: center;
   pointer-events: none;
   color: #777;
+}
+
+.search-wrapper {
+  margin: 8px;
 }
 </style>

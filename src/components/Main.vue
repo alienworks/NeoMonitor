@@ -2,14 +2,20 @@
   <div class="container">
     <div id="chartdiv"></div>
     <div class="mt-3">
-      <b-table responsive hover :fields="fields" :items="rankTableData">
+      <!-- <b-table responsive hover :fields="fields" :items="rankTableData">
         <template v-slot:cell(country)="row">
           <div class="d-flex">
             <img :src="row.item.flagUrl" class="flag mr-3" />
             <div>{{ row.item.country }}</div>
           </div>
         </template>
-      </b-table>
+      </b-table> -->
+      <a-table :columns="fields" :data-source="rankTableData" :pagination="false">
+        <div slot="country" slot-scope="text, record">
+          <img :src="record.flagUrl" class="flag" />
+          <div class="country-text">{{ text }}</div>
+        </div>
+      </a-table>
     </div>
   </div>
 </template>
@@ -20,7 +26,6 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-
 
 // svg path for target icon
 var targetSVG =
@@ -34,18 +39,25 @@ export default {
       fields: [
         {
           key: "no",
-          label: "No",
-          sortable: true
+          dataIndex: "no",
+          title: "No",
+          sorter: (a, b) => a.no - b.no,
+          sortDirections: ['descend'],
         },
         {
           key: "country",
-          label: "Country",
-          sortable: true
+          dataIndex: "country",
+          title: "Country",
+          sorter: (a, b) => a.country.length - b.country.length,
+          sortDirections: ['descend'],
+          scopedSlots: { customRender: 'country' }
         },
         {
           key: "number_of_nodes",
-          label: "Number of Nodes",
-          sortable: true
+          dataIndex: "number_of_nodes",
+          title: "Number of Nodes",
+          sorter: (a, b) => a.number_of_nodes - b.number_of_nodes,
+          sortDirections: ['descend'],
         }
       ],
       rankTableData: []
@@ -182,7 +194,7 @@ export default {
       return data;
     },
     getNodesBySort(array) {
-      let result = array,
+      let result = array.slice(),
         tempFlagUrl,
         tempCountry = "",
         tempNumber = 0;
@@ -218,10 +230,10 @@ export default {
     }
   },
   watch: {
-    refreshNodes: function() {
+    refreshNodes() {
       this.suckData();
     },
-    neoMapLocations: function(val, oldval) {
+    neoMapLocations(val, oldval) {
       // Rank table
       let data = this.refreshNodes;
       data = this.getNodesByGroup(data, "location");
@@ -269,6 +281,11 @@ export default {
 .flag {
   width: 30px;
   height: 20px;
+}
+
+.country-text {
+  display: inline;
+  margin-left: 6px;
 }
 
 @media (max-width: 400px) {

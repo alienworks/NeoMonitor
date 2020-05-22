@@ -3,11 +3,13 @@ import { combine } from "@/utils";
 
 const baseUrl = process.env.VUE_APP_RESTAPI;
 
+// api through api/nodes
 const nodesUrl = combine(baseUrl, 'nodes');
+// api through api/nodes/rawmempool
 const rawMempoolUrl = combine(nodesUrl, 'rawmempool');
-
+// api/matrix
 const matrixUrl = combine(baseUrl, 'matrix');
-
+// api/analysis
 const analysisUrl = combine(baseUrl, 'analysis');
 
 

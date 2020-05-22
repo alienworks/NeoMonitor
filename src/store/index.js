@@ -1,13 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import NodeService from "@/services/NodeService";
+import { netFlags } from "@/constants";
 
 Vue.use(Vuex);
-
-// TODO: Move it to constants
-const netFlags = {
-  MainNetFlag: 'MainNet',
-  TestNetFlag: "TestNet"
-};
 
 export const store = new Vuex.Store({
   state: {
@@ -46,8 +42,10 @@ export const store = new Vuex.Store({
     setStatisticsY({ commit }, payload) {
       commit("setStatisticsY", payload);
     },
-    setNeoNodesAction({ commit }, payload) {
-      commit("setNeoNodes", payload);
+    async setNeoNodesAction({ commit }) {
+      const response = await NodeService.getNodesInfo();
+      const nodes = response.status === 200 ? response.data : [];
+      commit("setNeoNodes", nodes);
     },
     setNeoSelectedNetNodesAction({ commit }, payload) {
       commit("setNeoSelectedNetNodes", payload);
@@ -55,24 +53,13 @@ export const store = new Vuex.Store({
   },
 
   getters: {
-    getNodeID(state) {
-      return state.nodeID;
-    },
-    getStatisticsX(state) {
-      return state.statisticsX;
-    },
-    getStatisticsY(state) {
-      return state.statisticsY;
-    },
-    getNeoNodes(state) {
-      return state.neoNodes;
-    },
-    getNetFlag(state) {
-      return state.netFlag;
-    },
-    getMainNodesLength(state) {
-      return state.neoNodes.filter(node => node.net === netFlags.MainNetFlag).length;
-    },
+    getNodeID: state => state.nodeID,
+    getStatisticsX: state => state.statisticsX,
+    getStatisticsY: state => state.statisticsY,
+    getNeoNodes: state => state.neoNodes,
+    getNetFlag: state => state.netFlag,
+    getMainNodesLength: state => state.neoNodes.filter(node => node.net === netFlags.MainNetFlag).length,
+    
     getNeoSelectedNetNodes(state, getter) {
       const currentNetFlag =  state.netFlag;
       const lengthOfMainNodes = getter.getMainNodesLength;

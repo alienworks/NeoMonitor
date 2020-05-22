@@ -1,28 +1,28 @@
 export const isNullOrEmpty = str => str === null || str.length === 0
 
 export function startsWith(string, search, rawPos) {
-  const pos = rawPos > 0 ? rawPos|0 : 0;
-  return string.substring(pos, pos + search.length) === search;
+	const pos = rawPos > 0 ? rawPos | 0 : 0;
+	return string.substring(pos, pos + search.length) === search;
 }
 
-export function trim (s, c) {
-  if (c === "]") c = "\\]";
-  if (c === "\\") c = "\\\\";
+export function trim(s, c) {
+	if (c === "]") c = "\\]";
+	if (c === "\\") c = "\\\\";
 
-  return s.replace(new RegExp(
-    "^[" + c + "]+|[" + c + "]+$", "g"
-  ), "");
+	return s.replace(new RegExp(
+		"^[" + c + "]+|[" + c + "]+$", "g"
+	), "");
 }
 
 export function combine(...parts) {
-  let result = "";
-  let inQuery = false, inFragment = false;
-  
-  for (let part of parts) {
-    part = part.toString();
+	let result = "";
+	let inQuery = false, inFragment = false;
 
-    if (isNullOrEmpty(part)) 
-        continue;
+	for (let part of parts) {
+		part = part.toString();
+
+		if (isNullOrEmpty(part))
+			continue;
 
 		if (result.endsWith("?") || startsWith(part, "?"))
 			result = combineEnsureSingleSeparator(result, part, '?');
@@ -42,14 +42,54 @@ export function combine(...parts) {
 		else if (!inFragment && part.includes("?")) {
 			inQuery = true;
 		}
-  }
+	}
 
 	return result;
 
 	function combineEnsureSingleSeparator(a, b, separator) {
-      if (isNullOrEmpty(a)) return b;
-      if (isNullOrEmpty(b)) return a;
+		if (isNullOrEmpty(a)) return b;
+		if (isNullOrEmpty(b)) return a;
 
-      return trim(a, separator) + separator + trim(b, separator);
-  }
+		return trim(a, separator) + separator + trim(b, separator);
+	}
+}
+
+export const sorter = prop => (a, b) => {
+	const value = a[prop]
+	const secondValue = b[prop]
+	const valueType = typeof value
+
+	if (valueType === 'string') {
+		return value.length - secondValue.length
+	}
+
+	if (valueType === 'number') {
+		return value - secondValue
+	}
+
+	console.log('call sorter', a, b, valueType)
+
+	return 0
+}
+
+export function debounce(func, wait, immediate) {
+	let timeout;
+
+	return function executedFunction() {
+		const context = this;
+		const args = arguments;
+
+		const later = () => {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+
+		const callNow = immediate && !timeout;
+
+		clearTimeout(timeout);
+
+		timeout = setTimeout(later, wait);
+
+		if (callNow) func.apply(context, args);
+	}
 }
