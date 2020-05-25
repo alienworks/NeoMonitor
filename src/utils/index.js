@@ -60,10 +60,14 @@ export const sorter = prop => (a, b) => {
 	const valueType = typeof value
 
 	if (valueType === 'string') {
+		// Sort to tail
+		// if (value === '-') return -1
 		return value.length - secondValue.length
 	}
 
 	if (valueType === 'number') {
+		// Sort to tail
+		// if (value === -1) return value
 		return value - secondValue
 	}
 

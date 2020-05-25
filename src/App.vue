@@ -49,7 +49,6 @@ export default {
       // On Receiving Nodes.
       connection.on("UpdateNodes", async data => {
         this.$store.commit("setNeoNodes", data);           
-        this.showPage = data.length !== 0;             
         await connection.send("SubscribeRawMemPoolItemsInfo", this.nodeID);
       });
 

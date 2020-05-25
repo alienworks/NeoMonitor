@@ -11,6 +11,7 @@ export const store = new Vuex.Store({
     statisticsX: [],
     statisticsY: [],
     neoNodes: [],
+    matrixEntities: [],
     netFlag: netFlags.MainNetFlag
   },
 
@@ -29,6 +30,9 @@ export const store = new Vuex.Store({
     },
     setNetFlag(state, payload) {
       state.netFlag = payload
+    },
+    setMatrixEntities(state, entities) {
+      state.matrixEntities = entities
     }
   },
 
@@ -47,6 +51,11 @@ export const store = new Vuex.Store({
       const nodes = response.status === 200 ? response.data : [];
       commit("setNeoNodes", nodes);
     },
+    async getMatrixEntities({ commit }) {
+      const response = await NodeService.getMatrixItems();
+      const entities = response.status === 200 ? response.data : [];
+      commit("setMatrixEntities", entities);
+    },
     setNeoSelectedNetNodesAction({ commit }, payload) {
       commit("setNeoSelectedNetNodes", payload);
     }
@@ -59,6 +68,7 @@ export const store = new Vuex.Store({
     getNeoNodes: state => state.neoNodes,
     getNetFlag: state => state.netFlag,
     getMainNodesLength: state => state.neoNodes.filter(node => node.net === netFlags.MainNetFlag).length,
+    matrixEntities: state => state.matrixEntities,
     
     getNeoSelectedNetNodes(state, getter) {
       const currentNetFlag =  state.netFlag;

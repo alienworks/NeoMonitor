@@ -2,13 +2,14 @@ import axios from "axios";
 import { combine } from "@/utils";
 
 const baseUrl = process.env.VUE_APP_RESTAPI;
+const mockUrl = '/mocks'
 
 // api through api/nodes
 const nodesUrl = combine(baseUrl, 'nodes');
 // api through api/nodes/rawmempool
 const rawMempoolUrl = combine(nodesUrl, 'rawmempool');
 // api/matrix
-const matrixUrl = combine(baseUrl, 'matrix');
+// const matrixUrl = combine(baseUrl, 'matrix');
 // api/analysis
 const analysisUrl = combine(baseUrl, 'analysis');
 
@@ -24,7 +25,8 @@ export default {
     return axios.get(combine(rawMempoolUrl, nodeID));
   },
   getMatrixItems() {
-    return axios.get(matrixUrl)
+    return axios.get(combine(mockUrl, 'matrix.json'));
+    // return axios.get(matrixUrl);
   },
   registerAnalysis() {
     return axios.get(analysisUrl, 'register');

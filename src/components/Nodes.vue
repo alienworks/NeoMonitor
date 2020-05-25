@@ -36,10 +36,9 @@
     </div> -->
     <a-row type="flex" justify="end" class="search-wrapper">
       <a-input-search 
+        v-model="filter"
         placeholder="filter by name" 
-        style="width: 200px"
-        @change="onSearch" 
-        @search="onSearch" />
+        style="width: 200px" />
     </a-row>
 
     <a-table :columns="columns"
@@ -100,7 +99,6 @@ export default {
         {
           key: "memoryPool",
           dataIndex: "memoryPool",
-          label: "MemPool",
           title: "MemPool",
           scopedSlots: { customRender: 'pool' }
         },
@@ -110,32 +108,34 @@ export default {
           title: "Exceptions",
           scopedSlots: { customRender: 'exception' }
         }
-      ].map(column => ({ ...column, sorter: sorter(column.dataIndex), sortDirections: ['descend'] })),
+      ].map(column => ({ 
+          ...column, 
+          sorter: sorter(column.dataIndex), 
+          sortDirections: ['descend', 'ascend'] 
+        })
+      ),
       nodes: [],
-      filter: null
+      filter: null,
+      filterBouncer: debounce((val) => this.getNodes(val), 300)
     };
   },
   mounted() {
     this.getNodes();
   },
   methods: {
-    getNodes() {
-      const filter = this.filter
+    getNodes(filter) {
+      if (this.refreshNodes.length === 0) return;
 
-      let data = this.refreshNodes;
-      if (data.length === 0) return;
-
-      let array = [];
-      data.forEach(item => {
-        let newItem = { ...item, key: item.id };
-        if (item.latency === -1) {
-          newItem.height = -1;
-          newItem.version = "-";
-          newItem.latency = -1;
-          newItem.peers = -1;
-          newItem.memoryPool = -1;
+      const nodes = this.refreshNodes.map(node => {
+        const newNode = { ...node, key: node.id };
+        if (node.latency === -1) {
+          newNode.height = -1;
+          newNode.version = "-";
+          newNode.latency = -1;
+          newNode.peers = -1;
+          newNode.memoryPool = -1;
         }
-        array.push(newItem);
+        return newNode
       });
 
       if (filter) {
@@ -144,16 +144,12 @@ export default {
         )
       }
 
-      else this.nodes = array;
+      else {
+        this.nodes = nodes;
+      }
     },
     setNodeID(id) {
       this.$store.commit("setNodeID", id);
-    },
-    onSearch(e) {
-      const text = e.target.value
-
-      if (text && text.trim())
-        this.filter = text
     }
   },
   computed: {
@@ -166,10 +162,13 @@ export default {
     refreshNodes() {
       this.getNodes();
     },
-    filter(old, newVal) {
-      if (newVal)
-        debounce(this.getNodes, 300)()
-      else this.getNodes()
+    filter(val) {
+      if (val) {
+        this.filterBouncer(val)
+      }
+      else {
+        this.getNodes(val)
+      }
     }
   }
 };

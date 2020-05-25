@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="contanier mt-3 col-12">
+    <!-- <div class="contanier mt-3 col-12">
       <div class="form-group has-search mb-2 col-3 float-right">
         <span class="fa fa-search form-control-feedback"></span>
         <input
@@ -18,68 +18,47 @@
         bordered
         sticky-header
         no-border-collapse
-        :items="items"
+        :items="entities"
         :fields="fields"
         :filter="filter"
         :filter-function="filterTable"
         class="matrix-table"
       >
-        <template v-slot:head(url)="_">
+        <template v-slot:head(url)>
           <div class="text-nowrap">node</div>
         </template>
         <template v-slot:head()="rest">
           <div class="text-nowrap">{{ rest.label }}</div>
         </template>
       </b-table>
-    </div>
+    </div> -->
+    <a-row type="flex" justify="end" class="search-wrapper">
+      <a-input-search 
+        v-model="filter"
+        placeholder="filter by name" 
+        style="width: 200px" />
+    </a-row>
+
+    <a-table 
+      :columns="fields"
+      :data-source="entities" 
+      :pagination="false"
+      :scroll="{ x: 'max-content', y: 'max-content' }"
+      size="small"
+    >
+      <span 
+        slot="method" 
+        slot-scope="avilable"
+        :class="[avilable ? 'red' : 'green']"
+      >{{ avilable ? "✔" : "✘" }}</span>
+    </a-table>
   </div>
 </template>
 
 <script>
-import NodeService from "@/services/NodeService";
-
-const avaliableApiNames = [
-  "claimgas",
-  "dumpprivkey",
-  "getaccountstate",
-  "getapplicationlog",
-  "getassetstate",
-  "listplugins",
-  "getbestblockhash",
-  "getbalance",
-  "getblock",
-  "getblockcount",
-  "getblockhash",
-  "getblockheader",
-  "getblocksysfee",
-  "getclaimable",
-  "getconnectioncount",
-  "getcontractstate",
-  "getmetricblocktimestamp",
-  "getnep5balances",
-  "getnep5transfers",
-  "getnewaddress",
-  "getrawmempool",
-  "getrawtransaction",
-  "getstorage",
-  "gettransactionheight",
-  "gettxout",
-  "getpeers",
-  "getunspents",
-  "getversion",
-  "getvalidators",
-  "getwalletheight",
-  "importprivkey",
-  "invokefunction",
-  "invokescript",
-  "listaddress",
-  "sendrawtransaction",
-  "sendfrom",
-  "sendtoaddress",
-  "sendmany",
-  "submitblock",
-  "validateaddress"
-];
+import { mapGetters } from 'vuex';
+import { avaliableApiNames } from "@/constants";
+import { sorter, debounce } from "@/utils";
 
 export default {
   data: function() {
@@ -87,31 +66,59 @@ export default {
       fields: [
         {
           key: "url",
-          label: "node",
-          sortable: true,
-					stickyColumn: true,
-					isRowHeader: true, 
-					variant: 'light'
+          dataIndex: "url",
+          title: "node",
+          sorter: sorter('url'),
+          fixed: 'left',
+          align: 'center',
+          width: 300
         },
         ...avaliableApiNames.map(name => ({
           key: name,
-          label: name,
-          sortable: true
+          dataIndex: name,
+          title: name,
+          width: 150,
+          align: 'center',
+          scopedSlots: { customRender: 'method' }
         }))
       ],
-      items: [],
-      filter: null
+      entities: [],
+      defaultEntites: [],
+      filter: null,
+      filterDebounce: debounce(
+          (val) => this.entities = this.entities.filter(
+            ({url}) => url.toLowerCase().includes(val.toLowerCase())
+          ),
+          500
+        ),
+      logDebounce: debounce((val) => console.log('debounced', val, arguments), 500)
     };
   },
-  mounted: function() {
-    this.getMatrixItems();
+  mounted() {
+    this.$store.dispatch('getMatrixEntities');
+  },
+  computed: {
+    ...mapGetters(['matrixEntities'])
+  },
+  watch: {
+    filter(val) {
+      if (val) {
+        this.filterDebounce(val)
+        this.logDebounce(val)
+      }
+      else {
+        this.entities = this.defaultEntites.slice()
+      }
+    },
+    matrixEntities(entities) {
+      this.entities = this.transofrmMatrixEntities(entities)
+      this.defaultEntites = this.entities.slice()
+    }
   },
   methods: {
-    async getMatrixItems() {
-      const response = await NodeService.getMatrixItems();
-      this.items = this.transofrmMatrixItems(response.data);
-    },
-    transofrmMatrixItems(data) {
+    transofrmMatrixEntities(data) {
+      // T[] -> string -> {[keyof T]: T[]}
+      // map array into object, group by sepecified key
       function groupBy(arr, key) {
         return arr.reduce(
           (acc, cur) => ({
@@ -124,12 +131,12 @@ export default {
 
       const groupedObject = groupBy(data, "url");
 
-      return Object.values(groupedObject).map(items =>
-        items.reduce(
+      return Object.values(groupedObject).map(entities =>
+        entities.reduce(
           (acc, { url, method, available }) => ({
             ...acc,
             url,
-            [method.toLowerCase()]: available ? "✔" : "✘"
+            [method.toLowerCase()]: available
           }),
           {}
         )
@@ -160,5 +167,19 @@ export default {
   text-align: center;
   pointer-events: none;
   color: #777;
+}
+
+.search-wrapper {
+  margin: 8px;
+}
+
+.ant-table td { white-space: nowrap; }
+
+.red {
+  color: #0b8235;
+}
+
+.green {
+  color: #f81d22;
 }
 </style>

@@ -42,14 +42,14 @@ export default {
           dataIndex: "no",
           title: "No",
           sorter: (a, b) => a.no - b.no,
-          sortDirections: ['descend'],
+          sortDirections: ['descend', 'ascend'],
         },
         {
           key: "country",
           dataIndex: "country",
           title: "Country",
           sorter: (a, b) => a.country.length - b.country.length,
-          sortDirections: ['descend'],
+          sortDirections: ['descend', 'ascend'],
           scopedSlots: { customRender: 'country' }
         },
         {
@@ -57,7 +57,7 @@ export default {
           dataIndex: "number_of_nodes",
           title: "Number of Nodes",
           sorter: (a, b) => a.number_of_nodes - b.number_of_nodes,
-          sortDirections: ['descend'],
+          sortDirections: ['descend', 'ascend'],
         }
       ],
       rankTableData: []
