@@ -1,6 +1,6 @@
 <template>
   <div class="contanier mt-3 col-12">
-    <div class="form-group has-search mb-2 col-3 float-right">
+    <!-- <div class="form-group has-search mb-2 col-3 float-right">
       <span class="fa fa-search form-control-feedback"></span>
       <input
         type="text"
@@ -28,14 +28,43 @@
           <span>{{ data.value }}</span>
         </router-link>
       </template>
-    </b-table>
+    </b-table> -->
+
+    <a-row type="flex" justify="end" class="search-wrapper">
+      <a-input-search
+        v-model="filter"
+        placeholder="filter by nodes or height"
+        style="width: 200px"
+      />
+    </a-row>
+
+    <a-spin :spinning="isFetchingProgress">
+      <a-table
+        :columns="fields"
+        :data-source="nodeInfo"
+        :pagination="false"
+        :scroll="{ x: 'max-content', y: 'max-content' }"
+        size="small"
+      >
+        <a
+          :href="`//neoscan.io/block/${h}`"
+          target="_blank"
+          slot="height"
+          slot-scope="h"
+          >{{ h }}</a
+        >
+
+        <router-link slot="time" slot-scope="t" to="/statistics">{{
+          t
+        }}</router-link>
+      </a-table>
+    </a-spin>
   </div>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
-import NodeService from "@/services/NodeService";
-
+import { mapGetters } from "vuex";
+import { sorter, debounce } from "@/utils";
 
 export default {
   name: "NodeInfo",
@@ -44,72 +73,47 @@ export default {
       fields: [
         {
           key: "id",
-          label: "ID",
-          sortable: true
+          dataIndex: "id",
+          title: "ID",
+          sorter: sorter("id"),
         },
         {
           key: "nodeName",
-          label: "Nodes",
-          sortable: true
+          dataIndex: "nodeName",
+          title: "Nodes",
+          sorter: sorter("nodeName"),
         },
         {
           key: "exceptionHeight",
-          label: "Height",
-          sortable: true
+          dataIndex: "exceptionHeight",
+          title: "Height",
+          sorter: sorter("exceptionHeight"),
+          scopedSlots: { customRender: "height" },
         },
         {
           key: "exceptionTime",
-          label: "Generate Time(GMT +8)",
-          sortable: true
+          dataIndex: "exceptionTime",
+          title: "Generate Time(GMT +8)",
+          sorter: sorter("exceptionTime"),
+          scopedSlots: { customRender: "time" },
         },
         {
           key: "intervals",
-          label: "Interval(s)",
-          sortable: true
-        }
+          dataIndex: "intervals",
+          title: "Interval(s)",
+          sorter: sorter("intervals"),
+        },
       ],
-      nodeInfo: [],
-      filter: null
+      filter: null,
+      filterBouncer: debounce((val) => this.filterTable(val)),
     };
   },
   mounted() {
-    this.getNodeInfo();
-  },
-  methods: {
-    async getNodeInfo() {
-      const nodeID = this.netFlag === 'MainNet' ? this.nodeID : this.nodeID + this.mainNodesLength;
-      const response = await NodeService.getNodeInfo(nodeID);
-      let responses = response.status === 200 ? response.data : null;
-      this.nodeInfo = responses;
-
-      // setStatisticsData
-      let exceptionTimes = [];
-      let intervals = [];
-      responses.filter(item => {
-        exceptionTimes.push(item.exceptionTime);
-        intervals.push(item.intervals);
-      });
-
-      this.setStatisticsData(exceptionTimes, intervals);
-    },
-    setStatisticsData(xAxis, yAxis) {
-      this.$store.dispatch("setStatisticsX", xAxis);
-      this.$store.dispatch("setStatisticsY", yAxis);
-    },
-    filterTable(row, filter) {
-      // filtered by node name and exception height
-      return row.NodeName.toLowerCase().includes(filter.toLowerCase()) ||
-             row.exceptionHeight.toString().toLowerCase().includes(filter.toLowerCase());
-    }
+    this.$store.dispatch("getNodeInfo");
   },
   computed: {
-    // same as: netFlag = getters.getNetFlag
-    ...mapGetters({
-      'netFlag': 'getNetFlag',
-      'nodeID': 'getNodeID',
-      'mainNodesLength': 'getMainNodesLength'
-    })
-  }
+    ...mapGetters(["nodeInfo", "isFetchingProgress"]),
+  },
 };
 </script>
 
@@ -129,5 +133,9 @@ export default {
   text-align: center;
   pointer-events: none;
   color: #777;
+}
+
+.search-wrapper {
+  margin: 8px;
 }
 </style>

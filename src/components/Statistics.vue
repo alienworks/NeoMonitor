@@ -6,6 +6,8 @@
 
 <script>
 import moment from "moment";
+import { mapGetters } from "vuex";
+
 export default {
   name: "Statistics",
   data() {
@@ -18,25 +20,25 @@ export default {
             formatter: function(value) {
               return moment(value).format("M/D/Y");
             },
-            rotate: 60
+            rotate: 60,
           },
           name: "Time(s)",
           nameTextStyle: {
             color: "#ff0000",
-            fontWeight: "bold"
+            fontWeight: "bold",
           },
-          data: []
+          data: [],
         },
         yAxis: {
           type: "value",
           name: "Interval(s)",
           nameTextStyle: {
             color: "#ff0000",
-            fontWeight: "bold"
-          }
+            fontWeight: "bold",
+          },
         },
         grid: {
-          bottom: 75
+          bottom: 75,
         },
         series: [
           {
@@ -48,31 +50,26 @@ export default {
                 position: "top",
                 color: "#000000",
                 fontSize: "14",
-                distance: 5
-              }
-            }
-          }
-        ]
-      }
+                distance: 5,
+              },
+            },
+          },
+        ],
+      },
     };
   },
   mounted() {
-    this.getStatisticsXY();
+    this.setStatisticsXY();
   },
   methods: {
-    getStatisticsXY() {
+    setStatisticsXY() {
       this.chartOptionsBar.xAxis.data = this.statisticsX;
       this.chartOptionsBar.series[0].data = this.statisticsY;
-    }
+    },
   },
   computed: {
-    statisticsX() {
-      return this.$store.getters.getStatisticsX;
-    },
-    statisticsY() {
-      return this.$store.getters.getStatisticsY;
-    }
-  }
+    ...mapGetters(["statisticsX", "statisticsY"]),
+  },
 };
 </script>
 

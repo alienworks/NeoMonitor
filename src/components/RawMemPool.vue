@@ -1,51 +1,37 @@
 <template>
-  <b-container class="rm-container text-left">
-    <h1 class="mt-5">{{ title }}</h1>
-    <p class="my-2" v-for="(item, index) in items" :key="index">{{ item }}</p>
-    <div v-if="!items.length">None</div>
-  </b-container>
+  <a-spin :spinning="isFetchingProgress">
+    <b-container class="rm-container text-left pt-5">
+      <h1>{{ title }}</h1>
+      <p class="my-2" v-for="(item, index) in pools" :key="index">{{ item }}</p>
+      <div v-if="!pools.length">None</div>
+    </b-container>
+  </a-spin>
 </template>
 
 <script>
-import NodeService from "@/services/NodeService";
 import { mapGetters } from "vuex";
 import { connection } from "@/App";
 
 export default {
-  data() {
-    return {
-      items: []
-    };
-  },
-  mounted: function() {
-    this.getRawMempool();
+  mounted() {
+    this.$store.dispatch("getPools");
 
-    connection.on("UpdateRawMemPoolItems", data => {
-      this.items = data;
-      console.log("Receving rawmempoolitems", data);
+    connection.on("UpdateRawMemPoolItems", (data) => {
+      this.$store.commit("setPools", data);
     });
   },
-  methods: {
-    async getRawMempool() {
-      const response = await NodeService.getRawMempool(this.nodeID);
-      this.items = response.status === 200 ? response.data : [];
-    }
-  },
   computed: {
-    ...mapGetters({
-      nodeID: "getNodeID"
-    }),
+    ...mapGetters(["isFetchingProgress", "pools"]),
     title() {
       const title = "Raw Transactions";
-      return this.items.length ? `${this.items.length} ${title}` : title;
-    }
+      return this.pools.length ? `${this.pools.length} ${title}` : title;
+    },
   },
-  beforeDestroy: function() {
+  beforeDestroy() {
     connection.send("UnsubscribeRawMemPoolItemsInfo");
-  }
+  },
 };
 </script>
-
 
 <style lang="scss" scoped>
 .rm-container {

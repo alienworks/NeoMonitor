@@ -39,19 +39,22 @@
         style="width: 200px" />
     </a-row>
 
-    <a-table 
-      :columns="fields"
-      :data-source="entities" 
-      :pagination="false"
-      :scroll="{ x: 'max-content', y: 'max-content' }"
-      size="small"
-    >
-      <span 
-        slot="method" 
-        slot-scope="avilable"
-        :class="[avilable ? 'red' : 'green']"
-      >{{ avilable ? "✔" : "✘" }}</span>
-    </a-table>
+    <a-spin :spinning="isFetchingProgress">
+      <a-table 
+        :columns="fields"
+        :data-source="entities" 
+        :pagination="false"
+        :scroll="{ x: 'max-content', y: 'max-content' }"
+        size="small"
+      >
+        <span 
+          slot="method" 
+          slot-scope="avilable"
+          :class="[avilable ? 'red' : 'green']"
+        >{{ avilable ? "✔" : "✘" }}</span>
+      </a-table>
+    </a-spin>
+    
   </div>
 </template>
 
@@ -86,11 +89,11 @@ export default {
       defaultEntites: [],
       filter: null,
       filterDebounce: debounce(
-          (val) => this.entities = this.entities.filter(
-            ({url}) => url.toLowerCase().includes(val.toLowerCase())
-          ),
-          500
+        (val) => this.entities = this.entities.filter(
+          ({url}) => url.toLowerCase().includes(val.toLowerCase())
         ),
+        500
+      ),
       logDebounce: debounce((val) => console.log('debounced', val, arguments), 500)
     };
   },
@@ -98,7 +101,7 @@ export default {
     this.$store.dispatch('getMatrixEntities');
   },
   computed: {
-    ...mapGetters(['matrixEntities'])
+    ...mapGetters(['matrixEntities', 'isFetchingProgress'])
   },
   watch: {
     filter(val) {

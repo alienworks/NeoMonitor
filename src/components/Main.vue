@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <div id="chartdiv"></div>
+    <!-- <div class="chart-wrapper">
+      <chart :options="chartOptions" auto-resize></chart>
+    </div> -->
     <div class="mt-3">
       <!-- <b-table responsive hover :fields="fields" :items="rankTableData">
         <template v-slot:cell(country)="row">
@@ -10,6 +13,7 @@
           </div>
         </template>
       </b-table> -->
+
       <a-table :columns="fields" :data-source="rankTableData" :pagination="false">
         <div slot="country" slot-scope="text, record">
           <img :src="record.flagUrl" class="flag" />
@@ -60,11 +64,12 @@ export default {
           sortDirections: ['descend', 'ascend'],
         }
       ],
+      chartOptions: {},
       rankTableData: []
     };
   },
   mounted() {
-    this.neoMapLocations = this.$store.getters.getNeoSelectedNetNodes;
+    this.neoMapLocations = this.$store.getters.nodes;
   },
   methods: {
     showMap(data) {
@@ -145,7 +150,7 @@ export default {
       lineTemplate.line.strokeOpacity = 0.4;
     },
     suckData() {
-      let data = this.$store.getters.getNeoSelectedNetNodes;
+      let data = this.$store.getters.nodes;
       if (data.length === 0) return;
 
       this.neoMapLocations = [];
@@ -162,13 +167,6 @@ export default {
 
         this.neoMapLocations.push(element);
       });
-
-      // Initial map data
-      /*if (
-        this.neoMapLocations.length === 0 &&
-        neoMainNetNodeLocations.length !== 0
-      )
-        this.neoMapLocations = neoMainNetNodeLocations;*/
     },
     getNodesByGroup(array, groupKey) {
       let result = {},
@@ -226,7 +224,7 @@ export default {
   },
   computed: {
     refreshNodes() {
-      return this.$store.getters.getNeoSelectedNetNodes;
+      return this.$store.getters.nodes;
     }
   },
   watch: {

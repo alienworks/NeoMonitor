@@ -53,26 +53,24 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      current: ["home"]
+      current: ["home"],
     };
   },
   computed: {
-    ...mapGetters({
-      netFlag: "getNetFlag"
-    }),
+    ...mapGetters(["flag"]),
     showMenu() {
       console.log(this);
       return true;
-    }
+    },
   },
   methods: {
     onSetFlagNet(flag) {
-      this.$store.commit("setNetFlag", flag);
+      this.$store.commit("setFlag", flag);
     },
     onLogoClick() {
-      this.current = ["home"]
-    }
-  }
+      this.current = ["home"];
+    },
+  },
 };
 </script>
 
@@ -86,7 +84,7 @@ export default {
     align-items: center;
     float: left;
   }
-  
+
   & .ant-menu-item-selected,
   & .ant-menu-item:hover,
   & .ant-menu-submenu:hover {

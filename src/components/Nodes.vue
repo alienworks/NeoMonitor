@@ -35,16 +35,18 @@
       </b-table>
     </div> -->
     <a-row type="flex" justify="end" class="search-wrapper">
-      <a-input-search 
-        v-model="filter"
-        placeholder="filter by name" 
-        style="width: 200px" />
+      <a-input-search
+        v-model="filterValue"
+        placeholder="filter by name"
+        style="width: 200px"
+      />
     </a-row>
 
-    <a-table :columns="columns"
-      :data-source="nodes" 
-      size="small"
+    <a-table
+      :columns="columns"
+      :data-source="filter ? filteredNodes : nodes"
       :pagination="false"
+      size="small"
     >
       <router-link to="/rawmempool" slot="pool" slot-scope="text, record">
         <span @click="setNodeID(record.id)">{{ text }}</span>
@@ -58,8 +60,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { sorter, debounce } from '@/utils';
+import { mapGetters } from "vuex";
+import { sorter, debounce } from "@/utils";
 
 export default {
   name: "Nodes",
@@ -74,22 +76,22 @@ export default {
         {
           key: "url",
           dataIndex: "url",
-          title: "Name"
+          title: "Name",
         },
         {
           key: "height",
           dataIndex: "height",
-          title: "Current Height"
+          title: "Current Height",
         },
         {
           key: "version",
           dataIndex: "version",
-          title: "Version"
+          title: "Version",
         },
         {
           key: "latency",
           dataIndex: "latency",
-          title: "Latency"
+          title: "Latency",
         },
         {
           key: "peers",
@@ -100,34 +102,39 @@ export default {
           key: "memoryPool",
           dataIndex: "memoryPool",
           title: "MemPool",
-          scopedSlots: { customRender: 'pool' }
+          scopedSlots: { customRender: "pool" },
         },
         {
           key: "exceptionCount",
           dataIndex: "exceptionCount",
           title: "Exceptions",
-          scopedSlots: { customRender: 'exception' }
-        }
-      ].map(column => ({ 
-          ...column, 
-          sorter: sorter(column.dataIndex), 
-          sortDirections: ['descend', 'ascend'] 
-        })
-      ),
-      nodes: [],
-      filter: null,
-      filterBouncer: debounce((val) => this.getNodes(val), 300)
+          scopedSlots: { customRender: "exception" },
+        },
+      ].map((column) => ({
+        ...column,
+        sorter: sorter(column.dataIndex),
+        sortDirections: ["descend", "ascend"],
+      })),
+      filterValue: null,
+      filter: '',
+      filterBouncer: debounce((val) => this.filter = val, 300),
     };
   },
   mounted() {
-    this.getNodes();
+    this.$store.dispatch("getNodes");
   },
-  methods: {
-    getNodes(filter) {
-      if (this.refreshNodes.length === 0) return;
+  computed: {
+    ...mapGetters({
+      nodeID: "nodeID",
+      refreshNodes: "nodes",
+    }),
+    nodes() {
+      const { refreshNodes } = this;
 
-      const nodes = this.refreshNodes.map(node => {
-        const newNode = { ...node, key: node.id };
+      if (refreshNodes.length === 0) return [];
+
+      return refreshNodes.map((node) => {
+        const newNode = { ...node, rowKey: node.id };
         if (node.latency === -1) {
           newNode.height = -1;
           newNode.version = "-";
@@ -135,42 +142,28 @@ export default {
           newNode.peers = -1;
           newNode.memoryPool = -1;
         }
-        return newNode
+        return newNode;
       });
-
-      if (filter) {
-        this.nodes = this.nodes.slice().filter(node => 
-          node.url.toLowerCase().includes(filter.toLowerCase())
-        )
-      }
-
-      else {
-        this.nodes = nodes;
-      }
+    },
+    filteredNodes() {
+      const { filter } = this;
+      return this.nodes.slice().filter((node) => this.filterNode(node, filter));
+    },
+  },
+  methods: {
+    filterNode(node, filter) {
+      return node.url.toLowerCase().includes(filter.toLowerCase());
     },
     setNodeID(id) {
       this.$store.commit("setNodeID", id);
-    }
-  },
-  computed: {
-    ...mapGetters({
-      'nodeID': 'getNodeID',
-      'refreshNodes': 'getNeoSelectedNetNodes'
-    })
+    },
   },
   watch: {
-    refreshNodes() {
-      this.getNodes();
+    filterValue(val) {
+      if (!val) return this.filter = '';
+      return this.filterBouncer(val);
     },
-    filter(val) {
-      if (val) {
-        this.filterBouncer(val)
-      }
-      else {
-        this.getNodes(val)
-      }
-    }
-  }
+  },
 };
 </script>
 

@@ -1,4 +1,6 @@
-let d = [
+// Use to generate mock matrices data
+
+const d = [
     {
       "url": "http://seed1.ngd.network:10332",
       "location": "United States",
@@ -297,13 +299,13 @@ const avaliableApiNames = [
 ];
 
 d.map(({url}) => avaliableApiNames.map((name, i) => {
-    const available = Math.random() >= 0.5
-    return {
-        id: i + 1,
-        url, 
-        method: name, 
-        net: 'MainNet',  
-        available,
-        error: available ? '' : `Error ${i + 1}`
-    }
-}))
+  const available = Math.random() >= 0.2
+  return {
+      id: i + 1,
+      url, 
+      method: name, 
+      net: 'MainNet',  
+      available,
+      error: available ? '' : `Error ${i + 1}`
+  }
+})).reduce((acc, cur) => acc.concat(cur))

@@ -33,7 +33,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("setNeoNodesAction");
+    this.$store.dispatch("getNodes");
 
     this.setUpSignalR();
     this.registerAnalysis();
@@ -48,13 +48,13 @@ export default {
 
       // On Receiving Nodes.
       connection.on("UpdateNodes", async data => {
-        this.$store.commit("setNeoNodes", data);           
+        this.$store.commit("setNodes", data);           
         await connection.send("SubscribeRawMemPoolItemsInfo", this.nodeID);
       });
 
       // On Receiving RawMemPools
       connection.on("UpdateRawMemPoolSizeInfo", rawMemPools => {
-        this.$store.commit("setNeoNodes", this.mapMemPoolsToNodes(rawMemPools));
+        this.$store.commit("setNodes", this.mapMemPoolsToNodes(rawMemPools));
       });
 
       await connection.start().catch(function() {
@@ -93,10 +93,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      'nodeID': 'getNodeID',
-      'nodes': 'getNeoNodes'
-    }),
+    ...mapGetters(['nodeID', 'nodes']),
     showPage() {
       return this.nodes.length !== 0
     }
