@@ -123,5 +123,20 @@ body {
   .nav-link:hover {
     color: rgb(41, 245, 119) !important;
   }
+
+
+  tr.ant-table-row {
+    &.responsed {
+      color: #1890ff;
+    }
+
+    &.delayed {
+      color: #cf1322;
+    }
+
+    &.unresponse {
+      color: darkgray;
+    }
+  }
 }
 </style>

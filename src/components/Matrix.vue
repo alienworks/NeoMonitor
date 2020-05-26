@@ -1,37 +1,5 @@
 <template>
   <div>
-    <!-- <div class="contanier mt-3 col-12">
-      <div class="form-group has-search mb-2 col-3 float-right">
-        <span class="fa fa-search form-control-feedback"></span>
-        <input
-          type="text"
-          v-model="filter"
-          placeholder="Filter by Name"
-          icon="search"
-          class="form-control"
-        />
-      </div>
-      <b-table
-        responsive
-        striped
-        hover
-        bordered
-        sticky-header
-        no-border-collapse
-        :items="entities"
-        :fields="fields"
-        :filter="filter"
-        :filter-function="filterTable"
-        class="matrix-table"
-      >
-        <template v-slot:head(url)>
-          <div class="text-nowrap">node</div>
-        </template>
-        <template v-slot:head()="rest">
-          <div class="text-nowrap">{{ rest.label }}</div>
-        </template>
-      </b-table>
-    </div> -->
     <a-row type="flex" justify="end" class="search-wrapper">
       <a-input-search 
         v-model="filter"

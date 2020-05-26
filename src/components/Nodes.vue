@@ -1,59 +1,42 @@
 <template>
   <div>
-    <!-- <div class="contanier mt-3 col-12">
-      <div class="form-group has-search mb-2 col-3 float-right">
-        <span class="fa fa-search form-control-feedback"></span>
-        <input
-          type="text"
-          v-model="filter"
-          placeholder="Filter by Name"
-          icon="search"
-          class="form-control"
-        />
-      </div>
-      <b-table
-        responsive
-        striped
-        hover
-        bordered
-        :items="nodes"
-        :fields="fields"
-        :filter="filter"
-        :filter-function="filterTable"
-        class="node-table"
-      >
-        <template v-slot:cell(memoryPool)="data">
-          <router-link to="/rawmempool">
-            <span v-on:click="setNodeID(data.item.id)">{{ data.value }}</span>
-          </router-link>
-        </template>
-        <template v-slot:cell(exceptionCount)="data">
-          <router-link to="/nodeinfo">
-            <span v-on:click="setNodeID(data.item.id)">{{ data.value }}</span>
-          </router-link>
-        </template>
-      </b-table>
-    </div> -->
     <a-row type="flex" justify="end" class="search-wrapper">
-      <a-input-search
-        v-model="filterValue"
-        placeholder="filter by name"
-        style="width: 200px"
-      />
+      <a-col class="summary-block" :span="3">
+        <!-- <a-statistic title="Latest block" :value="maxBlock"></a-statistic> -->
+        <p>Latest block</p>
+        <h6>{{ maxBlock }}</h6>
+      </a-col>
+
+      <a-col class="summary-block" :span="3">
+        <p>Average latency</p>
+        <h6>{{ averageLatency }}</h6>
+      </a-col>
+
+      <a-col class="search-wrapper" :span="3" :offset="10">
+        <a-input-search
+          v-model="filterValue"
+          placeholder="filter by name"
+          style="width: 200px"
+        />
+      </a-col>
     </a-row>
 
     <a-table
       :columns="columns"
-      :data-source="filter ? filteredNodes : nodes"
+      :data-source="filteredNodes"
       :pagination="false"
+      :loading="isFetchingProgress"
+      :rowClassName="nodeColor"
       size="small"
     >
-      <router-link to="/rawmempool" slot="pool" slot-scope="text, record">
-        <span @click="setNodeID(record.id)">{{ text }}</span>
+      <div slot="height" slot-scope="h">{{ `${h} ${h === maxBlock || h === 0 ? '' : `(-${maxBlock - h})`}` }}</div>
+
+      <router-link to="/rawmempool" slot="pool" slot-scope="p, record" class="table-link">
+        <span @click="setNodeID(record.id)">{{ p }}</span>
       </router-link>
 
-      <router-link to="/nodeinfo" slot="exception" slot-scope="text, record">
-        <span @click="setNodeID(record.id)">{{ text }}</span>
+      <router-link to="/nodeinfo" slot="exception" slot-scope="e, record" class="table-link">
+        <span @click="setNodeID(record.id)">{{ e }}</span>
       </router-link>
     </a-table>
   </div>
@@ -62,6 +45,20 @@
 <script>
 import { mapGetters } from "vuex";
 import { sorter, debounce } from "@/utils";
+import {
+  pipe,
+  max,
+  prop,
+  map,
+  reduce,
+  filter,
+  identity,
+  converge,
+  sum,
+  divide,
+  length,
+  equals
+} from "ramda";
 
 export default {
   name: "Nodes",
@@ -82,6 +79,7 @@ export default {
           key: "height",
           dataIndex: "height",
           title: "Current Height",
+          scopedSlots: { customRender: "height" }
         },
         {
           key: "version",
@@ -116,8 +114,8 @@ export default {
         sortDirections: ["descend", "ascend"],
       })),
       filterValue: null,
-      filter: '',
-      filterBouncer: debounce((val) => this.filter = val, 300),
+      filter: "",
+      filterBouncer: debounce((val) => (this.filter = val), 300),
     };
   },
   mounted() {
@@ -127,27 +125,51 @@ export default {
     ...mapGetters({
       nodeID: "nodeID",
       refreshNodes: "nodes",
+      isFetchingProgress: "isFetchingProgress",
+      flag: 'flag'
     }),
     nodes() {
       const { refreshNodes } = this;
 
       if (refreshNodes.length === 0) return [];
 
-      return refreshNodes.map((node) => {
-        const newNode = { ...node, rowKey: node.id };
-        if (node.latency === -1) {
-          newNode.height = -1;
-          newNode.version = "-";
-          newNode.latency = -1;
-          newNode.peers = -1;
-          newNode.memoryPool = -1;
+      const result = refreshNodes.map((node) => {
+        if (!node.latency) {
+          return {
+            ...node,
+            key: node.id,
+            height: -1,
+            version: "-",
+            latency: -1,
+            peers: -1,
+            memoryPool: -1,
+          };
         }
-        return newNode;
+
+        return node;
       });
+
+      return result;
     },
     filteredNodes() {
-      const { filter } = this;
-      return this.nodes.slice().filter((node) => this.filterNode(node, filter));
+      const { filter: hasFilter, flag, nodes } = this
+
+      const filteredNodes = filter(pipe(prop('net'), equals(flag)), nodes)
+
+      if (!hasFilter) return filteredNodes || [];
+
+      return filteredNodes.filter(node => this.filterNode(node, hasFilter))
+    },
+    maxBlock() {
+      return pipe(map(prop("height")), reduce(max, 0))(this.filteredNodes);
+    },
+    averageLatency() {
+      return pipe(
+        map(prop("latency")),
+        filter(identity),
+        converge(divide, [sum, length]),
+        Math.floor
+      )(this.filteredNodes);
     },
   },
   methods: {
@@ -157,10 +179,17 @@ export default {
     setNodeID(id) {
       this.$store.commit("setNodeID", id);
     },
+    nodeColor(record) {
+      return record.latency === -1
+        ? "unresponse"
+        : record.height === this.maxBlock
+        ? "responsed"
+        : "delayed";
+    },
   },
   watch: {
     filterValue(val) {
-      if (!val) return this.filter = '';
+      if (!val) return (this.filter = "");
       return this.filterBouncer(val);
     },
   },
@@ -186,6 +215,22 @@ export default {
 }
 
 .search-wrapper {
-  margin: 8px;
+  margin: 8px 20px 8px 0;
+}
+
+.summary-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  h6,
+  p {
+    margin: 0;
+  }
+}
+
+.table-link {
+  color: darkblue;
 }
 </style>

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import NodeService from "@/services/NodeService";
-import { netFlags } from "@/constants";
+import { mainNetFlag } from "@/constants";
 
 Vue.use(Vuex);
 
@@ -10,11 +10,11 @@ export const store = new Vuex.Store({
     nodeID: 0,
     statisticsX: [],
     statisticsY: [],
-    neoNodes: [],
+    nodes: [],
     nodeInfo: [],
     matrixEntities: [],
     pools: [],
-    flag: netFlags.MainNetFlag,
+    flag: mainNetFlag,
     isFetchingProgress: false,
   },
 
@@ -29,7 +29,7 @@ export const store = new Vuex.Store({
       state.statisticsY = payload;
     },
     setNodes(state, payload) {
-      state.neoNodes = payload;
+      state.nodes = payload;
     },
     setNodeInfo(state, payload) {
       state.nodeInfo = payload;
@@ -59,13 +59,13 @@ export const store = new Vuex.Store({
       const entities = response.status === 200 ? response.data : [];
       commit("setMatrixEntities", entities);
     },
-    async getPools({ commit, state }) {
-      const response = await NodeService.getRawMempool(state.nodeID);
+    async getPools({ commit, getters }) {
+      const response = await NodeService.getRawMempool(getters.nodeID);
       const pools = response.status === 200 ? response.data : [];
       commit("setPools", pools);
     },
-    async getNodeInfo({ commit, state }) {
-      const response = await NodeService.getNodeInfo(state.nodeID);
+    async getNodeInfo({ commit, getters }) {
+      const response = await NodeService.getNodeInfo(getters.nodeID);
       const nodeInfo = response.status === 200 ? response.data : [];
       commit("setNodeInfo", nodeInfo);
 
@@ -85,30 +85,30 @@ export const store = new Vuex.Store({
   getters: {
     statisticsX: (state) => state.statisticsX,
     statisticsY: (state) => state.statisticsY,
-    nodes: (state) => state.neoNodes,
+    nodes: (state) => state.nodes,
     nodeInfo: (state) => state.nodeInfo,
-    flag: (state) => state.netFlag,
+    flag: (state) => state.flag,
     mainNodesLength: (state) =>
-      state.neoNodes.filter((node) => node.net === netFlags.MainNetFlag).length,
+      state.nodes.filter((node) => node.net === mainNetFlag).length,
     matrixEntities: (state) => state.matrixEntities,
     isFetchingProgress: (state) => state.isFetchingProgress,
     pools: (state) => state.pools,
 
-    nodeID(state) {
-      if (state.netFlag === netFlags.MainNetFlag)
-        return state.nodeID + state.mainNodesLength;
+    nodeID(state, getter) {
+      if (state.flag === mainNetFlag)
+        return state.nodeID + getter.mainNodesLength;
       return state.nodeID;
     },
 
-    getNeoSelectedNetNodes(state, getter) {
-      const currentNetFlag = state.netFlag;
+    getSelectedNodes(state, getter) {
+      const currentNetFlag = state.flag;
       const lengthOfMainNodes = getter.getMainNodesLength;
-      const neoNodes = state.neoNodes.filter(
+      const nodes = state.nodes.filter(
         (node) => node.net === currentNetFlag
       );
 
-      if (state.netFlag === netFlags.MainNetFlag) return neoNodes;
-      return neoNodes.map((node) => ({
+      if (state.flag === mainNetFlag) return nodes;
+      return nodes.map((node) => ({
         ...node,
         id: node.id - lengthOfMainNodes,
       }));

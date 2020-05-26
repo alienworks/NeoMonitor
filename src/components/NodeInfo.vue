@@ -1,35 +1,5 @@
 <template>
   <div class="contanier mt-3 col-12">
-    <!-- <div class="form-group has-search mb-2 col-3 float-right">
-      <span class="fa fa-search form-control-feedback"></span>
-      <input
-        type="text"
-        v-model="filter"
-        placeholder="Filter by Nodes or Height"
-        icon="search"
-        class="form-control"
-      />
-    </div>
-    <b-table
-      responsive
-      striped
-      hover
-      bordered
-      :items="nodeInfo"
-      :fields="fields"
-      :filter="filter"
-      :filter-function="filterTable"
-    >
-      <template v-slot:cell(exceptionHeight)="data">
-        <a :href="`http://neoscan.io/block/${data.value}`" target="_blank">{{ data.value }}</a>
-      </template>
-      <template v-slot:cell(exceptionTime)="data">
-        <router-link to="/statistics">
-          <span>{{ data.value }}</span>
-        </router-link>
-      </template>
-    </b-table> -->
-
     <a-row type="flex" justify="end" class="search-wrapper">
       <a-input-search
         v-model="filter"

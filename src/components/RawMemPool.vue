@@ -1,11 +1,23 @@
 <template>
-  <a-spin :spinning="isFetchingProgress">
-    <b-container class="rm-container text-left pt-5">
+  <a-page-header
+    style="border: 1px solid rgb(235, 237, 240)"
+    title="Raw Memeory Pools"
+    @back="() => $router.back()"
+  >
+    <div class="rm-container text-left pt-5">
       <h1>{{ title }}</h1>
-      <p class="my-2" v-for="(item, index) in pools" :key="index">{{ item }}</p>
-      <div v-if="!pools.length">None</div>
-    </b-container>
-  </a-spin>
+      <a-list 
+        bordered 
+        size="small" 
+        :data-source="pools" 
+        :loading="isFetchingProgress"
+      >
+        <a-list-item slot="renderItem" slot-scope="item">
+          {{ item }}
+        </a-list-item>
+      </a-list>
+    </div>
+  </a-page-header>
 </template>
 
 <script>
@@ -38,15 +50,15 @@ export default {
   background-color: rgba(255, 255, 255, 0);
 
   @media (min-width: 768px) {
-    padding-left: 15px;
+    padding: 0 15px;
   }
 
   @media (min-width: 992px) {
-    padding-left: 7rem;
+    padding: 0 7rem;
   }
 
   @media (min-width: 1200px) {
-    padding-left: 10rem;
+    padding: 0 10rem;
   }
 }
 </style>

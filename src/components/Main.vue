@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <div id="chartdiv"></div>
+    <div id="chartdiv" ref="chart"></div>
     <!-- <div class="chart-wrapper">
       <chart :options="chartOptions" auto-resize></chart>
     </div> -->
-    <div class="mt-3">
+    <div class="mb-3">
       <!-- <b-table responsive hover :fields="fields" :items="rankTableData">
         <template v-slot:cell(country)="row">
           <div class="d-flex">
@@ -14,7 +14,7 @@
         </template>
       </b-table> -->
 
-      <a-table :columns="fields" :data-source="rankTableData" :pagination="false">
+      <a-table :columns="fields" :data-source="rankTableData" :pagination="false" size="small">
         <div slot="country" slot-scope="text, record">
           <img :src="record.flagUrl" class="flag" />
           <div class="country-text">{{ text }}</div>
@@ -70,6 +70,7 @@ export default {
   },
   mounted() {
     this.neoMapLocations = this.$store.getters.nodes;
+    console.log(this.$refs.chart)
   },
   methods: {
     showMap(data) {
@@ -286,12 +287,16 @@ export default {
   margin-left: 6px;
 }
 
-@media (max-width: 400px) {
-  #chartdiv {
-    width: 100%;
-    height: 60vh;
-    margin-top: -10vh;
-    z-index: -1;
-  }
+.ant-table-small {
+  border-radius: 0;
 }
+
+// @media (max-width: 400px) {
+//   #chartdiv {
+//     width: 100%;
+//     height: 60vh;
+//     margin-top: -10vh;
+//     z-index: -1;
+//   }
+// }
 </style>
