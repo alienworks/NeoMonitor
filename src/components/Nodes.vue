@@ -181,9 +181,9 @@ export default {
     },
     nodeColor(record) {
       return record.latency === -1
-        ? "unresponse"
-        : record.height === this.maxBlock
-        ? "responsed"
+        ? "unresponsive"
+        : (this.maxBlock - record.height) < 5
+        ? "responsive"
         : "delayed";
     },
   },

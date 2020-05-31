@@ -126,7 +126,7 @@ body {
 
 
   tr.ant-table-row {
-    &.responsed {
+    &.responsive {
       color: #1890ff;
     }
 
@@ -134,7 +134,7 @@ body {
       color: #cf1322;
     }
 
-    &.unresponse {
+    &.unresponsive {
       color: darkgray;
     }
   }
