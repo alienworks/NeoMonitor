@@ -15,7 +15,7 @@
       >
         <a-list-item slot="renderItem" slot-scope="item" :key="item.id">
           <a-list-item-meta :description="item.value">
-            <span slot="title">Transaction No.</span>
+            <span slot="title">Transaction Hash</span>
             <a-avatar slot="avatar" class="avatar">{{item.id}}</a-avatar>
           </a-list-item-meta>
         </a-list-item>

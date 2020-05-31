@@ -45,7 +45,7 @@
           </a-menu-item>
 
           <a-menu-item key="matrix">
-            <router-link to="/matrix">API Matrices</router-link>
+            <router-link to="/matrix">API Matrix</router-link>
           </a-menu-item>
         </a-menu>
 

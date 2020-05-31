@@ -15,7 +15,7 @@ axios.interceptors.response.use((data) => {
 // TODO: Add mocks data
 
 const baseUrl = process.env.VUE_APP_RESTAPI;
-const mockUrl = "/mocks";
+// const mockUrl = "/mocks";
 
 // api through api/nodes
 const nodesUrl = combine(baseUrl, "nodes");
@@ -36,11 +36,11 @@ export default {
   getRawMempool(nodeID) {
     return axios.get(combine(rawMempoolUrl, nodeID));
   },
-  // Matrix Script are quite unstable
   getMatrixItems() {
-    return process.env.NODE_ENV === 'production' 
-      ? axios.get(matrixUrl)
-      : axios.get(combine(mockUrl, "matrix.json"))
+    return axios.get(matrixUrl);
+    // return process.env.NODE_ENV === 'production' 
+    //   ? axios.get(matrixUrl)
+    //   : axios.get(combine(mockUrl, "matrix.json"))
   },
   registerAnalysis() {
     return axios.get(analysisUrl, "register");
