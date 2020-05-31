@@ -13,29 +13,33 @@ axios.interceptors.response.use((data) => {
 });
 
 // TODO: Add mocks data
-
-const baseUrl = process.env.VUE_APP_RESTAPI;
 // const mockUrl = "/mocks";
 
-// api through api/nodes
+const baseUrl = process.env.VUE_APP_RESTAPI;
+
+//http://*.*.*.*/api/nodes
 const nodesUrl = combine(baseUrl, "nodes");
-// api through api/nodes/rawmempool
-const rawMempoolUrl = combine(nodesUrl, "rawmempool");
-// api/matrix
+//http://*.*.*.*/api/nodes/rawmempool
+const memPoolUrl = combine(nodesUrl, "rawmempool");
+//http://*.*.*.*/api/matrix
 const matrixUrl = combine(baseUrl, 'matrix');
-// api/analysis
+//http://*.*.*.*/api/analysis
 const analysisUrl = combine(baseUrl, "analysis");
 
 export default {
-  getNodeInfo(nodeID) {
-    return axios.get(combine(nodesUrl, nodeID));
-  },
+  // api/nodes
   getNodesInfo() {
     return axios.get(nodesUrl);
   },
-  getRawMempool(nodeID) {
-    return axios.get(combine(rawMempoolUrl, nodeID));
+  // api/nodes/{id}
+  getNodeInfo(nodeID) {
+    return axios.get(combine(nodesUrl, nodeID));
   },
+  // api/nodes/rawmempool/{nodeId}
+  getMemPool(nodeID) {
+    return axios.get(combine(memPoolUrl, nodeID));
+  },
+  // api/matrix
   getMatrixItems() {
     return axios.get(matrixUrl);
     // return process.env.NODE_ENV === 'production' 

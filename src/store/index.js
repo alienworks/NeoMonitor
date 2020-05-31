@@ -40,7 +40,7 @@ export const store = new Vuex.Store({
     setMatrixEntities(state, entities) {
       state.matrixEntities = entities;
     },
-    setPools(state, pools) {
+    setPool(state, pools) {
       state.pools = pools;
     },
     setIsFetchingProgress(state, progress) {
@@ -59,10 +59,10 @@ export const store = new Vuex.Store({
       const entities = response.status === 200 ? response.data : [];
       commit("setMatrixEntities", entities);
     },
-    async getPools({ commit, getters }) {
-      const response = await NodeService.getRawMempool(getters.nodeID);
+    async getPool({ commit, getters }) {
+      const response = await NodeService.getMemPool(getters.nodeID);
       const pools = response.status === 200 ? response.data : [];
-      commit("setPools", pools);
+      commit("setPool", pools);
     },
     async getNodeInfo({ commit, getters }) {
       const response = await NodeService.getNodeInfo(getters.nodeID);

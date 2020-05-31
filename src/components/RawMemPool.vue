@@ -30,10 +30,10 @@ import { connection } from "@/App";
 
 export default {
   mounted() {
-    this.$store.dispatch("getPools");
+    this.$store.dispatch("getPool");
 
     connection.on("UpdateRawMemPoolItems", data => {
-      this.$store.commit("setPools", data);
+      this.$store.commit("setPool", data);
     });
   },
   computed: {
