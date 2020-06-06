@@ -1,0 +1,3229 @@
+[
+  {
+    "id": 116713,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5181797,
+    "exceptionTime": "2020-03-05T16:14:50.669416",
+    "intervals": 69
+  },
+  {
+    "id": 116725,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5181822,
+    "exceptionTime": "2020-03-05T16:21:50.071433",
+    "intervals": 104
+  },
+  {
+    "id": 116876,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5182602,
+    "exceptionTime": "2020-03-05T19:59:54.317622",
+    "intervals": 70
+  },
+  {
+    "id": 116893,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5182725,
+    "exceptionTime": "2020-03-05T20:34:37.222909",
+    "intervals": 70
+  },
+  {
+    "id": 116968,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5183066,
+    "exceptionTime": "2020-03-05T22:10:22.765389",
+    "intervals": 71
+  },
+  {
+    "id": 117005,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5183180,
+    "exceptionTime": "2020-03-05T22:42:20.907698",
+    "intervals": 70
+  },
+  {
+    "id": 117042,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5183241,
+    "exceptionTime": "2020-03-05T22:59:13.301033",
+    "intervals": 70
+  },
+  {
+    "id": 117186,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5183707,
+    "exceptionTime": "2020-03-06T01:09:09.531057",
+    "intervals": 70
+  },
+  {
+    "id": 117192,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5183761,
+    "exceptionTime": "2020-03-06T01:24:13.499167",
+    "intervals": 70
+  },
+  {
+    "id": 117334,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5184411,
+    "exceptionTime": "2020-03-06T04:25:44.155105",
+    "intervals": 70
+  },
+  {
+    "id": 117781,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5186680,
+    "exceptionTime": "2020-03-06T15:00:25.973234",
+    "intervals": 71
+  },
+  {
+    "id": 117843,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5186874,
+    "exceptionTime": "2020-03-06T15:55:14.088303",
+    "intervals": 71
+  },
+  {
+    "id": 117883,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5186937,
+    "exceptionTime": "2020-03-06T16:13:00.824027",
+    "intervals": 106
+  },
+  {
+    "id": 117991,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5187345,
+    "exceptionTime": "2020-03-06T18:07:28.647973",
+    "intervals": 107
+  },
+  {
+    "id": 117996,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5187355,
+    "exceptionTime": "2020-03-06T18:10:27.202159",
+    "intervals": 107
+  },
+  {
+    "id": 118472,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5189000,
+    "exceptionTime": "2020-03-07T01:50:42.03366",
+    "intervals": 71
+  },
+  {
+    "id": 118840,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5190629,
+    "exceptionTime": "2020-03-07T09:23:47.074952",
+    "intervals": 70
+  },
+  {
+    "id": 119098,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5191740,
+    "exceptionTime": "2020-03-07T14:36:00.995446",
+    "intervals": 70
+  },
+  {
+    "id": 119131,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5191870,
+    "exceptionTime": "2020-03-07T15:12:28.686609",
+    "intervals": 69
+  },
+  {
+    "id": 119434,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5192978,
+    "exceptionTime": "2020-03-07T20:24:00.805663",
+    "intervals": 105
+  },
+  {
+    "id": 119615,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5193434,
+    "exceptionTime": "2020-03-07T22:32:26.039155",
+    "intervals": 70
+  },
+  {
+    "id": 119691,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5193586,
+    "exceptionTime": "2020-03-07T23:15:03.48478",
+    "intervals": 106
+  },
+  {
+    "id": 120074,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5195182,
+    "exceptionTime": "2020-03-08T06:40:26.305328",
+    "intervals": 106
+  },
+  {
+    "id": 120270,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5196261,
+    "exceptionTime": "2020-03-08T11:42:50.829946",
+    "intervals": 71
+  },
+  {
+    "id": 120483,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5196981,
+    "exceptionTime": "2020-03-08T15:06:01.733901",
+    "intervals": 107
+  },
+  {
+    "id": 120508,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5197081,
+    "exceptionTime": "2020-03-08T15:34:30.780908",
+    "intervals": 107
+  },
+  {
+    "id": 120578,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5197410,
+    "exceptionTime": "2020-03-08T17:07:30.229669",
+    "intervals": 72
+  },
+  {
+    "id": 120789,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5198557,
+    "exceptionTime": "2020-03-08T22:34:22.984275",
+    "intervals": 108
+  },
+  {
+    "id": 120831,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5198658,
+    "exceptionTime": "2020-03-08T23:03:06.842834",
+    "intervals": 71
+  },
+  {
+    "id": 120894,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5198872,
+    "exceptionTime": "2020-03-09T00:03:16.651172",
+    "intervals": 107
+  },
+  {
+    "id": 120965,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5199172,
+    "exceptionTime": "2020-03-09T01:27:43.150664",
+    "intervals": 72
+  },
+  {
+    "id": 120975,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5199208,
+    "exceptionTime": "2020-03-09T01:37:50.91982",
+    "intervals": 72
+  },
+  {
+    "id": 121012,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5199386,
+    "exceptionTime": "2020-03-09T02:27:52.522637",
+    "intervals": 70
+  },
+  {
+    "id": 121081,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5199772,
+    "exceptionTime": "2020-03-09T04:16:44.31881",
+    "intervals": 105
+  },
+  {
+    "id": 121402,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5201209,
+    "exceptionTime": "2020-03-09T11:04:40.622521",
+    "intervals": 70
+  },
+  {
+    "id": 121613,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5201941,
+    "exceptionTime": "2020-03-09T14:30:55.350093",
+    "intervals": 71
+  },
+  {
+    "id": 121676,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5202111,
+    "exceptionTime": "2020-03-09T15:18:44.315753",
+    "intervals": 71
+  },
+  {
+    "id": 121952,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5203022,
+    "exceptionTime": "2020-03-09T19:43:38.909608",
+    "intervals": 71
+  },
+  {
+    "id": 121962,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5203040,
+    "exceptionTime": "2020-03-09T19:49:37.247048",
+    "intervals": 180
+  },
+  {
+    "id": 122183,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5203401,
+    "exceptionTime": "2020-03-09T21:52:21.496158",
+    "intervals": 71
+  },
+  {
+    "id": 122335,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5203604,
+    "exceptionTime": "2020-03-09T23:03:13.704995",
+    "intervals": 72
+  },
+  {
+    "id": 122389,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5203719,
+    "exceptionTime": "2020-03-09T23:42:25.600371",
+    "intervals": 71
+  },
+  {
+    "id": 122485,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5203859,
+    "exceptionTime": "2020-03-10T00:28:57.397247",
+    "intervals": 143
+  },
+  {
+    "id": 122624,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5269391,
+    "exceptionTime": "2020-03-23T00:29:09.81593",
+    "intervals": 89
+  },
+  {
+    "id": 122642,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5269411,
+    "exceptionTime": "2020-03-23T00:34:35.092468",
+    "intervals": 237
+  },
+  {
+    "id": 122658,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5269434,
+    "exceptionTime": "2020-03-23T00:40:59.799211",
+    "intervals": 147
+  },
+  {
+    "id": 122678,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5269457,
+    "exceptionTime": "2020-03-23T00:47:21.677262",
+    "intervals": 296
+  },
+  {
+    "id": 123488,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5270780,
+    "exceptionTime": "2020-03-23T06:52:10.689253",
+    "intervals": 91
+  },
+  {
+    "id": 124170,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272216,
+    "exceptionTime": "2020-03-23T13:30:43.716796",
+    "intervals": 61
+  },
+  {
+    "id": 124181,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272244,
+    "exceptionTime": "2020-03-23T13:38:20.110535",
+    "intervals": 62
+  },
+  {
+    "id": 124202,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272283,
+    "exceptionTime": "2020-03-23T13:48:59.17775",
+    "intervals": 184
+  },
+  {
+    "id": 124211,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272298,
+    "exceptionTime": "2020-03-23T13:53:04.350176",
+    "intervals": 62
+  },
+  {
+    "id": 124276,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272423,
+    "exceptionTime": "2020-03-23T14:28:14.308711",
+    "intervals": 62
+  },
+  {
+    "id": 124291,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272466,
+    "exceptionTime": "2020-03-23T14:40:27.571003",
+    "intervals": 61
+  },
+  {
+    "id": 124321,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272536,
+    "exceptionTime": "2020-03-23T14:59:55.322813",
+    "intervals": 62
+  },
+  {
+    "id": 124350,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272599,
+    "exceptionTime": "2020-03-23T15:17:18.68342",
+    "intervals": 122
+  },
+  {
+    "id": 124354,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272616,
+    "exceptionTime": "2020-03-23T15:21:53.909741",
+    "intervals": 61
+  },
+  {
+    "id": 124362,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272628,
+    "exceptionTime": "2020-03-23T15:25:27.936124",
+    "intervals": 61
+  },
+  {
+    "id": 124386,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272682,
+    "exceptionTime": "2020-03-23T15:40:19.786069",
+    "intervals": 62
+  },
+  {
+    "id": 124400,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5272713,
+    "exceptionTime": "2020-03-23T15:49:02.383498",
+    "intervals": 123
+  },
+  {
+    "id": 124655,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273239,
+    "exceptionTime": "2020-03-23T18:14:41.691521",
+    "intervals": 62
+  },
+  {
+    "id": 124971,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273502,
+    "exceptionTime": "2020-03-23T19:28:39.157621",
+    "intervals": 63
+  },
+  {
+    "id": 125033,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273564,
+    "exceptionTime": "2020-03-23T19:46:05.941196",
+    "intervals": 92
+  },
+  {
+    "id": 125058,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273577,
+    "exceptionTime": "2020-03-23T19:49:43.597419",
+    "intervals": 252
+  },
+  {
+    "id": 125126,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273610,
+    "exceptionTime": "2020-03-23T19:58:47.283402",
+    "intervals": 61
+  },
+  {
+    "id": 125242,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273776,
+    "exceptionTime": "2020-03-23T20:45:05.741775",
+    "intervals": 62
+  },
+  {
+    "id": 125259,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273808,
+    "exceptionTime": "2020-03-23T20:53:50.731208",
+    "intervals": 62
+  },
+  {
+    "id": 125311,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273871,
+    "exceptionTime": "2020-03-23T21:11:21.929929",
+    "intervals": 94
+  },
+  {
+    "id": 125356,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273903,
+    "exceptionTime": "2020-03-23T21:20:08.164112",
+    "intervals": 62
+  },
+  {
+    "id": 125458,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273958,
+    "exceptionTime": "2020-03-23T21:35:16.936063",
+    "intervals": 96
+  },
+  {
+    "id": 125492,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5273987,
+    "exceptionTime": "2020-03-23T21:43:39.671114",
+    "intervals": 124
+  },
+  {
+    "id": 125533,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274016,
+    "exceptionTime": "2020-03-23T21:51:32.114169",
+    "intervals": 187
+  },
+  {
+    "id": 125618,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274069,
+    "exceptionTime": "2020-03-23T22:06:17.449572",
+    "intervals": 123
+  },
+  {
+    "id": 125626,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274080,
+    "exceptionTime": "2020-03-23T22:09:22.303525",
+    "intervals": 62
+  },
+  {
+    "id": 125659,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274122,
+    "exceptionTime": "2020-03-23T22:20:46.28647",
+    "intervals": 124
+  },
+  {
+    "id": 125665,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274139,
+    "exceptionTime": "2020-03-23T22:25:25.533599",
+    "intervals": 63
+  },
+  {
+    "id": 125681,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274150,
+    "exceptionTime": "2020-03-23T22:28:32.322925",
+    "intervals": 188
+  },
+  {
+    "id": 125718,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274171,
+    "exceptionTime": "2020-03-23T22:34:17.931448",
+    "intervals": 62
+  },
+  {
+    "id": 125769,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274222,
+    "exceptionTime": "2020-03-23T22:48:23.605278",
+    "intervals": 129
+  },
+  {
+    "id": 125811,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274257,
+    "exceptionTime": "2020-03-23T22:58:19.220163",
+    "intervals": 93
+  },
+  {
+    "id": 125863,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274324,
+    "exceptionTime": "2020-03-23T23:17:05.150976",
+    "intervals": 63
+  },
+  {
+    "id": 125872,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274343,
+    "exceptionTime": "2020-03-23T23:22:17.622619",
+    "intervals": 62
+  },
+  {
+    "id": 125878,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274350,
+    "exceptionTime": "2020-03-23T23:24:22.643976",
+    "intervals": 62
+  },
+  {
+    "id": 125884,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274359,
+    "exceptionTime": "2020-03-23T23:26:57.856158",
+    "intervals": 94
+  },
+  {
+    "id": 125901,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274377,
+    "exceptionTime": "2020-03-23T23:32:10.042875",
+    "intervals": 62
+  },
+  {
+    "id": 125931,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274416,
+    "exceptionTime": "2020-03-23T23:43:04.43452",
+    "intervals": 62
+  },
+  {
+    "id": 126047,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274602,
+    "exceptionTime": "2020-03-24T00:34:20.360453",
+    "intervals": 65
+  },
+  {
+    "id": 126095,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5274691,
+    "exceptionTime": "2020-03-24T00:59:07.252446",
+    "intervals": 98
+  },
+  {
+    "id": 126456,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5275870,
+    "exceptionTime": "2020-03-24T06:23:32.999945",
+    "intervals": 64
+  },
+  {
+    "id": 126904,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5277071,
+    "exceptionTime": "2020-03-24T11:55:46.422631",
+    "intervals": 65
+  },
+  {
+    "id": 126985,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5277272,
+    "exceptionTime": "2020-03-24T12:50:51.169814",
+    "intervals": 65
+  },
+  {
+    "id": 127046,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5277383,
+    "exceptionTime": "2020-03-24T13:21:42.445546",
+    "intervals": 65
+  },
+  {
+    "id": 127157,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5277663,
+    "exceptionTime": "2020-03-24T14:40:39.249848",
+    "intervals": 65
+  },
+  {
+    "id": 127449,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5278242,
+    "exceptionTime": "2020-03-24T17:22:00.622235",
+    "intervals": 65
+  },
+  {
+    "id": 127576,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5278463,
+    "exceptionTime": "2020-03-24T18:25:05.350864",
+    "intervals": 66
+  },
+  {
+    "id": 127718,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5278636,
+    "exceptionTime": "2020-03-24T19:14:55.501617",
+    "intervals": 99
+  },
+  {
+    "id": 128133,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5279391,
+    "exceptionTime": "2020-03-24T22:45:27.593671",
+    "intervals": 66
+  },
+  {
+    "id": 128361,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5279783,
+    "exceptionTime": "2020-03-25T00:34:22.652253",
+    "intervals": 64
+  },
+  {
+    "id": 128381,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5279827,
+    "exceptionTime": "2020-03-25T00:46:40.285771",
+    "intervals": 99
+  },
+  {
+    "id": 128517,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5280023,
+    "exceptionTime": "2020-03-25T01:40:41.418956",
+    "intervals": 65
+  },
+  {
+    "id": 128611,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5280204,
+    "exceptionTime": "2020-03-25T02:31:05.972975",
+    "intervals": 130
+  },
+  {
+    "id": 129365,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5281875,
+    "exceptionTime": "2020-03-25T10:12:55.335627",
+    "intervals": 66
+  },
+  {
+    "id": 129632,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5282531,
+    "exceptionTime": "2020-03-25T13:14:36.95773",
+    "intervals": 66
+  },
+  {
+    "id": 129665,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5282582,
+    "exceptionTime": "2020-03-25T13:28:46.666036",
+    "intervals": 66
+  },
+  {
+    "id": 129675,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5282590,
+    "exceptionTime": "2020-03-25T13:30:57.61274",
+    "intervals": 98
+  },
+  {
+    "id": 129968,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5283135,
+    "exceptionTime": "2020-03-25T16:03:06.971788",
+    "intervals": 133
+  },
+  {
+    "id": 129997,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5283187,
+    "exceptionTime": "2020-03-25T16:17:22.365583",
+    "intervals": 66
+  },
+  {
+    "id": 130274,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5283906,
+    "exceptionTime": "2020-03-25T19:37:16.773243",
+    "intervals": 66
+  },
+  {
+    "id": 130428,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5284404,
+    "exceptionTime": "2020-03-25T21:55:36.738655",
+    "intervals": 131
+  },
+  {
+    "id": 130487,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5284535,
+    "exceptionTime": "2020-03-25T22:32:14.690888",
+    "intervals": 67
+  },
+  {
+    "id": 130635,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5284900,
+    "exceptionTime": "2020-03-26T00:14:01.304153",
+    "intervals": 165
+  },
+  {
+    "id": 130651,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5284938,
+    "exceptionTime": "2020-03-26T00:24:25.770702",
+    "intervals": 66
+  },
+  {
+    "id": 130701,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5285072,
+    "exceptionTime": "2020-03-26T01:01:28.295984",
+    "intervals": 66
+  },
+  {
+    "id": 130887,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5285617,
+    "exceptionTime": "2020-03-26T03:32:08.238673",
+    "intervals": 67
+  },
+  {
+    "id": 131178,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5286191,
+    "exceptionTime": "2020-03-26T06:10:47.730833",
+    "intervals": 67
+  },
+  {
+    "id": 131212,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5286262,
+    "exceptionTime": "2020-03-26T06:30:31.83647",
+    "intervals": 67
+  },
+  {
+    "id": 131445,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5286758,
+    "exceptionTime": "2020-03-26T08:48:45.97198",
+    "intervals": 99
+  },
+  {
+    "id": 131456,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5286777,
+    "exceptionTime": "2020-03-26T08:54:16.119561",
+    "intervals": 67
+  },
+  {
+    "id": 131528,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5286980,
+    "exceptionTime": "2020-03-26T09:50:38.347013",
+    "intervals": 133
+  },
+  {
+    "id": 131713,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5287438,
+    "exceptionTime": "2020-03-26T11:58:00.895428",
+    "intervals": 166
+  },
+  {
+    "id": 131927,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5287879,
+    "exceptionTime": "2020-03-26T14:00:28.213109",
+    "intervals": 67
+  },
+  {
+    "id": 131998,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5288073,
+    "exceptionTime": "2020-03-26T14:54:19.803201",
+    "intervals": 171
+  },
+  {
+    "id": 132008,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5288087,
+    "exceptionTime": "2020-03-26T14:58:20.503828",
+    "intervals": 102
+  },
+  {
+    "id": 132094,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5288250,
+    "exceptionTime": "2020-03-26T15:44:16.986023",
+    "intervals": 70
+  },
+  {
+    "id": 132460,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5289014,
+    "exceptionTime": "2020-03-26T19:18:07.665994",
+    "intervals": 68
+  },
+  {
+    "id": 132476,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5289027,
+    "exceptionTime": "2020-03-26T19:21:31.100771",
+    "intervals": 68
+  },
+  {
+    "id": 132523,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5289127,
+    "exceptionTime": "2020-03-26T19:49:50.924141",
+    "intervals": 207
+  },
+  {
+    "id": 132668,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5289322,
+    "exceptionTime": "2020-03-26T20:44:18.971262",
+    "intervals": 67
+  },
+  {
+    "id": 132678,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5289348,
+    "exceptionTime": "2020-03-26T20:51:37.040248",
+    "intervals": 134
+  },
+  {
+    "id": 132750,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5289543,
+    "exceptionTime": "2020-03-26T21:46:03.892409",
+    "intervals": 137
+  },
+  {
+    "id": 132902,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5289835,
+    "exceptionTime": "2020-03-26T23:07:19.389129",
+    "intervals": 68
+  },
+  {
+    "id": 133024,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5290086,
+    "exceptionTime": "2020-03-27T00:16:59.157704",
+    "intervals": 70
+  },
+  {
+    "id": 133416,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5291403,
+    "exceptionTime": "2020-03-27T06:23:03.620203",
+    "intervals": 68
+  },
+  {
+    "id": 133577,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5291953,
+    "exceptionTime": "2020-03-27T08:55:08.03456",
+    "intervals": 68
+  },
+  {
+    "id": 133721,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5292282,
+    "exceptionTime": "2020-03-27T10:25:55.73102",
+    "intervals": 68
+  },
+  {
+    "id": 133758,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5292416,
+    "exceptionTime": "2020-03-27T11:03:11.491098",
+    "intervals": 69
+  },
+  {
+    "id": 133785,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5292502,
+    "exceptionTime": "2020-03-27T11:26:53.202321",
+    "intervals": 70
+  },
+  {
+    "id": 133792,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5292512,
+    "exceptionTime": "2020-03-27T11:29:46.746151",
+    "intervals": 140
+  },
+  {
+    "id": 133858,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5292677,
+    "exceptionTime": "2020-03-27T12:15:29.854154",
+    "intervals": 69
+  },
+  {
+    "id": 134138,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5293400,
+    "exceptionTime": "2020-03-27T15:37:23.122659",
+    "intervals": 71
+  },
+  {
+    "id": 134197,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5293644,
+    "exceptionTime": "2020-03-27T16:45:58.46028",
+    "intervals": 104
+  },
+  {
+    "id": 134671,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5294745,
+    "exceptionTime": "2020-03-27T21:52:17.391321",
+    "intervals": 70
+  },
+  {
+    "id": 134725,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5294884,
+    "exceptionTime": "2020-03-27T22:31:11.760143",
+    "intervals": 70
+  },
+  {
+    "id": 134751,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5294910,
+    "exceptionTime": "2020-03-27T22:38:18.603429",
+    "intervals": 72
+  },
+  {
+    "id": 134758,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5294921,
+    "exceptionTime": "2020-03-27T22:41:18.082119",
+    "intervals": 71
+  },
+  {
+    "id": 134913,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5295410,
+    "exceptionTime": "2020-03-28T00:57:50.631206",
+    "intervals": 71
+  },
+  {
+    "id": 134932,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5295513,
+    "exceptionTime": "2020-03-28T01:26:21.390534",
+    "intervals": 71
+  },
+  {
+    "id": 135631,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5298423,
+    "exceptionTime": "2020-03-28T14:50:04.339485",
+    "intervals": 72
+  },
+  {
+    "id": 135968,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5299722,
+    "exceptionTime": "2020-03-28T20:51:07.128875",
+    "intervals": 72
+  },
+  {
+    "id": 136047,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5300034,
+    "exceptionTime": "2020-03-28T22:17:33.700865",
+    "intervals": 74
+  },
+  {
+    "id": 136246,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5300409,
+    "exceptionTime": "2020-03-29T00:02:13.719809",
+    "intervals": 73
+  },
+  {
+    "id": 136554,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5301467,
+    "exceptionTime": "2020-03-29T04:56:11.630595",
+    "intervals": 110
+  },
+  {
+    "id": 136868,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5302762,
+    "exceptionTime": "2020-03-29T10:55:49.644956",
+    "intervals": 72
+  },
+  {
+    "id": 137740,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5305451,
+    "exceptionTime": "2020-03-29T23:26:42.352617",
+    "intervals": 73
+  },
+  {
+    "id": 138012,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5306592,
+    "exceptionTime": "2020-03-30T04:42:02.770832",
+    "intervals": 73
+  },
+  {
+    "id": 138851,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5310413,
+    "exceptionTime": "2020-03-30T22:22:13.391209",
+    "intervals": 74
+  },
+  {
+    "id": 138910,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5310598,
+    "exceptionTime": "2020-03-30T23:13:43.096747",
+    "intervals": 74
+  },
+  {
+    "id": 139357,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5313307,
+    "exceptionTime": "2020-03-31T11:41:24.596568",
+    "intervals": 78
+  },
+  {
+    "id": 139852,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5315640,
+    "exceptionTime": "2020-03-31T22:31:33.758901",
+    "intervals": 78
+  },
+  {
+    "id": 140751,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5319849,
+    "exceptionTime": "2020-04-01T18:07:10.431011",
+    "intervals": 78
+  },
+  {
+    "id": 140949,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5320719,
+    "exceptionTime": "2020-04-01T22:11:21.16596",
+    "intervals": 78
+  },
+  {
+    "id": 141729,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5324853,
+    "exceptionTime": "2020-04-02T17:21:55.953047",
+    "intervals": 81
+  },
+  {
+    "id": 143442,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5334431,
+    "exceptionTime": "2020-04-04T13:59:05.572468",
+    "intervals": 80
+  },
+  {
+    "id": 143914,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5335812,
+    "exceptionTime": "2020-04-04T20:26:31.499048",
+    "intervals": 80
+  },
+  {
+    "id": 143977,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5336198,
+    "exceptionTime": "2020-04-04T22:14:35.309682",
+    "intervals": 81
+  },
+  {
+    "id": 144031,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5336360,
+    "exceptionTime": "2020-04-04T23:00:15.218672",
+    "intervals": 81
+  },
+  {
+    "id": 145363,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5344006,
+    "exceptionTime": "2020-04-06T10:22:37.689552",
+    "intervals": 80
+  },
+  {
+    "id": 145400,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5344298,
+    "exceptionTime": "2020-04-06T11:43:56.078376",
+    "intervals": 82
+  },
+  {
+    "id": 146185,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5347756,
+    "exceptionTime": "2020-04-11T22:42:32.158229",
+    "intervals": 413728
+  },
+  {
+    "id": 146221,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5372571,
+    "exceptionTime": "2020-04-11T23:00:03.011371",
+    "intervals": 62
+  },
+  {
+    "id": 146305,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5372688,
+    "exceptionTime": "2020-04-11T23:32:15.125433",
+    "intervals": 61
+  },
+  {
+    "id": 146332,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5372732,
+    "exceptionTime": "2020-04-11T23:44:46.75055",
+    "intervals": 121
+  },
+  {
+    "id": 146363,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5372793,
+    "exceptionTime": "2020-04-12T00:01:46.131287",
+    "intervals": 332
+  },
+  {
+    "id": 146403,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5372832,
+    "exceptionTime": "2020-04-12T00:12:49.903868",
+    "intervals": 90
+  },
+  {
+    "id": 147710,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5375704,
+    "exceptionTime": "2020-04-12T13:30:59.739471",
+    "intervals": 62
+  },
+  {
+    "id": 148299,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5377825,
+    "exceptionTime": "2020-04-12T23:20:28.974061",
+    "intervals": 154
+  },
+  {
+    "id": 148345,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5377932,
+    "exceptionTime": "2020-04-12T23:50:15.207826",
+    "intervals": 62
+  },
+  {
+    "id": 149397,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5381654,
+    "exceptionTime": "2020-04-13T17:05:07.356764",
+    "intervals": 92
+  },
+  {
+    "id": 149523,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5381972,
+    "exceptionTime": "2020-04-13T18:33:43.112937",
+    "intervals": 64
+  },
+  {
+    "id": 149540,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5382000,
+    "exceptionTime": "2020-04-13T18:41:39.184511",
+    "intervals": 96
+  },
+  {
+    "id": 149543,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5382010,
+    "exceptionTime": "2020-04-13T18:44:18.503855",
+    "intervals": 64
+  },
+  {
+    "id": 149583,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5382049,
+    "exceptionTime": "2020-04-13T18:55:56.127066",
+    "intervals": 65
+  },
+  {
+    "id": 149588,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5382057,
+    "exceptionTime": "2020-04-13T18:58:04.460767",
+    "intervals": 64
+  },
+  {
+    "id": 149663,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5382242,
+    "exceptionTime": "2020-04-13T19:50:47.085658",
+    "intervals": 63
+  },
+  {
+    "id": 149697,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5382313,
+    "exceptionTime": "2020-04-13T20:10:23.42638",
+    "intervals": 64
+  },
+  {
+    "id": 149757,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5382447,
+    "exceptionTime": "2020-04-13T20:47:55.143033",
+    "intervals": 131
+  },
+  {
+    "id": 149774,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5382488,
+    "exceptionTime": "2020-04-13T20:59:08.675347",
+    "intervals": 64
+  },
+  {
+    "id": 149950,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5382886,
+    "exceptionTime": "2020-04-13T22:51:08.45545",
+    "intervals": 64
+  },
+  {
+    "id": 150169,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5383188,
+    "exceptionTime": "2020-04-14T00:15:16.588516",
+    "intervals": 63
+  },
+  {
+    "id": 150714,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5384406,
+    "exceptionTime": "2020-04-14T05:53:18.694923",
+    "intervals": 160
+  },
+  {
+    "id": 151057,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5385487,
+    "exceptionTime": "2020-04-14T10:53:12.09195",
+    "intervals": 66
+  },
+  {
+    "id": 151235,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5386106,
+    "exceptionTime": "2020-04-14T13:45:42.750383",
+    "intervals": 65
+  },
+  {
+    "id": 151324,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5386374,
+    "exceptionTime": "2020-04-14T15:00:30.191389",
+    "intervals": 131
+  },
+  {
+    "id": 151372,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5386501,
+    "exceptionTime": "2020-04-14T15:36:18.953639",
+    "intervals": 167
+  },
+  {
+    "id": 151543,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5387293,
+    "exceptionTime": "2020-04-14T19:18:15.453041",
+    "intervals": 68
+  },
+  {
+    "id": 151557,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5387380,
+    "exceptionTime": "2020-04-14T19:42:19.309352",
+    "intervals": 101
+  },
+  {
+    "id": 152040,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5390188,
+    "exceptionTime": "2020-04-15T08:40:05.6387",
+    "intervals": 238
+  },
+  {
+    "id": 152118,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5390447,
+    "exceptionTime": "2020-04-15T09:52:00.316897",
+    "intervals": 139
+  },
+  {
+    "id": 152218,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5391093,
+    "exceptionTime": "2020-04-15T12:52:10.388376",
+    "intervals": 67
+  },
+  {
+    "id": 152259,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5391278,
+    "exceptionTime": "2020-04-15T13:43:30.302993",
+    "intervals": 101
+  },
+  {
+    "id": 152263,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5391300,
+    "exceptionTime": "2020-04-15T13:49:41.034782",
+    "intervals": 169
+  },
+  {
+    "id": 152273,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5391371,
+    "exceptionTime": "2020-04-15T14:09:52.852463",
+    "intervals": 68
+  },
+  {
+    "id": 152293,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5391451,
+    "exceptionTime": "2020-04-15T14:32:47.597472",
+    "intervals": 100
+  },
+  {
+    "id": 152373,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5391906,
+    "exceptionTime": "2020-04-15T16:39:41.942026",
+    "intervals": 104
+  },
+  {
+    "id": 152379,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5391921,
+    "exceptionTime": "2020-04-15T16:43:46.960738",
+    "intervals": 174
+  },
+  {
+    "id": 152846,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5392595,
+    "exceptionTime": "2020-04-15T19:50:54.880226",
+    "intervals": 69
+  },
+  {
+    "id": 153023,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5393058,
+    "exceptionTime": "2020-04-15T22:00:11.354665",
+    "intervals": 480
+  },
+  {
+    "id": 153071,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5393127,
+    "exceptionTime": "2020-04-15T22:19:24.561806",
+    "intervals": 67
+  },
+  {
+    "id": 153105,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5393223,
+    "exceptionTime": "2020-04-15T22:45:53.122719",
+    "intervals": 67
+  },
+  {
+    "id": 153198,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5393552,
+    "exceptionTime": "2020-04-16T00:16:46.571565",
+    "intervals": 67
+  },
+  {
+    "id": 153277,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5393932,
+    "exceptionTime": "2020-04-16T02:01:47.775589",
+    "intervals": 67
+  },
+  {
+    "id": 153446,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5394933,
+    "exceptionTime": "2020-04-16T06:37:56.572098",
+    "intervals": 67
+  },
+  {
+    "id": 153539,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5395446,
+    "exceptionTime": "2020-04-16T09:00:51.285112",
+    "intervals": 101
+  },
+  {
+    "id": 153674,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396162,
+    "exceptionTime": "2020-04-16T12:19:19.207296",
+    "intervals": 67
+  },
+  {
+    "id": 153677,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396184,
+    "exceptionTime": "2020-04-16T12:25:27.018097",
+    "intervals": 68
+  },
+  {
+    "id": 153737,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396363,
+    "exceptionTime": "2020-04-16T13:15:18.066783",
+    "intervals": 67
+  },
+  {
+    "id": 153769,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396523,
+    "exceptionTime": "2020-04-16T14:00:07.582244",
+    "intervals": 103
+  },
+  {
+    "id": 153779,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396564,
+    "exceptionTime": "2020-04-16T14:11:29.238744",
+    "intervals": 68
+  },
+  {
+    "id": 153797,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396626,
+    "exceptionTime": "2020-04-16T14:28:22.164121",
+    "intervals": 69
+  },
+  {
+    "id": 153842,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396728,
+    "exceptionTime": "2020-04-16T14:56:10.623717",
+    "intervals": 100
+  },
+  {
+    "id": 153881,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396893,
+    "exceptionTime": "2020-04-16T15:41:54.25887",
+    "intervals": 68
+  },
+  {
+    "id": 153884,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396903,
+    "exceptionTime": "2020-04-16T15:44:43.135412",
+    "intervals": 137
+  },
+  {
+    "id": 153888,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396921,
+    "exceptionTime": "2020-04-16T15:49:50.318436",
+    "intervals": 69
+  },
+  {
+    "id": 153889,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5396930,
+    "exceptionTime": "2020-04-16T15:52:08.219917",
+    "intervals": 69
+  },
+  {
+    "id": 153921,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5397020,
+    "exceptionTime": "2020-04-16T16:17:08.744112",
+    "intervals": 67
+  },
+  {
+    "id": 153931,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5397044,
+    "exceptionTime": "2020-04-16T16:23:52.023746",
+    "intervals": 103
+  },
+  {
+    "id": 154018,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5397383,
+    "exceptionTime": "2020-04-16T17:57:30.982381",
+    "intervals": 101
+  },
+  {
+    "id": 154123,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5397694,
+    "exceptionTime": "2020-04-16T19:23:46.259555",
+    "intervals": 68
+  },
+  {
+    "id": 154364,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5398632,
+    "exceptionTime": "2020-04-16T23:43:23.483643",
+    "intervals": 66
+  },
+  {
+    "id": 154803,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5400631,
+    "exceptionTime": "2020-04-17T08:54:51.782084",
+    "intervals": 67
+  },
+  {
+    "id": 154896,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5401010,
+    "exceptionTime": "2020-04-17T10:40:00.92479",
+    "intervals": 134
+  },
+  {
+    "id": 155512,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5403705,
+    "exceptionTime": "2020-04-17T23:08:43.644874",
+    "intervals": 69
+  },
+  {
+    "id": 155593,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5403898,
+    "exceptionTime": "2020-04-18T00:02:35.131985",
+    "intervals": 69
+  },
+  {
+    "id": 160394,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5429746,
+    "exceptionTime": "2020-04-22T22:55:06.637674",
+    "intervals": 75
+  },
+  {
+    "id": 160447,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5430020,
+    "exceptionTime": "2020-04-23T00:10:36.20808",
+    "intervals": 74
+  },
+  {
+    "id": 160473,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5430130,
+    "exceptionTime": "2020-04-23T00:41:01.045765",
+    "intervals": 75
+  },
+  {
+    "id": 160509,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5430264,
+    "exceptionTime": "2020-04-23T01:17:48.694958",
+    "intervals": 113
+  },
+  {
+    "id": 160514,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5430275,
+    "exceptionTime": "2020-04-23T01:20:56.807574",
+    "intervals": 112
+  },
+  {
+    "id": 160538,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5430287,
+    "exceptionTime": "2020-04-23T01:24:06.395355",
+    "intervals": 111
+  },
+  {
+    "id": 162517,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5437943,
+    "exceptionTime": "2020-04-24T12:38:26.828486",
+    "intervals": 74
+  },
+  {
+    "id": 163221,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5441217,
+    "exceptionTime": "2020-04-25T03:43:32.930567",
+    "intervals": 77
+  },
+  {
+    "id": 163244,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5441325,
+    "exceptionTime": "2020-04-25T04:13:50.868798",
+    "intervals": 74
+  },
+  {
+    "id": 163746,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5443798,
+    "exceptionTime": "2020-04-25T15:36:48.867403",
+    "intervals": 75
+  },
+  {
+    "id": 164098,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5445034,
+    "exceptionTime": "2020-04-25T21:19:44.274604",
+    "intervals": 111
+  },
+  {
+    "id": 164210,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5445489,
+    "exceptionTime": "2020-04-25T23:25:32.016075",
+    "intervals": 74
+  },
+  {
+    "id": 164282,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5445819,
+    "exceptionTime": "2020-04-26T00:57:09.635805",
+    "intervals": 74
+  },
+  {
+    "id": 164706,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511494,
+    "exceptionTime": "2020-05-08T16:42:00.7366319+08:00",
+    "intervals": 75
+  },
+  {
+    "id": 164716,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511519,
+    "exceptionTime": "2020-05-08T16:48:58.3148045+08:00",
+    "intervals": 98
+  },
+  {
+    "id": 164724,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511534,
+    "exceptionTime": "2020-05-08T16:53:04.3961328+08:00",
+    "intervals": 74
+  },
+  {
+    "id": 164737,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511552,
+    "exceptionTime": "2020-05-08T16:57:59.6120742+08:00",
+    "intervals": 74
+  },
+  {
+    "id": 164777,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511613,
+    "exceptionTime": "2020-05-08T17:15:18.7027231+08:00",
+    "intervals": 75
+  },
+  {
+    "id": 164856,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511741,
+    "exceptionTime": "2020-05-08T17:51:18.2472896+08:00",
+    "intervals": 74
+  },
+  {
+    "id": 164890,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511772,
+    "exceptionTime": "2020-05-08T18:00:00.6787654+08:00",
+    "intervals": 149
+  },
+  {
+    "id": 164904,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511799,
+    "exceptionTime": "2020-05-08T18:07:48.9633299+08:00",
+    "intervals": 99
+  },
+  {
+    "id": 164915,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511829,
+    "exceptionTime": "2020-05-08T18:16:02.0698309+08:00",
+    "intervals": 123
+  },
+  {
+    "id": 164924,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511843,
+    "exceptionTime": "2020-05-08T18:20:07.7595232+08:00",
+    "intervals": 172
+  },
+  {
+    "id": 164935,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511862,
+    "exceptionTime": "2020-05-08T18:25:27.2364477+08:00",
+    "intervals": 272
+  },
+  {
+    "id": 164944,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511882,
+    "exceptionTime": "2020-05-08T18:30:49.65085+08:00",
+    "intervals": 75
+  },
+  {
+    "id": 164947,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511891,
+    "exceptionTime": "2020-05-08T18:33:19.0812044+08:00",
+    "intervals": 99
+  },
+  {
+    "id": 164956,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511902,
+    "exceptionTime": "2020-05-08T18:36:37.2731095+08:00",
+    "intervals": 123
+  },
+  {
+    "id": 164967,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511921,
+    "exceptionTime": "2020-05-08T18:41:56.975472+08:00",
+    "intervals": 98
+  },
+  {
+    "id": 164979,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511934,
+    "exceptionTime": "2020-05-08T18:46:03.7360626+08:00",
+    "intervals": 123
+  },
+  {
+    "id": 164984,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511944,
+    "exceptionTime": "2020-05-08T18:48:55.8642415+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 165010,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511950,
+    "exceptionTime": "2020-05-08T18:51:01.3961669+08:00",
+    "intervals": 124
+  },
+  {
+    "id": 165017,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511965,
+    "exceptionTime": "2020-05-08T18:55:08.5359198+08:00",
+    "intervals": 99
+  },
+  {
+    "id": 165021,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511974,
+    "exceptionTime": "2020-05-08T18:57:36.3979993+08:00",
+    "intervals": 123
+  },
+  {
+    "id": 165026,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5511985,
+    "exceptionTime": "2020-05-08T19:00:53.8338422+08:00",
+    "intervals": 394
+  },
+  {
+    "id": 165034,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512012,
+    "exceptionTime": "2020-05-08T19:08:17.4232649+08:00",
+    "intervals": 123
+  },
+  {
+    "id": 165039,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512022,
+    "exceptionTime": "2020-05-08T19:11:10.0981558+08:00",
+    "intervals": 173
+  },
+  {
+    "id": 165046,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512040,
+    "exceptionTime": "2020-05-08T19:16:06.5143773+08:00",
+    "intervals": 124
+  },
+  {
+    "id": 165066,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512066,
+    "exceptionTime": "2020-05-08T19:23:33.6309261+08:00",
+    "intervals": 99
+  },
+  {
+    "id": 165255,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512294,
+    "exceptionTime": "2020-05-08T20:27:37.4202756+08:00",
+    "intervals": 148
+  },
+  {
+    "id": 165279,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512332,
+    "exceptionTime": "2020-05-08T20:38:18.051749+08:00",
+    "intervals": 545
+  },
+  {
+    "id": 165396,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512412,
+    "exceptionTime": "2020-05-08T21:00:29.5003579+08:00",
+    "intervals": 75
+  },
+  {
+    "id": 165401,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512419,
+    "exceptionTime": "2020-05-08T21:02:34.0474462+08:00",
+    "intervals": 99
+  },
+  {
+    "id": 165420,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512440,
+    "exceptionTime": "2020-05-08T21:08:21.2328786+08:00",
+    "intervals": 151
+  },
+  {
+    "id": 165459,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512468,
+    "exceptionTime": "2020-05-08T21:16:19.1459724+08:00",
+    "intervals": 153
+  },
+  {
+    "id": 165504,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512478,
+    "exceptionTime": "2020-05-08T21:19:45.067884+08:00",
+    "intervals": 552
+  },
+  {
+    "id": 165559,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512514,
+    "exceptionTime": "2020-05-08T21:29:46.7869635+08:00",
+    "intervals": 1006
+  },
+  {
+    "id": 165634,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512576,
+    "exceptionTime": "2020-05-08T21:47:22.7715953+08:00",
+    "intervals": 741
+  },
+  {
+    "id": 165699,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512623,
+    "exceptionTime": "2020-05-08T22:00:33.5320183+08:00",
+    "intervals": 375
+  },
+  {
+    "id": 165727,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512655,
+    "exceptionTime": "2020-05-08T22:09:21.6278808+08:00",
+    "intervals": 176
+  },
+  {
+    "id": 165737,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512669,
+    "exceptionTime": "2020-05-08T22:13:07.0372813+08:00",
+    "intervals": 1677
+  },
+  {
+    "id": 165799,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512773,
+    "exceptionTime": "2020-05-08T22:41:53.7064409+08:00",
+    "intervals": 2084
+  },
+  {
+    "id": 165889,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512910,
+    "exceptionTime": "2020-05-08T23:19:57.7919672+08:00",
+    "intervals": 201
+  },
+  {
+    "id": 165898,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512925,
+    "exceptionTime": "2020-05-08T23:24:08.516103+08:00",
+    "intervals": 649
+  },
+  {
+    "id": 165938,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512967,
+    "exceptionTime": "2020-05-08T23:35:48.1891927+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 165947,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512974,
+    "exceptionTime": "2020-05-08T23:37:53.8247753+08:00",
+    "intervals": 101
+  },
+  {
+    "id": 165959,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512983,
+    "exceptionTime": "2020-05-08T23:40:25.7425112+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 165974,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5512991,
+    "exceptionTime": "2020-05-08T23:42:33.8364705+08:00",
+    "intervals": 1177
+  },
+  {
+    "id": 166029,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513065,
+    "exceptionTime": "2020-05-09T00:03:01.2213963+08:00",
+    "intervals": 375
+  },
+  {
+    "id": 166052,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513091,
+    "exceptionTime": "2020-05-09T00:10:06.3875064+08:00",
+    "intervals": 176
+  },
+  {
+    "id": 166066,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513104,
+    "exceptionTime": "2020-05-09T00:13:52.2648448+08:00",
+    "intervals": 425
+  },
+  {
+    "id": 166090,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513133,
+    "exceptionTime": "2020-05-09T00:21:47.5303158+08:00",
+    "intervals": 554
+  },
+  {
+    "id": 166119,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513171,
+    "exceptionTime": "2020-05-09T00:32:17.7443048+08:00",
+    "intervals": 1307
+  },
+  {
+    "id": 166152,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513253,
+    "exceptionTime": "2020-05-09T00:54:55.9324362+08:00",
+    "intervals": 886
+  },
+  {
+    "id": 166201,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513308,
+    "exceptionTime": "2020-05-09T01:10:32.0450457+08:00",
+    "intervals": 101
+  },
+  {
+    "id": 166205,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513317,
+    "exceptionTime": "2020-05-09T01:13:03.2888329+08:00",
+    "intervals": 177
+  },
+  {
+    "id": 166216,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513340,
+    "exceptionTime": "2020-05-09T01:19:22.4373139+08:00",
+    "intervals": 101
+  },
+  {
+    "id": 166257,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513413,
+    "exceptionTime": "2020-05-09T01:39:56.691373+08:00",
+    "intervals": 173
+  },
+  {
+    "id": 166282,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513445,
+    "exceptionTime": "2020-05-09T01:49:01.4488563+08:00",
+    "intervals": 99
+  },
+  {
+    "id": 166326,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5513540,
+    "exceptionTime": "2020-05-09T02:14:58.2852907+08:00",
+    "intervals": 223
+  },
+  {
+    "id": 167499,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5514975,
+    "exceptionTime": "2020-05-09T08:54:38.3796413+08:00",
+    "intervals": 125
+  },
+  {
+    "id": 167564,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515017,
+    "exceptionTime": "2020-05-09T09:06:24.8591602+08:00",
+    "intervals": 477
+  },
+  {
+    "id": 167598,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515049,
+    "exceptionTime": "2020-05-09T09:15:12.3500263+08:00",
+    "intervals": 151
+  },
+  {
+    "id": 167610,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515061,
+    "exceptionTime": "2020-05-09T09:18:33.9156355+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 167643,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515098,
+    "exceptionTime": "2020-05-09T09:28:40.4863197+08:00",
+    "intervals": 152
+  },
+  {
+    "id": 167671,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515134,
+    "exceptionTime": "2020-05-09T09:38:47.3901692+08:00",
+    "intervals": 302
+  },
+  {
+    "id": 167688,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515157,
+    "exceptionTime": "2020-05-09T09:45:05.0013027+08:00",
+    "intervals": 75
+  },
+  {
+    "id": 167697,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515171,
+    "exceptionTime": "2020-05-09T09:48:50.461291+08:00",
+    "intervals": 126
+  },
+  {
+    "id": 167728,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515201,
+    "exceptionTime": "2020-05-09T09:57:37.2997012+08:00",
+    "intervals": 100
+  },
+  {
+    "id": 167921,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515447,
+    "exceptionTime": "2020-05-09T11:06:26.8878837+08:00",
+    "intervals": 75
+  },
+  {
+    "id": 167971,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515527,
+    "exceptionTime": "2020-05-09T11:29:08.6975742+08:00",
+    "intervals": 229
+  },
+  {
+    "id": 168007,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515571,
+    "exceptionTime": "2020-05-09T11:41:23.8137139+08:00",
+    "intervals": 101
+  },
+  {
+    "id": 168016,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515589,
+    "exceptionTime": "2020-05-09T11:46:26.2573268+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 168026,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515600,
+    "exceptionTime": "2020-05-09T11:49:23.3516542+08:00",
+    "intervals": 202
+  },
+  {
+    "id": 168045,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515618,
+    "exceptionTime": "2020-05-09T11:54:51.7619806+08:00",
+    "intervals": 555
+  },
+  {
+    "id": 168067,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515655,
+    "exceptionTime": "2020-05-09T12:04:57.0889075+08:00",
+    "intervals": 429
+  },
+  {
+    "id": 168090,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515688,
+    "exceptionTime": "2020-05-09T12:14:12.2829439+08:00",
+    "intervals": 100
+  },
+  {
+    "id": 168099,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515705,
+    "exceptionTime": "2020-05-09T12:18:50.3940455+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 168131,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515749,
+    "exceptionTime": "2020-05-09T12:31:06.0499606+08:00",
+    "intervals": 101
+  },
+  {
+    "id": 168165,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515792,
+    "exceptionTime": "2020-05-09T12:42:50.7961264+08:00",
+    "intervals": 126
+  },
+  {
+    "id": 168186,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515818,
+    "exceptionTime": "2020-05-09T12:50:00.3775989+08:00",
+    "intervals": 152
+  },
+  {
+    "id": 168203,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515842,
+    "exceptionTime": "2020-05-09T12:56:44.2121737+08:00",
+    "intervals": 278
+  },
+  {
+    "id": 168216,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515864,
+    "exceptionTime": "2020-05-09T13:02:37.6817937+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 168225,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515871,
+    "exceptionTime": "2020-05-09T13:04:44.5724054+08:00",
+    "intervals": 177
+  },
+  {
+    "id": 168247,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515901,
+    "exceptionTime": "2020-05-09T13:13:10.8907933+08:00",
+    "intervals": 152
+  },
+  {
+    "id": 168269,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515922,
+    "exceptionTime": "2020-05-09T13:19:07.1124716+08:00",
+    "intervals": 178
+  },
+  {
+    "id": 168275,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515936,
+    "exceptionTime": "2020-05-09T13:22:56.4929436+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 168300,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515970,
+    "exceptionTime": "2020-05-09T13:32:13.6963229+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 168318,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5515986,
+    "exceptionTime": "2020-05-09T13:36:53.636969+08:00",
+    "intervals": 101
+  },
+  {
+    "id": 168332,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516009,
+    "exceptionTime": "2020-05-09T13:43:13.2132667+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 168342,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516022,
+    "exceptionTime": "2020-05-09T13:46:35.598743+08:00",
+    "intervals": 102
+  },
+  {
+    "id": 168351,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516031,
+    "exceptionTime": "2020-05-09T13:49:07.9370816+08:00",
+    "intervals": 102
+  },
+  {
+    "id": 168357,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516045,
+    "exceptionTime": "2020-05-09T13:52:56.4954082+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 168364,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516057,
+    "exceptionTime": "2020-05-09T13:56:20.9550821+08:00",
+    "intervals": 305
+  },
+  {
+    "id": 168387,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516086,
+    "exceptionTime": "2020-05-09T14:04:23.8200216+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 168403,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516118,
+    "exceptionTime": "2020-05-09T14:13:14.4722713+08:00",
+    "intervals": 102
+  },
+  {
+    "id": 168419,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516132,
+    "exceptionTime": "2020-05-09T14:17:03.5376667+08:00",
+    "intervals": 153
+  },
+  {
+    "id": 168426,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516144,
+    "exceptionTime": "2020-05-09T14:20:26.7068796+08:00",
+    "intervals": 179
+  },
+  {
+    "id": 168479,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516200,
+    "exceptionTime": "2020-05-09T14:36:13.6679255+08:00",
+    "intervals": 153
+  },
+  {
+    "id": 168490,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516214,
+    "exceptionTime": "2020-05-09T14:40:02.8248727+08:00",
+    "intervals": 101
+  },
+  {
+    "id": 168491,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516223,
+    "exceptionTime": "2020-05-09T14:42:34.3491863+08:00",
+    "intervals": 204
+  },
+  {
+    "id": 168512,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516245,
+    "exceptionTime": "2020-05-09T14:48:55.7722941+08:00",
+    "intervals": 152
+  },
+  {
+    "id": 168529,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516268,
+    "exceptionTime": "2020-05-09T14:55:16.9327677+08:00",
+    "intervals": 153
+  },
+  {
+    "id": 168542,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516287,
+    "exceptionTime": "2020-05-09T15:00:23.9002874+08:00",
+    "intervals": 128
+  },
+  {
+    "id": 168557,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516311,
+    "exceptionTime": "2020-05-09T15:07:11.2254395+08:00",
+    "intervals": 357
+  },
+  {
+    "id": 168576,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516339,
+    "exceptionTime": "2020-05-09T15:14:49.3200724+08:00",
+    "intervals": 205
+  },
+  {
+    "id": 168600,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516361,
+    "exceptionTime": "2020-05-09T15:20:50.6891854+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 168619,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516384,
+    "exceptionTime": "2020-05-09T15:27:16.9288868+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 168635,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516407,
+    "exceptionTime": "2020-05-09T15:33:39.7580724+08:00",
+    "intervals": 129
+  },
+  {
+    "id": 168643,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516418,
+    "exceptionTime": "2020-05-09T15:36:39.6252635+08:00",
+    "intervals": 204
+  },
+  {
+    "id": 168653,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516434,
+    "exceptionTime": "2020-05-09T15:40:54.9807839+08:00",
+    "intervals": 102
+  },
+  {
+    "id": 168688,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516474,
+    "exceptionTime": "2020-05-09T15:51:59.3561328+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 168710,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516496,
+    "exceptionTime": "2020-05-09T15:57:57.5594923+08:00",
+    "intervals": 282
+  },
+  {
+    "id": 168744,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516540,
+    "exceptionTime": "2020-05-09T16:10:21.0210566+08:00",
+    "intervals": 154
+  },
+  {
+    "id": 168752,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516553,
+    "exceptionTime": "2020-05-09T16:13:45.858484+08:00",
+    "intervals": 308
+  },
+  {
+    "id": 168766,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516574,
+    "exceptionTime": "2020-05-09T16:19:44.9061017+08:00",
+    "intervals": 128
+  },
+  {
+    "id": 168774,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516584,
+    "exceptionTime": "2020-05-09T16:22:43.609214+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 168784,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516600,
+    "exceptionTime": "2020-05-09T16:26:58.7939217+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 168803,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516624,
+    "exceptionTime": "2020-05-09T16:33:48.2946448+08:00",
+    "intervals": 103
+  },
+  {
+    "id": 168808,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516640,
+    "exceptionTime": "2020-05-09T16:38:04.4210678+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 168842,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516689,
+    "exceptionTime": "2020-05-09T16:51:43.8989881+08:00",
+    "intervals": 103
+  },
+  {
+    "id": 168856,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516709,
+    "exceptionTime": "2020-05-09T16:57:17.1367276+08:00",
+    "intervals": 128
+  },
+  {
+    "id": 168870,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5516729,
+    "exceptionTime": "2020-05-09T17:02:51.0939353+08:00",
+    "intervals": 105
+  },
+  {
+    "id": 169255,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517020,
+    "exceptionTime": "2020-05-09T18:23:39.4190555+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 169313,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517137,
+    "exceptionTime": "2020-05-09T18:57:06.2841412+08:00",
+    "intervals": 129
+  },
+  {
+    "id": 169468,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517448,
+    "exceptionTime": "2020-05-09T20:22:57.0489351+08:00",
+    "intervals": 78
+  },
+  {
+    "id": 169476,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517455,
+    "exceptionTime": "2020-05-09T20:25:06.9122741+08:00",
+    "intervals": 78
+  },
+  {
+    "id": 169497,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517492,
+    "exceptionTime": "2020-05-09T20:35:31.2346264+08:00",
+    "intervals": 78
+  },
+  {
+    "id": 169544,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517556,
+    "exceptionTime": "2020-05-09T20:53:39.4178918+08:00",
+    "intervals": 78
+  },
+  {
+    "id": 169566,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517587,
+    "exceptionTime": "2020-05-09T21:02:18.68368+08:00",
+    "intervals": 106
+  },
+  {
+    "id": 169592,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517622,
+    "exceptionTime": "2020-05-09T21:11:55.4382376+08:00",
+    "intervals": 131
+  },
+  {
+    "id": 169602,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517633,
+    "exceptionTime": "2020-05-09T21:14:57.9473533+08:00",
+    "intervals": 130
+  },
+  {
+    "id": 169625,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517654,
+    "exceptionTime": "2020-05-09T21:21:02.6319706+08:00",
+    "intervals": 130
+  },
+  {
+    "id": 169631,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517665,
+    "exceptionTime": "2020-05-09T21:24:04.0430342+08:00",
+    "intervals": 208
+  },
+  {
+    "id": 169643,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517680,
+    "exceptionTime": "2020-05-09T21:28:23.836725+08:00",
+    "intervals": 547
+  },
+  {
+    "id": 169670,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517717,
+    "exceptionTime": "2020-05-09T21:38:48.9903969+08:00",
+    "intervals": 262
+  },
+  {
+    "id": 169682,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517736,
+    "exceptionTime": "2020-05-09T21:44:02.8971462+08:00",
+    "intervals": 314
+  },
+  {
+    "id": 169702,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517764,
+    "exceptionTime": "2020-05-09T21:51:52.3903909+08:00",
+    "intervals": 313
+  },
+  {
+    "id": 169725,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517786,
+    "exceptionTime": "2020-05-09T21:57:57.4670338+08:00",
+    "intervals": 1255
+  },
+  {
+    "id": 169790,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517864,
+    "exceptionTime": "2020-05-09T22:19:44.8851554+08:00",
+    "intervals": 918
+  },
+  {
+    "id": 169869,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517922,
+    "exceptionTime": "2020-05-09T22:35:55.3984633+08:00",
+    "intervals": 473
+  },
+  {
+    "id": 169901,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5517953,
+    "exceptionTime": "2020-05-09T22:44:41.0339711+08:00",
+    "intervals": 1236
+  },
+  {
+    "id": 169975,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5518031,
+    "exceptionTime": "2020-05-09T23:06:10.1411294+08:00",
+    "intervals": 1058
+  },
+  {
+    "id": 170027,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5518100,
+    "exceptionTime": "2020-05-09T23:25:34.1616062+08:00",
+    "intervals": 1182
+  },
+  {
+    "id": 170077,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5518180,
+    "exceptionTime": "2020-05-09T23:47:56.7290311+08:00",
+    "intervals": 947
+  },
+  {
+    "id": 170116,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5518241,
+    "exceptionTime": "2020-05-10T00:05:03.4865702+08:00",
+    "intervals": 3065
+  },
+  {
+    "id": 170216,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5518428,
+    "exceptionTime": "2020-05-10T00:57:00.2448691+08:00",
+    "intervals": 734
+  },
+  {
+    "id": 170236,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5518475,
+    "exceptionTime": "2020-05-10T01:10:06.1510696+08:00",
+    "intervals": 688
+  },
+  {
+    "id": 170253,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5518519,
+    "exceptionTime": "2020-05-10T01:22:27.5023972+08:00",
+    "intervals": 427
+  },
+  {
+    "id": 171802,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5521601,
+    "exceptionTime": "2020-05-10T15:44:12.2956278+08:00",
+    "intervals": 141
+  },
+  {
+    "id": 173415,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5523680,
+    "exceptionTime": "2020-05-11T01:49:46.1786405+08:00",
+    "intervals": 94
+  },
+  {
+    "id": 173998,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5525151,
+    "exceptionTime": "2020-05-11T08:43:50.7404785+08:00",
+    "intervals": 204
+  },
+  {
+    "id": 175889,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5527948,
+    "exceptionTime": "2020-05-11T21:48:08.6244869+08:00",
+    "intervals": 61
+  },
+  {
+    "id": 175925,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5528015,
+    "exceptionTime": "2020-05-11T22:06:47.5049398+08:00",
+    "intervals": 61
+  },
+  {
+    "id": 175931,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5528029,
+    "exceptionTime": "2020-05-11T22:10:53.8881359+08:00",
+    "intervals": 62
+  },
+  {
+    "id": 176172,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5528280,
+    "exceptionTime": "2020-05-11T23:20:24.5230386+08:00",
+    "intervals": 61
+  },
+  {
+    "id": 178004,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5533115,
+    "exceptionTime": "2020-05-12T21:47:32.9019666+08:00",
+    "intervals": 62
+  },
+  {
+    "id": 178070,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5533220,
+    "exceptionTime": "2020-05-12T22:16:57.2600973+08:00",
+    "intervals": 93
+  },
+  {
+    "id": 178213,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5533425,
+    "exceptionTime": "2020-05-12T23:15:07.7551699+08:00",
+    "intervals": 61
+  },
+  {
+    "id": 179780,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5538472,
+    "exceptionTime": "2020-05-13T22:48:15.430613+08:00",
+    "intervals": 65
+  },
+  {
+    "id": 179867,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5538669,
+    "exceptionTime": "2020-05-13T23:44:02.5789866+08:00",
+    "intervals": 66
+  },
+  {
+    "id": 180262,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5539680,
+    "exceptionTime": "2020-05-14T04:28:06.3731784+08:00",
+    "intervals": 99
+  },
+  {
+    "id": 180347,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5540001,
+    "exceptionTime": "2020-05-14T05:57:36.4206492+08:00",
+    "intervals": 66
+  },
+  {
+    "id": 181074,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5542220,
+    "exceptionTime": "2020-05-14T16:26:15.6858546+08:00",
+    "intervals": 67
+  },
+  {
+    "id": 181238,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5542530,
+    "exceptionTime": "2020-05-14T17:53:09.0450509+08:00",
+    "intervals": 65
+  },
+  {
+    "id": 181309,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5542665,
+    "exceptionTime": "2020-05-14T18:31:15.9111811+08:00",
+    "intervals": 65
+  },
+  {
+    "id": 181335,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5542752,
+    "exceptionTime": "2020-05-14T18:55:40.5671784+08:00",
+    "intervals": 65
+  },
+  {
+    "id": 181366,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5542940,
+    "exceptionTime": "2020-05-14T19:48:37.3528768+08:00",
+    "intervals": 65
+  },
+  {
+    "id": 181741,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5543816,
+    "exceptionTime": "2020-05-14T23:56:00.4078894+08:00",
+    "intervals": 65
+  },
+  {
+    "id": 181967,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5544604,
+    "exceptionTime": "2020-05-15T03:35:40.9185076+08:00",
+    "intervals": 128
+  },
+  {
+    "id": 182846,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5547157,
+    "exceptionTime": "2020-05-15T15:30:24.7793213+08:00",
+    "intervals": 68
+  },
+  {
+    "id": 183927,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5550954,
+    "exceptionTime": "2020-05-16T09:10:40.4657097+08:00",
+    "intervals": 69
+  },
+  {
+    "id": 183934,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5550991,
+    "exceptionTime": "2020-05-16T09:21:00.9752851+08:00",
+    "intervals": 69
+  },
+  {
+    "id": 184048,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5551709,
+    "exceptionTime": "2020-05-16T12:40:58.4169592+08:00",
+    "intervals": 69
+  },
+  {
+    "id": 184878,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5554711,
+    "exceptionTime": "2020-05-17T02:38:02.3070823+08:00",
+    "intervals": 68
+  },
+  {
+    "id": 185087,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5555400,
+    "exceptionTime": "2020-05-17T05:48:44.2582628+08:00",
+    "intervals": 101
+  },
+  {
+    "id": 185731,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5557348,
+    "exceptionTime": "2020-05-17T14:51:38.6787216+08:00",
+    "intervals": 101
+  },
+  {
+    "id": 186242,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5559084,
+    "exceptionTime": "2020-05-17T22:58:21.9507745+08:00",
+    "intervals": 102
+  },
+  {
+    "id": 186288,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5559251,
+    "exceptionTime": "2020-05-17T23:44:51.2824949+08:00",
+    "intervals": 102
+  },
+  {
+    "id": 187223,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5563207,
+    "exceptionTime": "2020-05-18T18:08:03.7301443+08:00",
+    "intervals": 138
+  },
+  {
+    "id": 187247,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5563345,
+    "exceptionTime": "2020-05-18T18:46:37.4001412+08:00",
+    "intervals": 68
+  },
+  {
+    "id": 187547,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5564688,
+    "exceptionTime": "2020-05-19T01:02:24.5823365+08:00",
+    "intervals": 138
+  },
+  {
+    "id": 187852,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5565132,
+    "exceptionTime": "2020-05-19T10:34:57.3286369+08:00",
+    "intervals": 595
+  },
+  {
+    "id": 191288,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5580509,
+    "exceptionTime": "2020-05-22T02:41:18.5816045+08:00",
+    "intervals": 75
+  },
+  {
+    "id": 192031,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5583123,
+    "exceptionTime": "2020-05-22T14:53:05.6203734+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 192115,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5583428,
+    "exceptionTime": "2020-05-22T16:19:21.7675966+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 192127,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5583458,
+    "exceptionTime": "2020-05-22T16:27:45.4509071+08:00",
+    "intervals": 76
+  },
+  {
+    "id": 192176,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5583634,
+    "exceptionTime": "2020-05-22T17:17:13.9904029+08:00",
+    "intervals": 115
+  },
+  {
+    "id": 192916,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5585899,
+    "exceptionTime": "2020-05-23T03:50:17.6609911+08:00",
+    "intervals": 75
+  },
+  {
+    "id": 192986,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5586214,
+    "exceptionTime": "2020-05-23T05:17:19.7991372+08:00",
+    "intervals": 112
+  },
+  {
+    "id": 193418,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5587072,
+    "exceptionTime": "2020-05-23T09:15:13.2598543+08:00",
+    "intervals": 77
+  },
+  {
+    "id": 193551,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5587332,
+    "exceptionTime": "2020-05-23T10:27:56.6018395+08:00",
+    "intervals": 150
+  },
+  {
+    "id": 193675,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5587743,
+    "exceptionTime": "2020-05-23T12:22:16.8517738+08:00",
+    "intervals": 112
+  },
+  {
+    "id": 196042,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5592482,
+    "exceptionTime": "2020-05-24T10:23:24.9977873+08:00",
+    "intervals": 164
+  },
+  {
+    "id": 196548,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5593127,
+    "exceptionTime": "2020-05-24T13:23:33.1709889+08:00",
+    "intervals": 117
+  },
+  {
+    "id": 196761,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5593686,
+    "exceptionTime": "2020-05-24T16:00:50.2457357+08:00",
+    "intervals": 79
+  },
+  {
+    "id": 197252,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5595445,
+    "exceptionTime": "2020-05-25T00:13:58.4296473+08:00",
+    "intervals": 82
+  },
+  {
+    "id": 197468,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5596387,
+    "exceptionTime": "2020-05-25T04:37:43.4314698+08:00",
+    "intervals": 81
+  },
+  {
+    "id": 198617,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5598096,
+    "exceptionTime": "2020-05-25T12:37:15.0221133+08:00",
+    "intervals": 83
+  },
+  {
+    "id": 198946,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5598779,
+    "exceptionTime": "2020-05-25T15:49:44.0390602+08:00",
+    "intervals": 84
+  },
+  {
+    "id": 200616,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5605334,
+    "exceptionTime": "2020-05-26T22:22:48.3110172+08:00",
+    "intervals": 124
+  },
+  {
+    "id": 200756,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5605786,
+    "exceptionTime": "2020-05-27T00:30:42.6362637+08:00",
+    "intervals": 126
+  },
+  {
+    "id": 201182,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5607706,
+    "exceptionTime": "2020-05-27T09:26:14.8510093+08:00",
+    "intervals": 82
+  },
+  {
+    "id": 201781,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5610276,
+    "exceptionTime": "2020-05-27T21:22:51.1806844+08:00",
+    "intervals": 85
+  },
+  {
+    "id": 201926,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5610505,
+    "exceptionTime": "2020-05-27T22:27:13.2579903+08:00",
+    "intervals": 128
+  },
+  {
+    "id": 201948,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5610531,
+    "exceptionTime": "2020-05-27T22:34:30.7322123+08:00",
+    "intervals": 86
+  },
+  {
+    "id": 204397,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5615293,
+    "exceptionTime": "2020-05-28T20:42:24.1858193+08:00",
+    "intervals": 89
+  },
+  {
+    "id": 205408,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5616448,
+    "exceptionTime": "2020-05-29T02:03:52.0871693+08:00",
+    "intervals": 92
+  },
+  {
+    "id": 206735,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5617420,
+    "exceptionTime": "2020-05-29T06:33:23.1766607+08:00",
+    "intervals": 95
+  },
+  {
+    "id": 207058,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5617724,
+    "exceptionTime": "2020-05-29T07:57:08.8361947+08:00",
+    "intervals": 136
+  },
+  {
+    "id": 207270,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5618269,
+    "exceptionTime": "2020-05-29T10:28:32.4658021+08:00",
+    "intervals": 91
+  },
+  {
+    "id": 210088,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5631102,
+    "exceptionTime": "2020-05-31T22:00:59.1937915+08:00",
+    "intervals": 96
+  },
+  {
+    "id": 210178,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5631734,
+    "exceptionTime": "2020-06-01T00:58:08.9601346+08:00",
+    "intervals": 101
+  },
+  {
+    "id": 210447,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5634411,
+    "exceptionTime": "2020-06-01T13:21:43.8170792+08:00",
+    "intervals": 145
+  },
+  {
+    "id": 211095,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5639948,
+    "exceptionTime": "2020-06-02T15:11:41.8845065+08:00",
+    "intervals": 141
+  },
+  {
+    "id": 211440,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5640443,
+    "exceptionTime": "2020-06-02T17:30:04.6420998+08:00",
+    "intervals": 98
+  },
+  {
+    "id": 211449,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5640570,
+    "exceptionTime": "2020-06-02T18:05:20.2026491+08:00",
+    "intervals": 148
+  },
+  {
+    "id": 211468,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5640706,
+    "exceptionTime": "2020-06-02T18:42:58.6300851+08:00",
+    "intervals": 98
+  },
+  {
+    "id": 212988,
+    "nodeName": "http://seed2.ngd.network:10332",
+    "exceptionHeight": 5647722,
+    "exceptionTime": "2020-06-04T03:19:34.5202712+08:00",
+    "intervals": 99
+  }
+]
