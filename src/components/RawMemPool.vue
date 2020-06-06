@@ -78,7 +78,7 @@ export default {
   display: inline-block !important;
 }
 .ant-list-item-meta-description {
-  width: calc(100% - 200px) !important;
+  width: 700px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
