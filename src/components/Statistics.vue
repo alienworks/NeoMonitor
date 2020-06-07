@@ -21,14 +21,31 @@ export default {
       //读取本地mockData
       fetch("/mocks/staticitics.json").then(resp => {
         resp.json().then(json => {
-          let xSeries = [],
-            ySeries = [];
+          let series = [];
           json.forEach(element => {
-            xSeries.push(element.exceptionTime);
-            ySeries.push(element.intervals);
+            series.push([new Date(element.exceptionTime), element.intervals]);
           });
-          this.chartOptions.xAxis.data = xSeries;
-          this.chartOptions.series[0].data = ySeries;
+          this.chartOptions = {
+            xAxis: {
+              axisLabel: {
+                formatter: function(value) {
+                  return moment(value).format("M/D/Y");
+                },
+                rotate: 60
+              },
+              scale: true
+            },
+            yAxis: {
+              scale: true
+            },
+            series: [
+              {
+                type: "scatter",
+                data: series
+              }
+            ],
+            color: "#007df7"
+          };
         });
       });
     }
@@ -38,25 +55,7 @@ export default {
   },
   data() {
     return {
-      chartOptions: {
-        xAxis: {
-          scale: true
-        },
-        yAxis: {
-          scale: true
-        },
-        series: [
-          {
-            type: "effectScatter",
-            symbolSize: 20,
-            data: []
-          },
-          {
-            type: "scatter",
-            data: []
-          }
-        ]
-      },
+      chartOptions: null,
       chartOptionsBar: {
         // color: "#17a2b8",
         color: "#007bff",
