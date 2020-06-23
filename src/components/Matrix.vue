@@ -1,89 +1,117 @@
 <template>
-  <div>
+  <div style="overflow:hidden">
     <a-row type="flex" justify="end" class="search-wrapper">
-      <a-input-search 
-        v-model="filter"
-        placeholder="filter by name" 
-        style="width: 200px" />
+      <a-input-search v-model="filter" placeholder="filter by name" style="width: 200px" />
     </a-row>
 
     <a-spin :spinning="isFetchingProgress">
-      <a-table 
+      <a-table
         :columns="fields"
-        :data-source="entities" 
+        :data-source="myEntities"
         :pagination="false"
-        :scroll="{ x: 'max-content', y: 'max-content' }"
+        :scroll="{ x: maxWidth ,y:maxHeight}"
         size="small"
+        class="matrix_table"
+        :style="{maxWidth: maxWidth+'px'}"
       >
-        <span 
-          slot="method" 
+        <div
+          slot="method"
           slot-scope="avilable"
           :class="[avilable ? 'red' : 'green']"
-        >{{ avilable ? "✔" : "✘" }}</span>
+          v-if="avilable"
+        >
+          <a-icon type="check" />
+        </div>
+        <div slot="method" slot-scope="avilable" :class="[avilable ? 'red' : 'green']" v-else>
+          <a-icon type="close" />
+        </div>
       </a-table>
     </a-spin>
-    
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 import { avaliableApiNames } from "@/constants";
 import { sorter, debounce } from "@/utils";
 
 export default {
   data: function() {
     return {
+      maxWidth: window.innerWidth - 18,
+      maxHeight: window.innerHeight - 138,
       fields: [
+        {
+          key: "ID",
+          dataIndex: "ID",
+          title: "ID",
+          fixed: "left",
+          align: "center",
+          width: 40
+        },
         {
           key: "url",
           dataIndex: "url",
           title: "node",
-          sorter: sorter('url'),
-          fixed: 'left',
-          align: 'center',
-          width: 300
+          sorter: sorter("url"),
+          fixed: "left",
+          align: "center",
+          width: 288
         },
         ...avaliableApiNames.map(name => ({
           key: name,
           dataIndex: name,
           title: name,
-          width: 150,
-          align: 'center',
-          scopedSlots: { customRender: 'method' }
+          align: "center",
+          scopedSlots: { customRender: "method" },
+          ellipsis: true,
+          width: name.length * 9 + 12
         }))
       ],
       entities: [],
+      myEntities: [],
       defaultEntites: [],
       filter: null,
       filterDebounce: debounce(
-        (val) => this.entities = this.entities.filter(
-          ({url}) => url.toLowerCase().includes(val.toLowerCase())
-        ),
+        val =>
+          (this.entities = this.entities.filter(({ url }) =>
+            url.toLowerCase().includes(val.toLowerCase())
+          )),
         500
       ),
-      logDebounce: debounce((val) => console.log('debounced', val, arguments), 500)
+      logDebounce: debounce(
+        val => console.log("debounced", val, arguments),
+        500
+      )
     };
   },
   mounted() {
-    this.$store.dispatch('getMatrixEntities');
+    this.$store.dispatch("getMatrixEntities");
   },
   computed: {
-    ...mapGetters(['matrixEntities', 'isFetchingProgress'])
+    ...mapGetters(["matrixEntities", "isFetchingProgress"])
   },
   watch: {
     filter(val) {
       if (val) {
-        this.filterDebounce(val)
-        this.logDebounce(val)
-      }
-      else {
-        this.entities = this.defaultEntites.slice()
+        this.filterDebounce(val);
+        this.logDebounce(val);
+      } else {
+        this.entities = this.defaultEntites.slice();
       }
     },
     matrixEntities(entities) {
-      this.entities = this.transofrmMatrixEntities(entities)
-      this.defaultEntites = this.entities.slice()
+      this.entities = this.transofrmMatrixEntities(entities);
+      this.defaultEntites = this.entities.slice();
+    },
+    entities: {
+      deep: true,
+      handler: function(newVal) {
+        for (let i = 0; i < newVal.length; i++) {
+          newVal[i]["ID"] = i + 1;
+        }
+        this.myEntities = newVal;
+      }
     }
   },
   methods: {
@@ -113,9 +141,9 @@ export default {
         )
       );
     },
-		filterTable(row, filter) {
+    filterTable(row, filter) {
       return row.url.toLowerCase().includes(filter.toLowerCase());
-    },
+    }
   }
 };
 </script>
@@ -144,7 +172,9 @@ export default {
   margin: 8px;
 }
 
-.ant-table td { white-space: nowrap; }
+.ant-table td {
+  white-space: nowrap;
+}
 
 .red {
   color: #0b8235;
@@ -152,5 +182,11 @@ export default {
 
 .green {
   color: #f81d22;
+}
+.matrix_table {
+  overflow: auto;
+}
+.ant-table-body {
+  overflow: auto;
 }
 </style>

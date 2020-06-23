@@ -13,11 +13,7 @@
       </a-col>
 
       <a-col class="search-wrapper" :span="3" :offset="10">
-        <a-input-search
-          v-model="filterValue"
-          placeholder="filter by name"
-          style="width: 200px"
-        />
+        <a-input-search v-model="filterValue" placeholder="filter by name" style="width: 200px" />
       </a-col>
     </a-row>
 
@@ -29,14 +25,29 @@
       :rowClassName="nodeColor"
       size="small"
     >
-      <div slot="height" slot-scope="h">{{ `${h} ${h === maxBlock || h === 0 ? '' : `(-${maxBlock - h})`}` }}</div>
+      <div
+        slot="height"
+        slot-scope="h"
+      >{{ `${h} ${h === maxBlock || h === 0 ? '' : `(-${maxBlock - h})`}` }}</div>
 
       <router-link to="/rawmempool" slot="pool" slot-scope="p, record" class="table-link">
-        <span @click="setNodeID(record.id)">{{ p }}</span>
+        <span @click="setNodeID(record.id)">
+          <a-button type="default" size="small">
+            <a-icon type="unordered-list" style="position:relative;top:-2.75px;" />
+            {{"View"}}
+          </a-button>
+          {{ p }}
+        </span>
       </router-link>
 
       <router-link to="/nodeinfo" slot="exception" slot-scope="e, record" class="table-link">
-        <span @click="setNodeID(record.id)">{{ e }}</span>
+        <span @click="setNodeID(record.id)">
+          <a-button type="default" size="small">
+            <a-icon type="dot-chart" style="position:relative;top:-2.75px;" />
+            {{"View"}}
+          </a-button>
+          {{ e }}
+        </span>
       </router-link>
     </a-table>
   </div>
@@ -68,12 +79,12 @@ export default {
         {
           key: "id",
           dataIndex: "id",
-          title: "ID",
+          title: "ID"
         },
         {
           key: "url",
           dataIndex: "url",
-          title: "Name",
+          title: "Name"
         },
         {
           key: "height",
@@ -84,38 +95,38 @@ export default {
         {
           key: "version",
           dataIndex: "version",
-          title: "Version",
+          title: "Version"
         },
         {
           key: "latency",
           dataIndex: "latency",
-          title: "Latency",
+          title: "Latency"
         },
         {
           key: "peers",
           dataIndex: "peers",
-          title: "Peers",
+          title: "Peers"
         },
         {
           key: "memoryPool",
           dataIndex: "memoryPool",
           title: "MemPool",
-          scopedSlots: { customRender: "pool" },
+          scopedSlots: { customRender: "pool" }
         },
         {
           key: "exceptionCount",
           dataIndex: "exceptionCount",
           title: "Exceptions",
-          scopedSlots: { customRender: "exception" },
-        },
-      ].map((column) => ({
+          scopedSlots: { customRender: "exception" }
+        }
+      ].map(column => ({
         ...column,
         sorter: sorter(column.dataIndex),
-        sortDirections: ["descend", "ascend"],
+        sortDirections: ["descend", "ascend"]
       })),
       filterValue: null,
       filter: "",
-      filterBouncer: debounce((val) => (this.filter = val), 300),
+      filterBouncer: debounce(val => (this.filter = val), 300)
     };
   },
   mounted() {
@@ -126,14 +137,14 @@ export default {
       nodeID: "nodeID",
       refreshNodes: "nodes",
       isFetchingProgress: "isFetchingProgress",
-      flag: 'flag'
+      flag: "flag"
     }),
     nodes() {
       const { refreshNodes } = this;
 
       if (refreshNodes.length === 0) return [];
 
-      const result = refreshNodes.map((node) => {
+      const result = refreshNodes.map(node => {
         if (!node.latency) {
           return {
             ...node,
@@ -142,7 +153,7 @@ export default {
             version: "-",
             latency: -1,
             peers: -1,
-            memoryPool: -1,
+            memoryPool: -1
           };
         }
 
@@ -152,13 +163,13 @@ export default {
       return result;
     },
     filteredNodes() {
-      const { filter: hasFilter, flag, nodes } = this
+      const { filter: hasFilter, flag, nodes } = this;
 
-      const filteredNodes = filter(pipe(prop('net'), equals(flag)), nodes)
+      const filteredNodes = filter(pipe(prop("net"), equals(flag)), nodes);
 
       if (!hasFilter) return filteredNodes || [];
 
-      return filteredNodes.filter(node => this.filterNode(node, hasFilter))
+      return filteredNodes.filter(node => this.filterNode(node, hasFilter));
     },
     maxBlock() {
       return pipe(map(prop("height")), reduce(max, 0))(this.filteredNodes);
@@ -170,7 +181,7 @@ export default {
         converge(divide, [sum, length]),
         Math.floor
       )(this.filteredNodes);
-    },
+    }
   },
   methods: {
     filterNode(node, filter) {
@@ -182,17 +193,17 @@ export default {
     nodeColor(record) {
       return record.latency === -1
         ? "unresponsive"
-        : (this.maxBlock - record.height) < 5
+        : this.maxBlock - record.height < 5
         ? "responsive"
         : "delayed";
-    },
+    }
   },
   watch: {
     filterValue(val) {
       if (!val) return (this.filter = "");
       return this.filterBouncer(val);
-    },
-  },
+    }
+  }
 };
 </script>
 

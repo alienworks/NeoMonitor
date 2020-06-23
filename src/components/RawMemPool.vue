@@ -5,7 +5,19 @@
     @back="() => $router.back()"
   >
     <div class="rm-container text-left pt-5">
-      <h1>{{ title }}</h1>
+      <h1>
+        {{ title }}
+        <a-popover title="Success" trigger="click">
+          <template slot="content">
+            <p>All Transaction Hash has been copied.</p>
+          </template>
+          <a-button
+            @click="copyAll(myPool)"
+            type="primary"
+            style="position:relative;top:-10px;"
+          >Copy All</a-button>
+        </a-popover>
+      </h1>
       <a-list
         v-if="myPool&&myPool.length>0"
         bordered
@@ -14,7 +26,7 @@
         :loading="isFetchingProgress"
       >
         <a-list-item slot="renderItem" slot-scope="item" :key="item.id">
-          <a-list-item-meta :description="item.value">
+          <a-list-item-meta :description="item.value" @dblclick="copySingleHash(item.value)">
             <span slot="title">Transaction Hash</span>
             <a-avatar slot="avatar" class="avatar">{{item.id}}</a-avatar>
           </a-list-item-meta>
@@ -27,7 +39,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { connection } from "@/App";
-
+import copy from "clipboard-copy";
 export default {
   mounted() {
     this.$store.dispatch("getPool");
@@ -53,12 +65,28 @@ export default {
         for (let i = 0; i < val.length; i++) {
           this.myPool.push({
             id: i + 1,
-            value: val
+            value: val[i]
           });
         }
       } else {
         this.myPool = null;
       }
+    }
+  },
+  methods: {
+    copySingleHash(hash) {
+      console.log(hash);
+      copy(hash).then(() => {
+        alert("Transaction Hash has been copied.");
+      });
+    },
+    copyAll(pool) {
+      let copyText = "";
+      for (let i = 0; i < pool.length; i++) {
+        copyText += pool[i].value + "\r\n";
+        console.log(pool);
+      }
+      copy(copyText);
     }
   },
   data() {
