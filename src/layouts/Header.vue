@@ -53,6 +53,9 @@
           <p>Latest block</p>
           <h6>{{ maxBlock }}</h6>
         </a-col>
+        <a-col class="summary-block" :span="2">
+          <a-avatar style="background-color: #0096ea;">{{$store.state.timerCount}}s</a-avatar>
+        </a-col>
         <a-select :default-value="flag" style="width: 120px" @change="onSetFlagNet">
           <a-select-option value="MainNet">MainNet</a-select-option>
           <a-select-option value="TestNet">TestNet</a-select-option>
@@ -76,7 +79,6 @@ export default {
       flag: "flag",
       refreshNodes: "nodes"
     }),
-
     nodes() {
       const { refreshNodes } = this;
 
@@ -122,6 +124,12 @@ export default {
     onLogoClick() {
       this.current = ["home"];
     }
+  },
+  mounted() {
+    let self = this;
+    setInterval(() => {
+      self.$store.commit("setTimerCount", self.$store.state.timerCount + 1);
+    }, 1000);
   }
 };
 </script>
@@ -132,7 +140,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-
   h6,
   p {
     margin: 0;

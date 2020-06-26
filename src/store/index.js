@@ -16,9 +16,13 @@ export const store = new Vuex.Store({
     pools: [],
     flag: mainNetFlag,
     isFetchingProgress: false,
+    timerCount: 0,
   },
 
   mutations: {
+    setTimerCount(state, count) {
+      state.timerCount = count;
+    },
     setNodeID(state, payload) {
       state.nodeID = payload;
     },
@@ -103,9 +107,7 @@ export const store = new Vuex.Store({
     getSelectedNodes(state, getter) {
       const currentNetFlag = state.flag;
       const lengthOfMainNodes = getter.getMainNodesLength;
-      const nodes = state.nodes.filter(
-        (node) => node.net === currentNetFlag
-      );
+      const nodes = state.nodes.filter((node) => node.net === currentNetFlag);
 
       if (state.flag === mainNetFlag) return nodes;
       return nodes.map((node) => ({
