@@ -8,8 +8,8 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     nodeID: 0,
-    statisticsX: [],
-    statisticsY: [],
+    statExceptionTime: [],
+    statInterval: [],
     nodes: [],
     nodeInfo: [],
     matrixEntities: [],
@@ -22,11 +22,11 @@ export const store = new Vuex.Store({
     setNodeID(state, payload) {
       state.nodeID = payload;
     },
-    setStatisticsX(state, payload) {
-      state.statisticsX = payload;
+    setStatExceptionTime(state, payload) {
+      state.statExceptionTime = payload;
     },
-    setStatisticsY(state, payload) {
-      state.statisticsY = payload;
+    setStatInterval(state, payload) {
+      state.statInterval = payload;
     },
     setNodes(state, payload) {
       state.nodes = payload;
@@ -69,22 +69,22 @@ export const store = new Vuex.Store({
       const nodeInfo = response.status === 200 ? response.data : [];
       commit("setNodeInfo", nodeInfo);
 
-      const exceptionTimes = [];
-      const intervals = [];
+      const arrExceptionTime = [];
+      const arrIntervals = [];
 
       nodeInfo.forEach((item) => {
-        exceptionTimes.push(item.exceptionTime);
-        intervals.push(item.intervals);
+        arrExceptionTime.push(item.exceptionTime);
+        arrIntervals.push(item.intervals);
       });
 
-      commit("setStatisticsX", exceptionTimes);
-      commit("setStatisticsY", intervals);
+      commit("setStatExceptionTime", arrExceptionTime);
+      commit("setStatInterval", arrIntervals);
     },
   },
 
   getters: {
-    statisticsX: (state) => state.statisticsX,
-    statisticsY: (state) => state.statisticsY,
+    statExceptionTime: (state) => state.statExceptionTime,
+    statInterval: (state) => state.statInterval,
     nodes: (state) => state.nodes,
     nodeInfo: (state) => state.nodeInfo,
     flag: (state) => state.flag,

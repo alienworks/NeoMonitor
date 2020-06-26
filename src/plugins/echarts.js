@@ -5,4 +5,5 @@ import "echarts/lib/chart/bar";
 import "echarts/lib/chart/scatter";
 import "echarts/lib/component/visualMap";
 import "echarts/lib/component/calendar";
-Vue.component("chart", Echarts);
+import "echarts/lib/component/tooltip";
+Vue.component("echarts", Echarts);
