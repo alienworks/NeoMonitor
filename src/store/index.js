@@ -60,7 +60,7 @@ export const store = new Vuex.Store({
       commit("setMatrixEntities", entities);
     },
     async getPool({ commit, getters }) {
-      const response = await NodeService.getMemPool(getters.nodeID);
+      const response = await NodeService.getMemPoolDetail(getters.nodeID);
       const pools = response.status === 200 ? response.data : [];
       commit("setPool", pools);
     },
