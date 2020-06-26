@@ -13,6 +13,32 @@ export default {
   name: "Statistics",
 
   mounted() {
+    Date.prototype.Format = function(fmt) {
+      //author: meizz
+      var o = {
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "h+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        S: this.getMilliseconds() //毫秒
+      };
+      if (/(y+)/.test(fmt))
+        fmt = fmt.replace(
+          RegExp.$1,
+          (this.getFullYear() + "").substr(4 - RegExp.$1.length)
+        );
+      for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt))
+          fmt = fmt.replace(
+            RegExp.$1,
+            RegExp.$1.length == 1
+              ? o[k]
+              : ("00" + o[k]).substr(("" + o[k]).length)
+          );
+      return fmt;
+    };
     this.setStatisticsXY();
   },
   methods: {
@@ -25,87 +51,114 @@ export default {
         else return 0;
       };
     },
+    generateHeatSeries() {
+      let initDate = new Date(this.statisticsX[0]);
+      let initY = this.statisticsY[0];
+      let initDateStr = initDate.Format("yyyy-MM-dd");
+      let resultXSeries = [],
+        resultYSeries = [],
+        resultSeries = [];
+      for (let i = 1; i < this.statisticsX.length; i++) {
+        let currDate = new Date(this.statisticsX[i]);
+        let currDateStr = currDate.Format("yyyy-MM-dd");
+        if (initDateStr === currDateStr) {
+          //same day
+          initY += this.statisticsY[i];
+        } else {
+          resultXSeries.push(initDateStr);
+          resultYSeries.push(initY);
+          initDateStr = currDateStr;
+          initY = 0;
+        }
+      }
+      resultXSeries.push(initDateStr);
+      resultYSeries.push(initY);
+      for (let j = 0; j < resultXSeries.length; j++) {
+        resultSeries.push([resultXSeries[j], resultYSeries[j]]);
+      }
+      return resultSeries;
+    },
     setStatisticsXY() {
       let series = [];
       let heatSeries = [];
-      for (let i = 0; i < this.statisticsX.length; i++) {
-        series.push([new Date(this.statisticsX[i]), this.statisticsY[i]]);
-        heatSeries.push([
-          moment(new Date(this.statisticsX[i])).format("Y/M/D"),
-          this.statisticsY[i]
-        ]);
-      }
-      //sort series
-      let sorted = heatSeries.sort(this.objectArraySort());
-      console.log(sorted);
+      if (this.statisticsX.length > 0 && this.statisticsY.length > 0) {
+        for (let i = 0; i < this.statisticsX.length; i++) {
+          series.push([new Date(this.statisticsX[i]), this.statisticsY[i]]);
+        }
 
-      this.chartOptions = {
-        title: {
-          top: 30,
-          left: "center",
-          text: "Intervals Scatter Map"
-        },
-        xAxis: {
-          axisLabel: {
-            formatter: function(value) {
-              return moment(value).format("M/D/Y");
+        heatSeries = this.generateHeatSeries();
+        //sort series
+        let sorted = heatSeries.sort(this.objectArraySort());
+        console.log(sorted);
+
+        this.chartOptions = {
+          title: {
+            top: 30,
+            left: "center",
+            text: "Intervals Scatter Map"
+          },
+          xAxis: {
+            axisLabel: {
+              formatter: function(value) {
+                return moment(value).format("M/D/Y");
+              },
+              rotate: 60
             },
-            rotate: 60
+            scale: true
           },
-          scale: true
-        },
-        yAxis: {
-          scale: true
-        },
-        series: [
-          {
-            type: "scatter",
-            data: series
-          }
-        ],
-        color: "#007df7"
-      };
-      this.chartHeatMapOptions = {
-        title: {
-          top: 30,
-          left: "center",
-          text: "ExceptionHeight Heat Map"
-        },
-        visualMap: {
-          min: sorted[sorted.length - 1][1],
-          max: sorted[0][1],
-          type: "piecewise",
-          orient: "horizontal",
-          left: "center",
-          top: 65,
-          textStyle: {
-            color: "#000"
+          yAxis: {
+            scale: true
           },
-          formatter: function(minValue, maxValue) {
-            return parseInt(minValue) + " - " + parseInt(maxValue);
-          }
-        },
-        calendar: [
-          {
-            top: 120,
-            left: 30,
-            right: 30,
-            cellSize: ["auto", 13],
-            range: new Date().getFullYear().toString(),
-            itemStyle: {
-              borderWidth: 0.5
+          series: [
+            {
+              type: "scatter",
+              data: series
             }
-          }
-        ],
+          ],
+          color: "#007df7"
+        };
+        this.chartHeatMapOptions = {
+          title: {
+            top: 30,
+            left: "center",
+            text: "ExceptionHeight Heat Map"
+          },
+          visualMap: {
+            min: sorted[sorted.length - 1][1],
+            max: sorted[0][1],
+            type: "piecewise",
+            orient: "horizontal",
+            left: "center",
+            top: 65,
+            textStyle: {
+              color: "#000"
+            },
+            formatter: function(minValue, maxValue) {
+              return parseInt(minValue) + " - " + parseInt(maxValue);
+            }
+          },
+          calendar: [
+            {
+              top: 120,
+              left: 30,
+              right: 30,
+              cellSize: ["auto", 13],
+              range: new Date().getFullYear().toString(),
+              itemStyle: {
+                borderWidth: 0.5
+              }
+            }
+          ],
 
-        series: [
-          {
-            type: "heatmap",
-            coordinateSystem: "calendar",
-            data: heatSeries
-          }
-        ]
-      };
+          series: [
+            {
+              type: "heatmap",
+              coordinateSystem: "calendar",
+              data: heatSeries
+            }
+          ]
+        };
+      }
     }
   },
   computed: {
