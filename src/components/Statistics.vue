@@ -58,11 +58,11 @@ export default {
     },
     generateHeatmapSeries() {
       let initDate = new Date(this.statExceptionTime[0]);
-      let initY = 0;
+      let initY = 1;
       let initDateStr = initDate.Format("yyyy-MM-dd");
-      let resultXSeries = [],
-        resultYSeries = [],
-        resultSeries = [];
+      let resultXSeries = [];
+      let resultYSeries = [];
+      let resultSeries = [];
       for (let i = 1; i < this.statExceptionTime.length; i++) {
         let currDate = new Date(this.statExceptionTime[i]);
         let currDateStr = currDate.Format("yyyy-MM-dd");
@@ -73,7 +73,7 @@ export default {
           resultXSeries.push(initDateStr);
           resultYSeries.push(initY);
           initDateStr = currDateStr;
-          initY = 0;
+          initY = 1;
         }
       }
       resultXSeries.push(initDateStr);
