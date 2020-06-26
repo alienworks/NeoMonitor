@@ -54,7 +54,7 @@
           <h6>{{ maxBlock }}</h6>
         </a-col>
         <a-col class="summary-block" :span="2">
-          <a-avatar>{{$store.state.timerCount}}s</a-avatar>
+          <a-avatar style="background-color: #0096ea;">{{$store.state.timerCount}}s</a-avatar>
         </a-col>
         <a-select :default-value="flag" style="width: 120px" @change="onSetFlagNet">
           <a-select-option value="MainNet">MainNet</a-select-option>
