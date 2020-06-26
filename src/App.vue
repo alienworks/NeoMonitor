@@ -9,8 +9,8 @@
 
 <script>
 import * as am4core from "@amcharts/amcharts4/core";
-import NHeader from '@/layouts/Header';
-import { mapGetters } from 'vuex';
+import NHeader from "@/layouts/Header";
+import { mapGetters } from "vuex";
 import { HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
 import NodeService from "@/services/NodeService";
 
@@ -27,9 +27,10 @@ export default {
         am4core.disposeAllCharts();
       }
     },
-    
+
     async nodeID(current) {
-      current && await connection.send("SubscribeRawMemPoolItemsInfo", current);
+      current &&
+        (await connection.send("SubscribeRawMemPoolItemsInfo", current));
     }
   },
   created() {
@@ -48,7 +49,7 @@ export default {
 
       // On Receiving Nodes.
       connection.on("UpdateNodes", async data => {
-        this.$store.commit("setNodes", data);           
+        this.$store.commit("setNodes", data);
         await connection.send("SubscribeRawMemPoolItemsInfo", this.nodeID);
       });
 
@@ -77,14 +78,13 @@ export default {
       for (let i = 0; i < nodes.length; i++) {
         const node = nodes[i];
         const rawMemPool = rawMemPools.find(pool => pool.id === node.id);
-        
+
         if (rawMemPool) {
           updatedNodes.push({
-            ...node, 
+            ...node,
             memoryPool: rawMemPool.memoryPool || 0
           });
-        }
-        else {
+        } else {
           updatedNodes.push(node);
         }
       }
@@ -93,9 +93,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['nodeID', 'nodes']),
+    ...mapGetters(["nodeID", "nodes"]),
     showPage() {
-      return this.nodes.length !== 0
+      return this.nodes.length !== 0;
     }
   }
 };
@@ -124,7 +124,6 @@ body {
     color: rgb(41, 245, 119) !important;
   }
 
-
   tr.ant-table-row {
     &.responsive {
       color: #1890ff;
@@ -138,5 +137,8 @@ body {
       color: darkgray;
     }
   }
+}
+.ant-message .anticon {
+  top: -2.5px !important;
 }
 </style>

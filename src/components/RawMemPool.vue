@@ -26,7 +26,7 @@
         :loading="isFetchingProgress"
       >
         <a-list-item slot="renderItem" slot-scope="item" :key="item.id">
-          <a-list-item-meta :description="item.value" @dblclick="copySingleHash(item.value)">
+          <a-list-item-meta :description="item.value" @dblclick="copySingleHash(item)">
             <span slot="title">Transaction Hash</span>
             <a-avatar slot="avatar" class="avatar">{{item.id}}</a-avatar>
           </a-list-item-meta>
@@ -65,7 +65,8 @@ export default {
         for (let i = 0; i < val.length; i++) {
           this.myPool.push({
             id: i + 1,
-            value: val[i]
+            value: val[i],
+            copied: false
           });
         }
       } else {
@@ -74,10 +75,10 @@ export default {
     }
   },
   methods: {
-    copySingleHash(hash) {
-      console.log(hash);
-      copy(hash).then(() => {
-        alert("Transaction Hash has been copied.");
+    copySingleHash(item) {
+      let self = this;
+      copy(item.value).then(() => {
+        self.$message.success("The Transaction Hash has been copied.");
       });
     },
     copyAll(pool) {
@@ -91,7 +92,8 @@ export default {
   },
   data() {
     return {
-      myPool: null
+      myPool: null,
+      currKey: 0
     };
   }
 };
