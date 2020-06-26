@@ -141,4 +141,8 @@ body {
 .ant-message .anticon {
   top: -2.5px !important;
 }
+.anticon {
+  position: relative;
+  top: -3.5px;
+}
 </style>

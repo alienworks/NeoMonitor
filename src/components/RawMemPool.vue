@@ -32,6 +32,15 @@
           </a-list-item-meta>
         </a-list-item>
       </a-list>
+      <div class="pagination_wrapper">
+        <a-pagination
+          v-if="myPool && myPool.length>0"
+          @change="changePage"
+          v-model="current"
+          :total="pools.length"
+          pagesize.sync="10"
+        />
+      </div>
     </div>
   </a-page-header>
 </template>
@@ -61,20 +70,37 @@ export default {
   watch: {
     pools(val) {
       if (val && val.length > 0) {
-        this.myPool = [];
-        for (let i = 0; i < val.length; i++) {
-          this.myPool.push({
-            id: i + 1,
-            value: val[i],
-            copied: false
-          });
+        if (val && val.length >= 10) {
+          for (let i = 0; i < 10; i++) {
+            this.myPool.push({
+              id: i + 1,
+              value: val[i]
+            });
+          }
+        } else {
+          for (let i = 0; i < val.length; i++) {
+            this.myPool.push({
+              id: i + 1,
+              value: val[i]
+            });
+          }
         }
       } else {
-        this.myPool = null;
+        this.myPool = [];
       }
     }
   },
   methods: {
+    changePage(page, size) {
+      this.myPool = [];
+      let slicedPools = this.pools.slice((page - 1) * size, page * size);
+      for (let i = 0; i < slicedPools.length; i++) {
+        this.myPool.push({
+          id: i + 1,
+          value: slicedPools[i]
+        });
+      }
+    },
     copySingleHash(item) {
       let self = this;
       copy(item.value).then(() => {
@@ -92,8 +118,8 @@ export default {
   },
   data() {
     return {
-      myPool: null,
-      currKey: 0
+      myPool: [],
+      current: 1
     };
   }
 };
@@ -135,5 +161,9 @@ export default {
   @media (min-width: 1200px) {
     padding: 0 10rem;
   }
+}
+.pagination_wrapper {
+  text-align: center;
+  margin-top: 8px;
 }
 </style>
