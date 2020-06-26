@@ -58,7 +58,7 @@ export default {
     },
     generateHeatmapSeries() {
       let initDate = new Date(this.statExceptionTime[0]);
-      let initY = this.statInterval[0];
+      let initY = 0;
       let initDateStr = initDate.Format("yyyy-MM-dd");
       let resultXSeries = [],
         resultYSeries = [],
@@ -68,7 +68,7 @@ export default {
         let currDateStr = currDate.Format("yyyy-MM-dd");
         if (initDateStr === currDateStr) {
           //same day
-          initY += this.statInterval[i];
+          initY++;
         } else {
           resultXSeries.push(initDateStr);
           resultYSeries.push(initY);
