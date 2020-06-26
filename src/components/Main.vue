@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       maxHeight: window.innerHeight - 55 + "px",
-      maxWidth: window.innerWidth / 2.0 - 100 + "px",
+      maxWidth: window.innerWidth / 2.0 - 108 + "px",
       neoMapLocations: [],
       fields: [
         {
@@ -277,14 +277,14 @@ export default {
 #chartdiv {
   width: 50%;
   min-height: 75vh;
-  float: left;
+  display: inline-block;
 }
 .table_wrapper {
   width: 50%;
-  float: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
+  margin-left: 25px;
+  position: relative;
+  top: 10rem;
 }
 .btn-net {
   float: right;
