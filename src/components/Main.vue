@@ -1,19 +1,10 @@
 <template>
   <div class="container">
-    <div id="chartdiv" ref="chart"></div>
+    <div id="chartdiv" ref="chart" :style="{height:maxHeight,width:maxWidth}"></div>
     <!-- <div class="chart-wrapper">
       <chart :options="chartOptions" auto-resize></chart>
-    </div> -->
-    <div class="mb-3">
-      <!-- <b-table responsive hover :fields="fields" :items="rankTableData">
-        <template v-slot:cell(country)="row">
-          <div class="d-flex">
-            <img :src="row.item.flagUrl" class="flag mr-3" />
-            <div>{{ row.item.country }}</div>
-          </div>
-        </template>
-      </b-table> -->
-
+    </div>-->
+    <div class="table_wrapper" :style="{height:maxHeight,width:maxWidth}">
       <a-table :columns="fields" :data-source="rankTableData" :pagination="false" size="small">
         <div slot="country" slot-scope="text, record">
           <img :src="record.flagUrl" class="flag" />
@@ -21,6 +12,19 @@
         </div>
       </a-table>
     </div>
+
+    <!--
+      <div class="mb-3">
+       <b-table responsive hover :fields="fields" :items="rankTableData">
+        <template v-slot:cell(country)="row">
+          <div class="d-flex">
+            <img :src="row.item.flagUrl" class="flag mr-3" />
+            <div>{{ row.item.country }}</div>
+          </div>
+        </template>
+      </b-table>
+    </div>
+    -->
   </div>
 </template>
 
@@ -39,6 +43,8 @@ export default {
   name: "Main",
   data() {
     return {
+      maxHeight: window.innerHeight - 55 + "px",
+      maxWidth: window.innerWidth / 2.0 - 100 + "px",
       neoMapLocations: [],
       fields: [
         {
@@ -46,22 +52,22 @@ export default {
           dataIndex: "no",
           title: "No",
           sorter: (a, b) => a.no - b.no,
-          sortDirections: ['descend', 'ascend'],
+          sortDirections: ["descend", "ascend"]
         },
         {
           key: "country",
           dataIndex: "country",
           title: "Country",
           sorter: (a, b) => a.country.length - b.country.length,
-          sortDirections: ['descend', 'ascend'],
-          scopedSlots: { customRender: 'country' }
+          sortDirections: ["descend", "ascend"],
+          scopedSlots: { customRender: "country" }
         },
         {
           key: "number_of_nodes",
           dataIndex: "number_of_nodes",
           title: "Number of Nodes",
           sorter: (a, b) => a.number_of_nodes - b.number_of_nodes,
-          sortDirections: ['descend', 'ascend'],
+          sortDirections: ["descend", "ascend"]
         }
       ],
       chartOptions: {},
@@ -70,7 +76,7 @@ export default {
   },
   mounted() {
     this.neoMapLocations = this.$store.getters.nodes;
-    console.log(this.$refs.chart)
+    console.log(this.$refs.chart);
   },
   methods: {
     showMap(data) {
@@ -269,10 +275,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 #chartdiv {
-  width: 100%;
-  height: 75vh;
+  width: 50%;
+  min-height: 75vh;
+  float: left;
 }
-
+.table_wrapper {
+  width: 50%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .btn-net {
   float: right;
 }
