@@ -1,6 +1,8 @@
 <template>
   <div class="chart-wrapper container col-12 mt-5">
+    <div v-if="chartOptions" class="title">Interval(time)</div>
     <chart v-if="chartOptions" :options="chartOptions" :autoresize="true"></chart>
+    <div v-if="chartHeatMapOptions" class="title" style="margin-top:18px;">Interval(frequency)</div>
     <chart v-if="chartHeatMapOptions" :options="chartHeatMapOptions" :autoresize="true"></chart>
   </div>
 </template>
@@ -93,9 +95,9 @@ export default {
 
         this.chartOptions = {
           title: {
-            top: 30,
             left: "center",
-            text: "Intervals Scatter Map"
+            text: "Intervals(time)",
+            show: true
           },
           xAxis: {
             axisLabel: {
@@ -119,9 +121,9 @@ export default {
         };
         this.chartHeatMapOptions = {
           title: {
-            top: 30,
             left: "center",
-            text: "ExceptionHeight Heat Map"
+            text: "Intervals(frequency)",
+            show: true
           },
           visualMap: {
             min: sorted[sorted.length - 1][1],
@@ -226,5 +228,8 @@ export default {
 .echarts {
   width: 100%;
   height: 100%;
+}
+.title {
+  font-size: 18px;
 }
 </style>
