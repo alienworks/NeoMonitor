@@ -11,9 +11,9 @@
 import * as am4core from "@amcharts/amcharts4/core";
 import NHeader from "@/layouts/Header";
 import { mapGetters } from "vuex";
-import { HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import NodeService from "@/services/NodeService";
-
+import Vue from "vue";
 // Connection instance for signalr. Exposed for other to use.
 export let connection = null;
 
@@ -45,6 +45,7 @@ export default {
       connection = new HubConnectionBuilder()
         .withUrl(process.env.VUE_APP_SOCKETAPI)
         .configureLogging(LogLevel.Information)
+        .withAutomaticReconnect()
         .build();
 
       // On Receiving Nodes.
@@ -58,10 +59,8 @@ export default {
         this.$store.commit("setNodes", this.mapMemPoolsToNodes(rawMemPools));
       });
 
-      await connection.start().catch(function() {
-        setTimeout(function() {
-          connection.start();
-        }, 5000);
+      await connection.start().then(() => {
+        Vue.prototype.$connection = connection;
       });
 
       // Activate subscribe method.
