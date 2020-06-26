@@ -48,18 +48,14 @@
             <router-link to="/matrix">API Matrix</router-link>
           </a-menu-item>
         </a-menu>
-
-        <a-select
-          :default-value="flag"
-          style="width: 120px"
-          @change="onSetFlagNet"
-        >
-          <a-select-option value="MainNet">
-            MainNet
-          </a-select-option>
-          <a-select-option value="TestNet">
-            TestNet
-          </a-select-option>
+        <a-col class="summary-block" :span="3">
+          <!-- <a-statistic title="Latest block" :value="maxBlock"></a-statistic> -->
+          <p>Latest block</p>
+          <h6>{{ maxBlock }}</h6>
+        </a-col>
+        <a-select :default-value="flag" style="width: 120px" @change="onSetFlagNet">
+          <a-select-option value="MainNet">MainNet</a-select-option>
+          <a-select-option value="TestNet">TestNet</a-select-option>
         </a-select>
       </a-col>
     </a-row>
@@ -68,15 +64,56 @@
 
 <script>
 import { mapGetters } from "vuex";
-
+import { pipe, max, prop, map, reduce, filter, equals } from "ramda";
 export default {
   data() {
     return {
-      current: ["home"],
+      current: ["home"]
     };
   },
   computed: {
-    ...mapGetters(["flag"])
+    ...mapGetters({
+      flag: "flag",
+      refreshNodes: "nodes"
+    }),
+
+    nodes() {
+      const { refreshNodes } = this;
+
+      if (refreshNodes.length === 0) return [];
+
+      const result = refreshNodes.map(node => {
+        if (!node.latency) {
+          return {
+            ...node,
+            key: node.id,
+            height: -1,
+            version: "-",
+            latency: -1,
+            peers: -1,
+            memoryPool: -1
+          };
+        }
+
+        return node;
+      });
+
+      return result;
+    },
+    filteredNodes() {
+      const { filter: hasFilter, flag, nodes } = this;
+
+      const filteredNodes = filter(pipe(prop("net"), equals(flag)), nodes);
+
+      if (!hasFilter) return filteredNodes || [];
+
+      return filteredNodes.filter(node => this.filterNode(node, hasFilter));
+    },
+    maxBlock() {
+      return pipe(map(prop("height")), reduce(max, 0))(this.filteredNodes) != 0
+        ? pipe(map(prop("height")), reduce(max, 0))(this.filteredNodes)
+        : "-";
+    }
   },
   methods: {
     onSetFlagNet(flag) {
@@ -85,11 +122,22 @@ export default {
     onLogoClick() {
       this.current = ["home"];
     }
-  },
+  }
 };
 </script>
 
 <style lang="scss">
+.summary-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  h6,
+  p {
+    margin: 0;
+  }
+}
 #header {
   position: relative;
   z-index: 10;
@@ -123,7 +171,7 @@ export default {
 
   .ant-menu-horizontal {
     border-bottom: none;
-    
+
     & .ant-menu-item-selected,
     & .ant-menu-item:hover,
     & .ant-menu-submenu:hover {
