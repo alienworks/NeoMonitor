@@ -193,7 +193,7 @@ export default {
     nodeColor(record) {
       return record.latency === -1
         ? "unresponsive"
-        : this.maxBlock - record.height < 5
+        : this.maxBlock - record.height < 20
         ? "responsive"
         : "delayed";
     }
