@@ -1,9 +1,6 @@
 <template>
   <div style="overflow:hidden">
-    <a-row type="flex" justify="end" class="search-wrapper">
-      <a-input-search v-model="filter" placeholder="filter by name" style="width: 200px" />
-    </a-row>
-
+    <search :doFilter="doFilter" :loading="loading"></search>
     <a-spin :spinning="isFetchingProgress">
       <a-table
         :columns="fields"
@@ -13,6 +10,7 @@
         size="small"
         class="matrix_table"
         :style="{maxWidth: maxWidth+'px'}"
+        :rowKey="generateRowKey"
       >
         <div
           slot="method"
@@ -34,10 +32,14 @@
 import { mapGetters } from "vuex";
 import { avaliableApiNames } from "@/constants";
 import { sorter, debounce } from "@/utils";
-
+import Search from "./Search";
 export default {
+  components: {
+    [Search.name]: Search
+  },
   data: function() {
     return {
+      loading: false,
       maxWidth: window.innerWidth - 18,
       maxHeight: window.innerHeight - 138,
       fields: [
@@ -72,17 +74,17 @@ export default {
       myEntities: [],
       defaultEntites: [],
       filter: null,
-      filterDebounce: debounce(
-        val =>
-          (this.entities = this.entities.filter(({ url }) =>
-            url.toLowerCase().includes(val.toLowerCase())
-          )),
-        500
-      ),
-      logDebounce: debounce(
-        val => console.log("debounced", val, arguments),
-        500
-      )
+      filterDebounce: debounce(val => {
+        this.myEntities = this.entities.filter(({ url }) => {
+          if (url) {
+            url = url.toLowerCase();
+            val = val.toLowerCase();
+            return url.includes(val);
+          }
+        });
+        this.loading = false;
+      }),
+      logDebounce: debounce(val => console.log("debounced", val, arguments))
     };
   },
   mounted() {
@@ -92,14 +94,6 @@ export default {
     ...mapGetters(["matrixEntities", "isFetchingProgress"])
   },
   watch: {
-    filter(val) {
-      if (val) {
-        this.filterDebounce(val);
-        this.logDebounce(val);
-      } else {
-        this.entities = this.defaultEntites.slice();
-      }
-    },
     matrixEntities(entities) {
       this.entities = this.transofrmMatrixEntities(entities);
       this.defaultEntites = this.entities.slice();
@@ -115,6 +109,19 @@ export default {
     }
   },
   methods: {
+    generateRowKey(record) {
+      return record["url"] || Math.random() * 10000 + 10000;
+    },
+    doFilter(val) {
+      val = val.toLowerCase();
+      this.loading = true;
+      if (val) {
+        this.filterDebounce(val);
+      } else {
+        this.myEntities = this.entities;
+        this.loading = false;
+      }
+    },
     transofrmMatrixEntities(data) {
       // T[] -> string -> {[keyof T]: T[]}
       // map array into object, group by sepecified key

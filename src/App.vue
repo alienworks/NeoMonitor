@@ -145,4 +145,7 @@ body {
   position: relative;
   top: -3.5px;
 }
+.ant-input-search-icon {
+  top: 0px;
+}
 </style>
