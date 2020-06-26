@@ -120,11 +120,11 @@ export default {
       // Configure series
       var polygonTemplate = polygonSeries.mapPolygons.template;
       polygonTemplate.tooltipText = "{name}";
-      polygonTemplate.fill = am4core.color("#74B266");
+      polygonTemplate.fill = am4core.color("#0094f1");
 
       // Create hover state and set alternative fill color
       var hs = polygonTemplate.states.create("hover");
-      hs.properties.fill = am4core.color("#367B25");
+      hs.properties.fill = am4core.color("#0066ff");
 
       // Add images
       var imageSeries = chart.series.push(new am4maps.MapImageSeries());
