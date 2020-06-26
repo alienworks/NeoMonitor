@@ -1,6 +1,9 @@
 <template>
   <div class="contanier mt-3 col-12">
     <a-row type="flex" justify="end" class="search-wrapper">
+      <a-button type="default" @click="gotoStatistics()" style="margin-right:12px;">
+        <a-icon type="dot-chart" style="position:relative;top:-2.75px;" />View Charts
+      </a-button>
       <a-input-search
         v-model="filter"
         placeholder="filter by nodes or height"
@@ -18,12 +21,9 @@
         size="small"
       >
         <a :href="`//neoscan.io/block/${h}`" target="_blank" slot="height" slot-scope="h">{{ h }}</a>
-
-        <router-link slot="time" slot-scope="t" to="/statistics">
-          {{
-          t
-          }}
-        </router-link>
+        {{
+        t
+        }}
       </a-table>
       <a-pagination
         v-if="nodeInfo && nodeInfo.length>0"
@@ -91,6 +91,11 @@ export default {
     ...mapGetters(["nodeInfo", "isFetchingProgress"])
   },
   methods: {
+    gotoStatistics() {
+      this.$router.push({
+        path: "/statistics"
+      });
+    },
     changePage(page, size) {
       this.myNodeInfo = this.nodeInfo.slice((page - 1) * size, page * size);
     }
