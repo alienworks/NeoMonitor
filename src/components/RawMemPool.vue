@@ -26,8 +26,8 @@
         :loading="isFetchingProgress"
       >
         <a-list-item slot="renderItem" slot-scope="item" :key="item.id">
-          <a-list-item-meta :description="item.value" @dblclick="copySingleHash(item)">
-            <span slot="title">Transaction Hash</span>
+          <a-list-item-meta @dblclick="copySingleHash(item)">
+            <span slot="title" class="hash_code">{{item.value}}</span>
             <a-avatar slot="avatar" class="avatar">{{item.id}}</a-avatar>
           </a-list-item-meta>
         </a-list-item>
@@ -114,6 +114,12 @@ export default {
   white-space: nowrap;
 }
 .avatar {
+  background-color: #0992f8;
+}
+.hash_code {
+  font-size: 16px;
+  top: 13px;
+  position: relative;
 }
 .rm-container {
   background-color: rgba(255, 255, 255, 0);
