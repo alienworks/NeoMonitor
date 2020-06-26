@@ -43,8 +43,8 @@ export default {
   name: "Main",
   data() {
     return {
-      maxHeight: window.innerHeight - 55 + "px",
-      maxWidth: window.innerWidth / 2.0 - 108 + "px",
+      maxHeight: window.innerHeight - 70 + "px",
+      maxWidth: "calc(50% - 6rem)",
       neoMapLocations: [],
       fields: [
         {
@@ -274,6 +274,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.container {
+  overflow: hidden;
+}
 #chartdiv {
   width: 50%;
   min-height: 75vh;
