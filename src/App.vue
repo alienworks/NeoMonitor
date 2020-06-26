@@ -14,6 +14,7 @@ import { mapGetters } from "vuex";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import NodeService from "@/services/NodeService";
 import Vue from "vue";
+
 // Connection instance for signalr. Exposed for other to use.
 export let connection = null;
 
@@ -50,12 +51,14 @@ export default {
 
       // On Receiving Nodes.
       connection.on("UpdateNodes", async data => {
+        this.$store.commit("setTimerCount", 0);
         this.$store.commit("setNodes", data);
         await connection.send("SubscribeRawMemPoolItemsInfo", this.nodeID);
       });
 
       // On Receiving RawMemPools
       connection.on("UpdateRawMemPoolSizeInfo", rawMemPools => {
+        this.$store.commit("setTimerCount", 0);
         this.$store.commit("setNodes", this.mapMemPoolsToNodes(rawMemPools));
       });
 
@@ -93,6 +96,7 @@ export default {
   },
   computed: {
     ...mapGetters(["nodeID", "nodes"]),
+
     showPage() {
       return this.nodes.length !== 0;
     }
