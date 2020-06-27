@@ -1,5 +1,6 @@
 <template>
   <div style="overflow:hidden">
+    <toolbar></toolbar>
     <search :doFilter="doFilter" :loading="loading"></search>
     <a-spin :spinning="isFetchingProgress">
       <a-table
@@ -33,9 +34,11 @@ import { mapGetters } from "vuex";
 import { avaliableApiNames } from "@/constants";
 import { sorter, debounce } from "@/utils";
 import Search from "./Search";
+import Toolbar from "../layouts/Toolbar";
 export default {
   components: {
-    [Search.name]: Search
+    [Search.name]: Search,
+    [Toolbar.name]: Toolbar
   },
   data: function() {
     return {

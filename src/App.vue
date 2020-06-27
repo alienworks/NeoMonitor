@@ -58,7 +58,7 @@ export default {
 
       // On Receiving RawMemPools
       connection.on("UpdateRawMemPoolSizeInfo", rawMemPools => {
-        this.$store.commit("setTimerCount", 0);
+        //this.$store.commit("setTimerCount", 0);
         this.$store.commit("setNodes", this.mapMemPoolsToNodes(rawMemPools));
       });
 

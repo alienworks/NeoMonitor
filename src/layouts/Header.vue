@@ -48,14 +48,7 @@
             <router-link to="/matrix">API Matrix</router-link>
           </a-menu-item>
         </a-menu>
-        <a-col class="summary-block" :span="3">
-          <!-- <a-statistic title="Latest block" :value="maxBlock"></a-statistic> -->
-          <p>Latest block</p>
-          <h6>{{ maxBlock }}</h6>
-        </a-col>
-        <a-col class="summary-block" :span="2">
-          <a-avatar style="background-color: #0096ea;">{{$store.state.timerCount}}s</a-avatar>
-        </a-col>
+
         <a-select :default-value="flag" style="width: 120px" @change="onSetFlagNet">
           <a-select-option value="MainNet">MainNet</a-select-option>
           <a-select-option value="TestNet">TestNet</a-select-option>
@@ -67,7 +60,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { pipe, max, prop, map, reduce, filter, equals } from "ramda";
+
 export default {
   data() {
     return {
@@ -76,46 +69,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      flag: "flag",
-      refreshNodes: "nodes"
-    }),
-    nodes() {
-      const { refreshNodes } = this;
-
-      if (refreshNodes.length === 0) return [];
-
-      const result = refreshNodes.map(node => {
-        if (!node.latency) {
-          return {
-            ...node,
-            key: node.id,
-            height: -1,
-            version: "-",
-            latency: -1,
-            peers: -1,
-            memoryPool: -1
-          };
-        }
-
-        return node;
-      });
-
-      return result;
-    },
-    filteredNodes() {
-      const { filter: hasFilter, flag, nodes } = this;
-
-      const filteredNodes = filter(pipe(prop("net"), equals(flag)), nodes);
-
-      if (!hasFilter) return filteredNodes || [];
-
-      return filteredNodes.filter(node => this.filterNode(node, hasFilter));
-    },
-    maxBlock() {
-      return pipe(map(prop("height")), reduce(max, 0))(this.filteredNodes) != 0
-        ? pipe(map(prop("height")), reduce(max, 0))(this.filteredNodes)
-        : "-";
-    }
+      flag: "flag"
+    })
   },
   methods: {
     onSetFlagNet(flag) {
