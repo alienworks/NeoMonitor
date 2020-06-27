@@ -151,4 +151,7 @@ body {
 .ant-input-search-icon {
   top: 0px;
 }
+.customCountryRow {
+  height: 7rem;
+}
 </style>

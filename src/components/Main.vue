@@ -1,12 +1,20 @@
 <template>
   <div class="main">
     <toolbar></toolbar>
-    <div id="chartdiv" ref="chart" :style="{height:maxHeight,width:maxWidth}"></div>
+    <div id="chartdiv" ref="chart" :style="{height:maxHeight,width:mapWidth}"></div>
     <!-- <div class="chart-wrapper">
       <chart :options="chartOptions" auto-resize></chart>
     </div>-->
-    <div class="table_wrapper" :style="{height:maxHeight,width:maxWidth,paddingTop:paddingTop}">
-      <a-table :columns="fields" :data-source="rankTableData" :pagination="false" size="small">
+    <div class="table_wrapper" :style="{height:maxHeight,width:listWidth,paddingTop:'1.5rem'}">
+      <a-table
+        :rowKey="getRowKey"
+        :rowClassName="generateRowClass"
+        :columns="fields"
+        :data-source="rankTableData"
+        :pagination="false"
+        size="small"
+        :style="{height:maxHeight}"
+      >
         <div slot="country" slot-scope="text, record">
           <img :src="record.flagUrl" class="flag" />
           <div class="country-text">{{ text }}</div>
@@ -47,9 +55,9 @@ export default {
   },
   data() {
     return {
-      maxHeight: window.innerHeight - 70 + "px",
-      maxWidth: "calc(50% - 3rem)",
-      paddingTop: (window.innerHeight - 70) / 2.0 - 156 + "px",
+      maxHeight: window.innerHeight - 80 + "px",
+      mapWidth: "calc(70% - 3rem)",
+      listWidth: "calc(30% - 3rem)",
       neoMapLocations: [],
       fields: [
         {
@@ -57,7 +65,12 @@ export default {
           dataIndex: "no",
           title: "No",
           sorter: (a, b) => a.no - b.no,
-          sortDirections: ["descend", "ascend"]
+          sortDirections: ["descend", "ascend"],
+          customRender: function(text, record, index) {
+            return (
+              <a-avatar style="background-color:#008be7">{{ text }}</a-avatar>
+            );
+          }
         },
         {
           key: "country",
@@ -82,8 +95,15 @@ export default {
   mounted() {
     this.neoMapLocations = this.$store.getters.nodes;
     console.log(this.$refs.chart);
+    console.log(this.paddingTop);
   },
   methods: {
+    generateRowClass() {
+      return "customCountryRow";
+    },
+    getRowKey(record) {
+      return record.text;
+    },
     showMap(data) {
       // Clear
       am4core.disposeAllCharts();
@@ -282,6 +302,7 @@ export default {
 .container {
   overflow: hidden;
 }
+
 #chartdiv {
   min-height: 75vh;
   display: inline-block;
@@ -308,7 +329,6 @@ export default {
 .ant-table-small {
   border-radius: 0;
 }
-
 // @media (max-width: 400px) {
 //   #chartdiv {
 //     width: 100%;
