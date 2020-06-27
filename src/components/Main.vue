@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div class="main">
     <div id="chartdiv" ref="chart" :style="{height:maxHeight,width:maxWidth}"></div>
     <!-- <div class="chart-wrapper">
       <chart :options="chartOptions" auto-resize></chart>
     </div>-->
-    <div class="table_wrapper" :style="{height:maxHeight,width:maxWidth}">
+    <div class="table_wrapper" :style="{height:maxHeight,width:maxWidth,paddingTop:paddingTop}">
       <a-table :columns="fields" :data-source="rankTableData" :pagination="false" size="small">
         <div slot="country" slot-scope="text, record">
           <img :src="record.flagUrl" class="flag" />
@@ -44,7 +44,8 @@ export default {
   data() {
     return {
       maxHeight: window.innerHeight - 70 + "px",
-      maxWidth: "calc(50% - 6rem)",
+      maxWidth: "calc(50% - 3rem)",
+      paddingTop: (window.innerHeight - 70) / 2.0 - 156 + "px",
       neoMapLocations: [],
       fields: [
         {
@@ -278,16 +279,13 @@ export default {
   overflow: hidden;
 }
 #chartdiv {
-  width: 50%;
   min-height: 75vh;
   display: inline-block;
 }
 .table_wrapper {
-  width: 50%;
   display: inline-block;
   margin-left: 25px;
   position: relative;
-  top: 10rem;
 }
 .btn-net {
   float: right;
