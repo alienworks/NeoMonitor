@@ -78,7 +78,7 @@ export default {
             return (
               <div>
                 <img src={record.flagUrl} class="flag"></img>
-                <span style="font-size:18px;">{{ text }}</span>
+                <span style="font-size:18px;margin-left:8px;">{{ text }}</span>
               </div>
             );
           }
