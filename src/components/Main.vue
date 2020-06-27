@@ -14,12 +14,7 @@
         :pagination="false"
         size="small"
         :style="{height:maxHeight}"
-      >
-        <div slot="country" slot-scope="text, record">
-          <img :src="record.flagUrl" class="flag" />
-          <div class="country-text">{{ text }}</div>
-        </div>
-      </a-table>
+      ></a-table>
     </div>
 
     <!--
@@ -66,7 +61,7 @@ export default {
           title: "No",
           sorter: (a, b) => a.no - b.no,
           sortDirections: ["descend", "ascend"],
-          customRender: function(text, record, index) {
+          customRender: function(text) {
             return (
               <a-avatar style="background-color:#008be7">{{ text }}</a-avatar>
             );
@@ -78,14 +73,25 @@ export default {
           title: "Country",
           sorter: (a, b) => a.country.length - b.country.length,
           sortDirections: ["descend", "ascend"],
-          scopedSlots: { customRender: "country" }
+          scopedSlots: { customRender: "country" },
+          customRender: function(text, record) {
+            return (
+              <div>
+                <img src={record.flagUrl} class="flag"></img>
+                <span style="font-size:18px;">{{ text }}</span>
+              </div>
+            );
+          }
         },
         {
           key: "number_of_nodes",
           dataIndex: "number_of_nodes",
           title: "Number of Nodes",
           sorter: (a, b) => a.number_of_nodes - b.number_of_nodes,
-          sortDirections: ["descend", "ascend"]
+          sortDirections: ["descend", "ascend"],
+          customRender: function(text) {
+            return <span style="font-size:18px;">{{ text }}</span>;
+          }
         }
       ],
       chartOptions: {},
