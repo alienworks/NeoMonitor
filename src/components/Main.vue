@@ -55,7 +55,7 @@ export default {
   },
   data() {
     return {
-      maxHeight: window.innerHeight - 80 + "px",
+      maxHeight: window.innerHeight - 118 + "px",
       mapWidth: "calc(70% - 3rem)",
       listWidth: "calc(30% - 3rem)",
       neoMapLocations: [],
