@@ -8,7 +8,7 @@
           <h6>{{ maxBlock }}</h6>
         </a-col>
         <a-col class="summary-block" :span="8">
-          <a-avatar style="background-color: #0096ea;">{{$store.state.timerCount}}s</a-avatar>
+          <a-avatar style="background-color: #0096ea;">{{seconds}}s</a-avatar>
         </a-col>
       </a-col>
     </a-row>
@@ -25,6 +25,12 @@ export default {
       current: ["home"],
       timer: null
     };
+  },
+  props: {
+    seconds: {
+      type: Number,
+      default: 0
+    }
   },
   computed: {
     ...mapGetters({

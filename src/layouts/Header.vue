@@ -48,7 +48,7 @@
             <router-link to="/matrix">API Matrix</router-link>
           </a-menu-item>
         </a-menu>
-        <toolbar></toolbar>
+        <toolbar :seconds="seconds" :key="seconds"></toolbar>
         <a-select :default-value="flag" style="width: 120px" @change="onSetFlagNet">
           <a-select-option value="MainNet">MainNet</a-select-option>
           <a-select-option value="TestNet">TestNet</a-select-option>
@@ -64,7 +64,8 @@ import Toolbar from "./Toolbar"
 export default {
   data() {
     return {
-      current: ["home"]
+      current: ["home"],
+      seconds: 0,
     };
   },
   components: {
@@ -86,7 +87,7 @@ export default {
   mounted() {
     let self = this;
     self.timer = setInterval(() => {
-      self.$store.commit("setTimerCount", self.$store.state.timerCount + 1);
+      self.seconds++;
     }, 1000);
   },
 
