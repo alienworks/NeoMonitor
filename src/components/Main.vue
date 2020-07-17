@@ -1,20 +1,13 @@
 <template>
   <div class="main">
-    <toolbar></toolbar>
+
     <div id="chartdiv" ref="chart" :style="{height:maxHeight,width:mapWidth}"></div>
     <!-- <div class="chart-wrapper">
       <chart :options="chartOptions" auto-resize></chart>
     </div>-->
     <div class="table_wrapper" :style="{height:maxHeight,width:listWidth,paddingTop:'1.5rem'}">
-      <a-table
-        :rowKey="getRowKey"
-        :rowClassName="generateRowClass"
-        :columns="fields"
-        :data-source="rankTableData"
-        :pagination="false"
-        size="small"
-        :style="{height:maxHeight}"
-      ></a-table>
+      <a-table :rowKey="getRowKey" :rowClassName="generateRowClass" :columns="fields" :data-source="rankTableData"
+        :pagination="false" size="small" :style="{height:maxHeight}"></a-table>
     </div>
 
     <!--
@@ -61,7 +54,7 @@ export default {
           title: "No",
           sorter: (a, b) => a.no - b.no,
           sortDirections: ["descend", "ascend"],
-          customRender: function(text) {
+          customRender: function (text) {
             return (
               <a-avatar style="background-color:#008be7">{{ text }}</a-avatar>
             );
@@ -74,7 +67,7 @@ export default {
           sorter: (a, b) => a.country.length - b.country.length,
           sortDirections: ["descend", "ascend"],
           scopedSlots: { customRender: "country" },
-          customRender: function(text, record) {
+          customRender: function (text, record) {
             return (
               <div>
                 <img src={record.flagUrl} class="flag"></img>
@@ -89,7 +82,7 @@ export default {
           title: "Number of Nodes",
           sorter: (a, b) => a.number_of_nodes - b.number_of_nodes,
           sortDirections: ["descend", "ascend"],
-          customRender: function(text) {
+          customRender: function (text) {
             return <span style="font-size:18px;">{{ text }}</span>;
           }
         }
@@ -292,7 +285,7 @@ export default {
 
         isDataEqual =
           currentData.length == oldData.length &&
-          currentData.every(function(element, index) {
+          currentData.every(function (element, index) {
             return JSON.stringify(element) === JSON.stringify(oldData[index]);
           });
 

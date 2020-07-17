@@ -48,7 +48,7 @@
             <router-link to="/matrix">API Matrix</router-link>
           </a-menu-item>
         </a-menu>
-
+        <toolbar :seconds="seconds" :key="seconds"></toolbar>
         <a-select :default-value="flag" style="width: 120px" @change="onSetFlagNet">
           <a-select-option value="MainNet">MainNet</a-select-option>
           <a-select-option value="TestNet">TestNet</a-select-option>
@@ -60,12 +60,16 @@
 
 <script>
 import { mapGetters } from "vuex";
-
+import Toolbar from "./Toolbar"
 export default {
   data() {
     return {
-      current: ["home"]
+      current: ["home"],
+      seconds: 0,
     };
+  },
+  components: {
+    [Toolbar.name]: Toolbar
   },
   computed: {
     ...mapGetters({
@@ -82,9 +86,22 @@ export default {
   },
   mounted() {
     let self = this;
-    setInterval(() => {
-      self.$store.commit("setTimerCount", self.$store.state.timerCount + 1);
+    self.timer = setInterval(() => {
+      self.seconds++;
     }, 1000);
+  },
+
+  destroyed() {
+    let self = this;
+    if (self.timer) {
+      clearInterval(self.timer);
+    }
+  },
+  deactivated() {
+    let self = this;
+    if (self.timer) {
+      clearInterval(self.timer);
+    }
   }
 };
 </script>

@@ -1,18 +1,18 @@
 <template>
-  <header class="toolbar">
+  <div class="toolbar">
     <a-row>
       <a-col :span="24" class="menu-row">
-        <a-col class="summary-block" :span="3">
+        <a-col class="summary-block" :span="16">
           <!-- <a-statistic title="Latest block" :value="maxBlock"></a-statistic> -->
           <p>Latest block</p>
           <h6>{{ maxBlock }}</h6>
         </a-col>
-        <a-col class="summary-block" :span="2">
-          <a-avatar style="background-color: #0096ea;">{{$store.state.timerCount}}s</a-avatar>
+        <a-col class="summary-block" :span="8">
+          <a-avatar style="background-color: #0096ea;">{{seconds}}s</a-avatar>
         </a-col>
       </a-col>
     </a-row>
-  </header>
+  </div>
 </template>
 
 <script>
@@ -25,6 +25,12 @@ export default {
       current: ["home"],
       timer: null
     };
+  },
+  props: {
+    seconds: {
+      type: Number,
+      default: 0
+    }
   },
   computed: {
     ...mapGetters({
@@ -76,23 +82,8 @@ export default {
     onLogoClick() {
       this.current = ["home"];
     }
-  },
-  activated() {
-    let self = this;
-    self.timer = setInterval(() => {
-      self.$store.commit("setTimerCount", self.$store.state.timerCount + 1);
-    }, 1000);
-  },
-  destroyed() {
-    if (self.timer) {
-      clearInterval(self.timer);
-    }
-  },
-  deactivated() {
-    if (self.timer) {
-      clearInterval(self.timer);
-    }
   }
+
 };
 </script>
 
@@ -110,7 +101,7 @@ export default {
 .toolbar {
   position: relative;
   z-index: 10;
-  max-width: 100%;
+  width: 12rem;
   box-shadow: 0 2px 8px rgba(240, 241, 242, 65);
 
   .logo {
