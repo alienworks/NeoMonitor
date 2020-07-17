@@ -1,9 +1,5 @@
 <template>
-  <a-page-header
-    style="border: 1px solid rgb(235, 237, 240)"
-    title="Raw Memeory Pools"
-    @back="() => $router.back()"
-  >
+  <a-page-header style="border: 1px solid rgb(235, 237, 240)" title="Raw Memeory Pools" @back="() => $router.back()">
     <div class="rm-container text-left pt-5">
       <h1>
         {{ title }}
@@ -11,20 +7,10 @@
           <template slot="content">
             <p>All Transaction Hash has been copied.</p>
           </template>
-          <a-button
-            @click="copyAll(myPool)"
-            type="primary"
-            style="position:relative;top:-10px;"
-          >Copy All</a-button>
+          <a-button @click="copyAll(myPool)" type="primary" style="position:relative;top:-10px;">Copy All</a-button>
         </a-popover>
       </h1>
-      <a-list
-        v-if="myPool&&myPool.length>0"
-        bordered
-        size="small"
-        :data-source="myPool"
-        :loading="isFetchingProgress"
-      >
+      <a-list v-if="myPool&&myPool.length>0" bordered size="small" :data-source="myPool" :loading="isFetchingProgress">
         <a-list-item slot="renderItem" slot-scope="item" :key="item.id">
           <a-list-item-meta @dblclick="copySingleHash(item)">
             <span slot="title" class="hash_code">{{item.value}}</span>
@@ -33,13 +19,8 @@
         </a-list-item>
       </a-list>
       <div class="pagination_wrapper">
-        <a-pagination
-          v-if="myPool && myPool.length>0"
-          @change="changePage"
-          v-model="current"
-          :total="pools.length"
-          pagesize.sync="10"
-        />
+        <a-pagination style="margin-top:12px;" v-if="myPool && myPool.length>0" @change="changePage" v-model="current"
+          :total="pools.length" pagesize.sync="10" />
       </div>
     </div>
   </a-page-header>

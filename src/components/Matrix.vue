@@ -1,24 +1,10 @@
 <template>
   <div style="overflow:hidden">
-    <toolbar></toolbar>
     <search :doFilter="doFilter" :loading="loading"></search>
     <a-spin :spinning="isFetchingProgress">
-      <a-table
-        :columns="fields"
-        :data-source="myEntities"
-        :pagination="false"
-        :scroll="{ x: maxWidth ,y:maxHeight}"
-        size="small"
-        class="matrix_table"
-        :style="{maxWidth: maxWidth+'px'}"
-        :rowKey="generateRowKey"
-      >
-        <div
-          slot="method"
-          slot-scope="avilable"
-          :class="[avilable ? 'red' : 'green']"
-          v-if="avilable"
-        >
+      <a-table :columns="fields" :data-source="myEntities" :pagination="false" :scroll="{ x: maxWidth ,y:maxHeight}" size="small"
+        class="matrix_table" :style="{maxWidth: maxWidth+'px'}" :rowKey="generateRowKey">
+        <div slot="method" slot-scope="avilable" :class="[avilable ? 'red' : 'green']" v-if="avilable">
           <a-icon type="check" />
         </div>
         <div slot="method" slot-scope="avilable" :class="[avilable ? 'red' : 'green']" v-else>
@@ -40,7 +26,7 @@ export default {
     [Search.name]: Search,
     [Toolbar.name]: Toolbar
   },
-  data: function() {
+  data: function () {
     return {
       loading: false,
       maxWidth: window.innerWidth - 18,
@@ -103,7 +89,7 @@ export default {
     },
     entities: {
       deep: true,
-      handler: function(newVal) {
+      handler: function (newVal) {
         for (let i = 0; i < newVal.length; i++) {
           newVal[i]["ID"] = i + 1;
         }

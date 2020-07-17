@@ -4,34 +4,19 @@
       <a-button type="default" @click="gotoStatistics()" style="margin-right:12px;">
         <a-icon type="dot-chart" style="position:relative;top:-2.75px;" />View Charts
       </a-button>
-      <a-input-search
-        v-model="filter"
-        placeholder="filter by nodes or height"
-        style="width: 200px"
-      />
+      <a-input-search v-model="filter" placeholder="filter by nodes or height" style="width: 200px" />
     </a-row>
 
     <a-spin :spinning="isFetchingProgress">
-      <a-table
-        v-if="myNodeInfo"
-        :columns="fields"
-        :data-source="myNodeInfo"
-        :pagination="false"
-        :scroll="{ x: 'max-content', y: 'max-content' }"
-        size="small"
-      >
+      <a-table v-if="myNodeInfo" :columns="fields" :data-source="myNodeInfo" :pagination="false"
+        :scroll="{ x: 'max-content', y: 'max-content' }" size="small">
         <a :href="`//neoscan.io/block/${h}`" target="_blank" slot="height" slot-scope="h">{{ h }}</a>
         {{
         t
         }}
       </a-table>
-      <a-pagination
-        v-if="nodeInfo && nodeInfo.length>0"
-        @change="changePage"
-        v-model="current"
-        :total="nodeInfo.length"
-        pagesize.sync="10"
-      />
+      <a-pagination style="margin-top:12px;" v-if="nodeInfo && nodeInfo.length>0" @change="changePage" v-model="current"
+        :total="nodeInfo.length" pagesize.sync="10" />
     </a-spin>
   </div>
 </template>
@@ -113,7 +98,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
+<style lang="scss">
 .has-search .form-control {
   padding-left: 2.375rem;
 }
@@ -132,5 +117,8 @@ export default {
 
 .search-wrapper {
   margin: 8px;
+}
+.ant-table-body {
+  overflow: auto !important;
 }
 </style>

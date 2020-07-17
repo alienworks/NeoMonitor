@@ -1,34 +1,15 @@
 <template>
   <div>
     <a-row type="flex" justify="end" class="search-wrapper">
-      <a-col class="summary-block" :span="3">
-        <!-- <a-statistic title="Latest block" :value="maxBlock"></a-statistic> -->
-        <p>Latest block</p>
-        <h6>{{ maxBlock }}</h6>
-      </a-col>
-
-      <a-col class="summary-block" :span="3">
-        <p>Average latency</p>
-        <h6>{{ averageLatency }}</h6>
-      </a-col>
 
       <a-col class="search-wrapper" :span="3" :offset="10">
-        <a-input-search v-model="filterValue" placeholder="filter by name" style="width: 200px" />
+        <a-input-search v-model="filterValue" placeholder="filter by name" style="width: 200px;margin-right:20px;" />
       </a-col>
     </a-row>
 
-    <a-table
-      :columns="columns"
-      :data-source="filteredNodes"
-      :pagination="false"
-      :loading="isFetchingProgress"
-      :rowClassName="nodeColor"
-      size="small"
-    >
-      <div
-        slot="height"
-        slot-scope="h"
-      >{{ `${h} ${h === maxBlock || h === 0 ? '' : `(-${maxBlock - h})`}` }}</div>
+    <a-table :columns="columns" :data-source="filteredNodes" :pagination="false" :loading="isFetchingProgress"
+      :rowClassName="nodeColor" size="small">
+      <div slot="height" slot-scope="h">{{ `${h} ${h === maxBlock || h === 0 ? '' : `(-${maxBlock - h})`}` }}</div>
 
       <router-link to="/rawmempool" slot="pool" slot-scope="p, record" class="table-link">
         <span @click="setNodeID(record.id)">
@@ -194,8 +175,8 @@ export default {
       return record.latency === -1
         ? "unresponsive"
         : this.maxBlock - record.height < 20
-        ? "responsive"
-        : "delayed";
+          ? "responsive"
+          : "delayed";
     }
   },
   watch: {
