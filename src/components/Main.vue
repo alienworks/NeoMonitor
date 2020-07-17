@@ -5,7 +5,7 @@
     <!-- <div class="chart-wrapper">
       <chart :options="chartOptions" auto-resize></chart>
     </div>-->
-    <div class="table_wrapper" :style="{height:maxHeight,width:listWidth,paddingTop:'1.5rem'}">
+    <div class="table_wrapper" :style="{width:listWidth,paddingTop:'1.5rem'}">
       <a-table :rowKey="getRowKey" :rowClassName="generateRowClass" :columns="fields" :data-source="rankTableData"
         :pagination="false" size="small" :style="{height:maxHeight}"></a-table>
     </div>
@@ -44,8 +44,8 @@ export default {
   data() {
     return {
       maxHeight: window.innerHeight - 118 + "px",
-      mapWidth: "calc(70% - 3rem)",
-      listWidth: "calc(30% - 3rem)",
+      mapWidth: "100%",
+      listWidth: "calc(100% - 6rem)",
       neoMapLocations: [],
       fields: [
         {
@@ -308,7 +308,6 @@ export default {
 }
 .table_wrapper {
   display: inline-block;
-  margin-left: 25px;
   position: relative;
 }
 .btn-net {
