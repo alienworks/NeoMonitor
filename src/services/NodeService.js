@@ -12,27 +12,27 @@ axios.interceptors.response.use((data) => {
   return data;
 });
 
-const mockMode = true;
+const mockMode = false;
 
 let nodesUrl, memPoolUrl, matrixUrl, analysisUrl;
 // const baseUrl = process.env.VUE_MOCK_RESTAPI
 
-const baseUrl = process.env.VUE_APP_RESTAPI
+const baseUrl = process.env.VUE_APP_RESTAPI;
 
 if (mockMode) {
-  nodesUrl = baseUrl + '-nodes'
-  console.log(nodesUrl)
-  memPoolUrl = baseUrl + '-rawmempool'
-  matrixUrl = baseUrl + '-matrix'
+  nodesUrl = baseUrl + "-nodes";
+  console.log(nodesUrl);
+  memPoolUrl = baseUrl + "-rawmempool";
+  matrixUrl = baseUrl + "-matrix";
 } else {
   //http://*.*.*.*/api/nodes
-  nodesUrl = combine(baseUrl, "nodes")
+  nodesUrl = combine(baseUrl, "nodes");
   //http://*.*.*.*/api/nodes/rawmempool
-  memPoolUrl = combine(nodesUrl, "rawmempool")
+  memPoolUrl = combine(nodesUrl, "rawmempool");
   //http://*.*.*.*/api/matrix
-  matrixUrl = combine(baseUrl, 'matrix')
+  matrixUrl = combine(baseUrl, "matrix");
   //http://*.*.*.*/api/analysis
-  analysisUrl = combine(baseUrl, "analysis")
+  analysisUrl = combine(baseUrl, "analysis");
 }
 
 export default {
@@ -63,7 +63,7 @@ export default {
   // api/matrix
   getMatrixItems() {
     return axios.get(matrixUrl);
-    // return process.env.NODE_ENV === 'production' 
+    // return process.env.NODE_ENV === 'production'
     //   ? axios.get(matrixUrl)
     //   : axios.get(combine(mockUrl, "matrix.json"))
   },
