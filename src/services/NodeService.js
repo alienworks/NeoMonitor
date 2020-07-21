@@ -12,38 +12,38 @@ axios.interceptors.response.use((data) => {
   return data;
 });
 
-const mockMode = false;
+const mockMode = true;
 
-let nodesUrl, nodeUrl, memPoolUrl, memPoolDetailUrl, matrixUrl, analysisUrl;
+let nodesUrl, memPoolUrl, matrixUrl, analysisUrl;
+// const baseUrl = process.env.VUE_MOCK_RESTAPI
+
+const baseUrl = process.env.VUE_APP_RESTAPI
 
 if (mockMode) {
-  nodesUrl = '/mocks/api_nodes';
-  nodeUrl = '/mocks/api_nodes_nodeId';
-  memPoolUrl = '/mocks/api_nodes_rawmempool';
-  memPoolDetailUrl = '/mocks/api_nodes_rawmempool_nodeId';
-  matrixUrl = '/mocks/api_matrix';
-  analysisUrl = '/mocks/api_analysis';
+  nodesUrl = baseUrl + '-nodes'
+  console.log(nodesUrl)
+  memPoolUrl = baseUrl + '-rawmempool'
+  matrixUrl = baseUrl + '-matrix'
 } else {
-  const baseUrl = process.env.VUE_APP_RESTAPI;
   //http://*.*.*.*/api/nodes
-  nodesUrl = combine(baseUrl, "nodes");
+  nodesUrl = combine(baseUrl, "nodes")
   //http://*.*.*.*/api/nodes/rawmempool
-  memPoolUrl = combine(nodesUrl, "rawmempool");
+  memPoolUrl = combine(nodesUrl, "rawmempool")
   //http://*.*.*.*/api/matrix
-  matrixUrl = combine(baseUrl, 'matrix');
+  matrixUrl = combine(baseUrl, 'matrix')
   //http://*.*.*.*/api/analysis
-  analysisUrl = combine(baseUrl, "analysis");
+  analysisUrl = combine(baseUrl, "analysis")
 }
 
 export default {
   // api/nodes
-  getNodesInfo() {
-    return axios.get(nodesUrl);
+  async getNodesInfo() {
+    return await axios.get(nodesUrl);
   },
   // api/nodes/{id}
   getNodeInfo(nodeID) {
     if (mockMode) {
-      return axios.get(nodeUrl);
+      return axios.get(combine(nodesUrl, `-{nodeID}`));
     } else {
       return axios.get(combine(nodesUrl, nodeID));
     }
@@ -55,7 +55,7 @@ export default {
   // api/nodes/rawmempool/{nodeId}
   getMemPoolDetail(nodeID) {
     if (mockMode) {
-      return axios.get(memPoolDetailUrl);
+      return axios.get(combine(memPoolUrl, `-{nodeID}`));
     } else {
       return axios.get(combine(memPoolUrl, nodeID));
     }
