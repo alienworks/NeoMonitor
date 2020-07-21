@@ -1,7 +1,6 @@
 import axios from "axios";
 import { combine } from "@/utils";
 import { store } from "@/store";
-
 axios.interceptors.request.use((config) => {
   store.commit("setIsFetchingProgress", true);
   return config;
@@ -36,6 +35,41 @@ if (mockMode) {
 }
 
 export default {
+  //rpc nodes
+  async fetchRPCNodes() {
+    let filtered = [];
+    let nodes = store.state.nodes;
+    let flag = store.state.flag;
+    nodes = nodes.filter((item) => {
+      if (item.net === flag) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    for (let i = 0; i < nodes.length; i++) {
+      let currNodeUrl = nodes[i].url;
+      if (currNodeUrl.indexOf("ngd") != -1) {
+        const request = {
+          jsonrpc: "2.0",
+          method: "getblockcount",
+          id: 3,
+          params: [],
+        };
+        filtered.push(axios.post(currNodeUrl, JSON.stringify(request)));
+      }
+    }
+    Promise.all(filtered).then((resps) => {
+      let maxResult = resps[0].data.result;
+      for (let i = 0; i < resps.length; i++) {
+        let currResult = resps[i].data.result;
+        if (currResult > maxResult) {
+          maxResult = currResult;
+        }
+      }
+      store.commit("setMaxHeight", maxResult);
+    });
+  },
   // api/nodes
   async getNodesInfo() {
     return await axios.get(nodesUrl);

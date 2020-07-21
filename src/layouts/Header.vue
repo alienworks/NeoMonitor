@@ -48,7 +48,7 @@
             <router-link to="/matrix">API Matrix</router-link>
           </a-menu-item>
         </a-menu>
-        <toolbar :seconds="seconds"></toolbar>
+        <toolbar></toolbar>
         <a-select :default-value="flag" style="width: 120px" @change="onSetFlagNet">
           <a-select-option value="MainNet">MainNet</a-select-option>
           <a-select-option value="TestNet">TestNet</a-select-option>
@@ -84,25 +84,7 @@ export default {
       this.current = ["home"];
     }
   },
-  mounted() {
-    let self = this;
-    self.timer = setInterval(() => {
-      self.seconds++;
-    }, 1000);
-  },
 
-  destroyed() {
-    let self = this;
-    if (self.timer) {
-      clearInterval(self.timer);
-    }
-  },
-  deactivated() {
-    let self = this;
-    if (self.timer) {
-      clearInterval(self.timer);
-    }
-  }
 };
 </script>
 

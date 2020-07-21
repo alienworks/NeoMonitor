@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
     flag: mainNetFlag,
     isFetchingProgress: false,
     timerCount: 0,
+    maxHeight: 0,
   },
 
   mutations: {
@@ -50,9 +51,15 @@ export const store = new Vuex.Store({
     setIsFetchingProgress(state, progress) {
       state.isFetchingProgress = progress;
     },
+    setMaxHeight(state, maxHeight) {
+      state.maxHeight = maxHeight;
+    },
   },
 
   actions: {
+    async fetchRPCNodes() {
+      NodeService.fetchRPCNodes();
+    },
     async getNodes({ commit }) {
       const response = await NodeService.getNodesInfo();
       const nodes = response.status === 200 ? response.data : [];
@@ -90,6 +97,7 @@ export const store = new Vuex.Store({
     statExceptionTime: (state) => state.statExceptionTime,
     statInterval: (state) => state.statInterval,
     nodes: (state) => state.nodes,
+    maxHeight: (state) => state.maxHeight,
     nodeInfo: (state) => state.nodeInfo,
     flag: (state) => state.flag,
     mainNodesLength: (state) =>

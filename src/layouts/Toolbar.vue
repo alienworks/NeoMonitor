@@ -10,7 +10,7 @@
 
         <a-col class="summary-block" :span="8">
           <div id="container">
-            <div id="glass-container">
+            <div id="glass-container" ref="hourglass">
               <div id="glass">
                 <div class="top half-glass triangle"></div>
                 <div class="bottom half-glass triangle rotate"></div>
@@ -54,19 +54,19 @@ export default {
   data() {
     return {
       current: ["home"],
-      timer: null
+      timer: null,
+      seconds: 0,
+      maxBlock: 0,
+      needRotate: false
     };
   },
-  props: {
-    seconds: {
-      type: Number,
-      default: 0
-    }
-  },
+
   computed: {
     ...mapGetters({
       flag: "flag",
-      refreshNodes: "nodes"
+      refreshNodes: "nodes",
+      maxHeight: "maxHeight"
+
     }),
     nodes() {
       const { refreshNodes } = this;
@@ -100,11 +100,7 @@ export default {
 
       return filteredNodes.filter(node => this.filterNode(node, hasFilter));
     },
-    maxBlock() {
-      return pipe(map(prop("height")), reduce(max, 0))(this.filteredNodes) != 0
-        ? pipe(map(prop("height")), reduce(max, 0))(this.filteredNodes)
-        : "-";
-    }
+
   },
   methods: {
     onSetFlagNet(flag) {
@@ -112,9 +108,45 @@ export default {
     },
     onLogoClick() {
       this.current = ["home"];
+    },
+    callRPC() {
+      this.$store.dispatch("fetchRPCNodes");
+    }
+  },
+  mounted() {
+    let self = this;
+    self.callRPC();
+    self.timer = setInterval(() => {
+      if (self.maxHeight > self.maxBlock) {
+        self.seconds = 0;
+        self.maxBlock = self.maxHeight;
+        self.$refs.hourglass.style = " -webkit-animation: spin 3s ease-in infinite normal running;  animation: spin 3s ease-in  infinite normal running";
+        setTimeout(() => {
+          self.$refs.hourglass.style = " -webkit-animation: spin 3s ease-in infinite normal paused;  animation: spin 3s ease-in  infinite normal paused";
+        }, 3200);
+
+      }
+      self.seconds++;
+    }, 1000);
+    setInterval(() => {
+      self.callRPC();
+    }, 15000);
+    self.maxBlock = pipe(map(prop("height")), reduce(max, 0))(self.filteredNodes) != 0
+      ? pipe(map(prop("height")), reduce(max, 0))(self.filteredNodes)
+      : "-"
+  },
+  destroyed() {
+    let self = this;
+    if (self.timer) {
+      clearInterval(self.timer);
+    }
+  },
+  deactivated() {
+    let self = this;
+    if (self.timer) {
+      clearInterval(self.timer);
     }
   }
-
 };
 </script>
 
@@ -191,8 +223,8 @@ export default {
 
 #glass-container {
   position: relative;
-  -webkit-animation: spin ease-in 3s infinite;
-  animation: spin ease-in 3s infinite;
+  -webkit-animation: spin 3s ease-in infinite normal running;
+  animation: spin 3s ease-in infinite normal running;
 }
 #glass-container,
 #glass,
