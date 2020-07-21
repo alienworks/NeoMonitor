@@ -1,7 +1,7 @@
 <template>
   <div class="main">
 
-    <div id="chartdiv" ref="chart" :style="{height:maxHeight,width:mapWidth}"></div>
+    <div id="chartdiv" ref="chart" :style="{height:maxHeight,width:mapWidth,backgroundColor:'#222'}"></div>
     <!-- <div class="chart-wrapper">
       <chart :options="chartOptions" auto-resize></chart>
     </div>-->
@@ -31,6 +31,7 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 import Toolbar from "../layouts/Toolbar";
 // svg path for target icon
 var targetSVG =
@@ -56,7 +57,7 @@ export default {
           sortDirections: ["descend", "ascend"],
           customRender: function (text) {
             return (
-              <a-avatar style="background-color:#008be7">{{ text }}</a-avatar>
+              <div class="rank-no">{{ text }}</div>
             );
           }
         },
@@ -109,11 +110,12 @@ export default {
 
       // Themes begin
       am4core.useTheme(am4themes_animated);
+      am4core.useTheme(am4themes_dark);
       // Themes end
 
       // Define marker path
-      var targetSVG =
-        "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
+      //var targetSVG =
+      "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
 
       // Create map instance
       var chart = am4core.create("chartdiv", am4maps.MapChart);
@@ -144,27 +146,55 @@ export default {
       // Configure series
       var polygonTemplate = polygonSeries.mapPolygons.template;
       polygonTemplate.tooltipText = "{name}";
-      polygonTemplate.fill = am4core.color("#00b2ff");
+      polygonTemplate.polygon.fillOpacity = 0.6;
 
       // Create hover state and set alternative fill color
       var hs = polygonTemplate.states.create("hover");
-      hs.properties.fill = am4core.color("#0066ff");
+      hs.properties.fill = chart.colors.getIndex(0);
 
       // Add images
       var imageSeries = chart.series.push(new am4maps.MapImageSeries());
+
+
       var imageTemplate = imageSeries.mapImages.template;
       imageTemplate.tooltipText = "{title}";
       imageTemplate.nonScaling = true;
 
+      var circle = imageSeries.mapImages.template.createChild(am4core.Circle);
+      circle.radius = 3;
+      circle.propertyFields.fill = "color";
+
+      var circle2 = imageSeries.mapImages.template.createChild(am4core.Circle);
+      circle2.radius = 3;
+      circle2.propertyFields.fill = "color";
+
+
+      circle2.events.on("inited", function (event) {
+        animateBullet(event.target);
+      })
+
+
+      function animateBullet(circle) {
+        var animation = circle.animate([{ property: "scale", from: 1, to: 5 }, { property: "opacity", from: 1, to: 0 }], 1000, am4core.ease.circleOut);
+        animation.events.on("animationended", function (event) {
+          animateBullet(event.target.object);
+        })
+      }
+
+      /*
       var marker = imageTemplate.createChild(am4core.Sprite);
       marker.path = targetSVG;
       marker.horizontalCenter = "middle";
       marker.verticalCenter = "middle";
       marker.scale = 0.7;
       marker.fill = interfaceColors.getFor("alternativeBackground");
-
+      */
       imageTemplate.propertyFields.latitude = "latitude";
       imageTemplate.propertyFields.longitude = "longitude";
+      var colorSet = new am4core.ColorSet();
+      for (let j = 0; j < data.length; j++) {
+        data[j]["color"] = colorSet.next();
+      }
       imageSeries.data = data;
 
       // Add lines
@@ -298,6 +328,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.rank-no {
+  background-image: linear-gradient(to top left, #b0e0e6, #008be7);
+  width: 32px;
+  height: 32px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #fff;
+  font-size: 17px;
+}
 .container {
   overflow: hidden;
 }
