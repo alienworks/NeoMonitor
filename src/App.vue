@@ -111,7 +111,9 @@ body {
     color: royalblue;
   }
 }
-
+#header {
+  box-shadow: none !important;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -152,6 +154,5 @@ body {
   top: 0px;
 }
 .customCountryRow {
-  height: 7rem;
 }
 </style>
