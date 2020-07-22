@@ -11,17 +11,18 @@ axios.interceptors.response.use((data) => {
   return data;
 });
 
-const mockMode = false;
+let mockMode = process.env.VUE_APP_MOCK_MODE;
 
 let nodesUrl, memPoolUrl, matrixUrl, analysisUrl;
 // const baseUrl = process.env.VUE_MOCK_RESTAPI
 
-const baseUrl = process.env.VUE_APP_RESTAPI;
+const baseUrl = !mockMode
+  ? process.env.VUE_APP_RESTAPI
+  : process.env.VUE_APP_MOCK_RESTAPI;
 
 if (mockMode) {
   nodesUrl = baseUrl + "-nodes";
-  console.log(nodesUrl);
-  memPoolUrl = baseUrl + "-rawmempool";
+  memPoolUrl = nodesUrl + "-rawmempool";
   matrixUrl = baseUrl + "-matrix";
 } else {
   //http://*.*.*.*/api/nodes
@@ -60,14 +61,16 @@ export default {
       }
     }
     Promise.all(filtered).then((resps) => {
-      let maxResult = resps[0].data.result;
-      for (let i = 0; i < resps.length; i++) {
-        let currResult = resps[i].data.result;
-        if (currResult > maxResult) {
-          maxResult = currResult;
+      if (resps.length > 0) {
+        let maxResult = resps[0].data.result;
+        for (let i = 0; i < resps.length; i++) {
+          let currResult = resps[i].data.result;
+          if (currResult > maxResult) {
+            maxResult = currResult;
+          }
         }
+        store.commit("setMaxHeight", maxResult);
       }
-      store.commit("setMaxHeight", maxResult);
     });
   },
   // api/nodes
@@ -89,7 +92,7 @@ export default {
   // api/nodes/rawmempool/{nodeId}
   getMemPoolDetail(nodeID) {
     if (mockMode) {
-      return axios.get(combine(memPoolUrl, `-{nodeID}`));
+      return axios.get(`${memPoolUrl}-${nodeID}`);
     } else {
       return axios.get(combine(memPoolUrl, nodeID));
     }

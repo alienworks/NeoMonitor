@@ -44,7 +44,7 @@ export default {
     async setUpSignalR() {
       // Connect to the hub
       connection = new HubConnectionBuilder()
-        .withUrl(process.env.VUE_APP_SOCKETAPI)
+        .withUrl(process.env.VUE_APP_MOCK_MODE ? process.env.VUE_APP_MOCK_SOCKETAPI : process.env.VUE_APP_SOCKETAPI)
         .configureLogging(LogLevel.Information)
         .withAutomaticReconnect()
         .build();

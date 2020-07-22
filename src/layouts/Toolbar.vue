@@ -123,7 +123,7 @@ export default {
         self.$refs.hourglass.style = " -webkit-animation: spin 3s ease-in infinite normal running;  animation: spin 3s ease-in  infinite normal running";
         setTimeout(() => {
           self.$refs.hourglass.style = " -webkit-animation: spin 3s ease-in infinite normal paused;  animation: spin 3s ease-in  infinite normal paused";
-        }, 3200);
+        }, 3500);
 
       }
       self.seconds++;

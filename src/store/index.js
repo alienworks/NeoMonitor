@@ -34,7 +34,7 @@ export const store = new Vuex.Store({
       state.statInterval = payload;
     },
     setNodes(state, payload) {
-      state.nodes = payload;
+      state.nodes = payload instanceof Array ? payload : payload.data;
     },
     setNodeInfo(state, payload) {
       state.nodeInfo = payload;
@@ -46,7 +46,7 @@ export const store = new Vuex.Store({
       state.matrixEntities = entities;
     },
     setPool(state, pools) {
-      state.pools = pools;
+      state.pools = pools instanceof Array ? pools : pools.data;
     },
     setIsFetchingProgress(state, progress) {
       state.isFetchingProgress = progress;
