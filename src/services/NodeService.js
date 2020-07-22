@@ -80,7 +80,7 @@ export default {
   // api/nodes/{id}
   getNodeInfo(nodeID) {
     if (mockMode) {
-      return axios.get(combine(nodesUrl, `-{nodeID}`));
+      return axios.get(`${nodesUrl}-${nodeID}`);
     } else {
       return axios.get(combine(nodesUrl, nodeID));
     }

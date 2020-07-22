@@ -37,13 +37,14 @@ export const store = new Vuex.Store({
       state.nodes = payload instanceof Array ? payload : payload.data;
     },
     setNodeInfo(state, payload) {
-      state.nodeInfo = payload;
+      state.nodeInfo = payload instanceof Array ? payload : payload.data;
     },
     setFlag(state, payload) {
       state.flag = payload;
     },
     setMatrixEntities(state, entities) {
-      state.matrixEntities = entities;
+      state.matrixEntities =
+        entities instanceof Array ? entities : entities.data;
     },
     setPool(state, pools) {
       state.pools = pools instanceof Array ? pools : pools.data;
@@ -77,7 +78,8 @@ export const store = new Vuex.Store({
     },
     async getNodeInfo({ commit, getters }) {
       const response = await NodeService.getNodeInfo(getters.nodeID);
-      const nodeInfo = response.status === 200 ? response.data : [];
+      let nodeInfo = response.status === 200 ? response.data : [];
+      nodeInfo = nodeInfo instanceof Array ? nodeInfo : nodeInfo.data;
       commit("setNodeInfo", nodeInfo);
 
       const arrExceptionTime = [];
