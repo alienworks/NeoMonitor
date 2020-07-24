@@ -57,14 +57,21 @@ export default {
           id: 3,
           params: [],
         };
-        filtered.push(axios.post(currNodeUrl, JSON.stringify(request)));
+        filtered.push(
+          fetch(currNodeUrl, {
+            method: "post",
+            body: JSON.stringify(request),
+          }).then((resp) => {
+            return resp.json();
+          })
+        );
       }
     }
     Promise.all(filtered).then((resps) => {
       if (resps.length > 0) {
-        let maxResult = resps[0].data.result;
+        let maxResult = resps[0].result;
         for (let i = 0; i < resps.length; i++) {
-          let currResult = resps[i].data.result;
+          let currResult = resps[i].result;
           if (currResult > maxResult) {
             maxResult = currResult;
           }
