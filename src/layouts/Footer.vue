@@ -11,31 +11,31 @@
         <div class="copyright">©️Copyright Alienworks 2017-2020</div>
       </a-col>
       <a-col :span="7" class="clearfix">
-        <div class="icons">
+        <div class="icons website">
           <img width="24px" height="24px" src="../assets/icons/icon1.png" />
         </div>
-        <div class="icons">
+        <div class="icons twitter">
           <img width="24px" height="24px" src="../assets/icons/icon2.png" />
         </div>
-        <div class="icons">
+        <div class="icons github">
           <img width="24px" height="24px" src="../assets/icons/icon3.png" />
         </div>
-        <div class="icons">
+        <div class="icons slack">
           <img width="24px" height="24px" src="../assets/icons/icon4.png" />
         </div>
-        <div class="icons">
+        <div class="icons reddit">
           <img width="24px" height="24px" src="../assets/icons/icon5.png" />
         </div>
-        <div class="icons">
+        <div class="icons discord">
           <img width="24px" height="24px" src="../assets/icons/icon6.png" />
         </div>
-        <div class="icons">
+        <div class="icons wechat">
           <img width="24px" height="24px" src="../assets/icons/icon7.png" />
         </div>
-        <div class="icons">
+        <div class="icons weibo">
           <img width="24px" height="24px" src="../assets/icons/icon8.png" />
         </div>
-        <div class="icons">
+        <div class="icons youtube">
           <img width="24px" height="24px" src="../assets/icons/icon9.png" />
         </div>
 
