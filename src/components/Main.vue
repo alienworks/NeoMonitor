@@ -129,6 +129,8 @@ export default {
 
       // Add zoom control
       chart.zoomControl = new am4maps.ZoomControl();
+      chart.maxZoomLevel = 1;
+      chart.chartContainer.wheelable = false;
 
       // Set initial zoom
       chart.homeZoomLevel = 1;
