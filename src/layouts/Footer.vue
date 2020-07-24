@@ -18,7 +18,7 @@
           <img width="24px" height="24px" src="../assets/icons/icon2.png" />
         </div>
         <div class="icons github">
-          <img width="24px" height="24px" src="../assets/icons/icon3.png" />
+          <a href="http://github.com/alienworks"><img width="24px" height="24px" src="../assets/icons/icon3.png" /></a>
         </div>
         <div class="icons slack">
           <img width="24px" height="24px" src="../assets/icons/icon4.png" />

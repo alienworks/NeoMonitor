@@ -9,14 +9,14 @@
 
     <a-spin :spinning="isFetchingProgress">
       <a-table v-if="myNodeInfo" :columns="fields" :data-source="myNodeInfo" :pagination="false"
-        :scroll="{ x: 'max-content', y: 'max-content' }" size="small">
+        :scroll="{ x: 'max-content', y: 'max-content' }" size="small" :style="{minHeight:tableMinH}">
         <a :href="`//neoscan.io/block/${h}`" target="_blank" slot="height" slot-scope="h">{{ h }}</a>
         {{
         t
         }}
       </a-table>
-      <a-pagination style="margin-top:12px;" v-if="nodeInfo && nodeInfo.length>0" @change="changePage" v-model="current"
-        :total="nodeInfo.length" pagesize.sync="10" />
+      <a-pagination style="margin-top:12px;margin-bottom:12px;" v-if="nodeInfo && nodeInfo.length>0" @change="changePage"
+        v-model="current" :total="nodeInfo.length" pagesize.sync="10" />
     </a-spin>
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
   name: "NodeInfo",
   data() {
     return {
+      tableMinH: window.innerHeight - 122 + "px",
       fields: [
         {
           key: "id",

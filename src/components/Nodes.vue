@@ -8,7 +8,7 @@
     </a-row>
 
     <a-table :columns="columns" :data-source="filteredNodes" :pagination="false" :loading="isFetchingProgress"
-      :rowClassName="nodeColor" size="small">
+      :rowClassName="nodeColor" size="small" :style="{minHeight:tableMinH}">
       <div slot="height" slot-scope="h">{{ `${h} ${h === maxBlock || h === 0 ? '' : `(-${maxBlock - h})`}` }}</div>
 
       <router-link to="/rawmempool" slot="pool" slot-scope="p, record" class="table-link">
@@ -56,6 +56,7 @@ export default {
   name: "Nodes",
   data() {
     return {
+      tableMinH: window.innerHeight - 122 + "px",
       columns: [
         {
           key: "id",

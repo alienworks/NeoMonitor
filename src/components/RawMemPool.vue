@@ -10,7 +10,7 @@
           <a-button @click="copyAll(myPool)" type="primary" style="position:relative;top:-10px;">Copy All</a-button>
         </a-popover>
       </h1>
-      <a-list v-if="myPool&&myPool.length>0" bordered size="small" :data-source="myPool" :loading="isFetchingProgress">
+      <a-list bordered size="small" :data-source="myPool" :loading="isFetchingProgress" :style="{minHeight:listMinH}">
         <a-list-item slot="renderItem" slot-scope="item" :key="item.id">
           <a-list-item-meta @dblclick="copySingleHash(item)">
             <span slot="title" class="hash_code">{{item.value}}</span>
@@ -100,7 +100,8 @@ export default {
   data() {
     return {
       myPool: [],
-      current: 1
+      current: 1,
+      listMinH: window.innerHeight - 252 + "px",
     };
   }
 };
