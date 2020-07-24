@@ -32,7 +32,7 @@ export default {
       tableMaxH: window.innerHeight - 158 + "px",
       loading: false,
       maxWidth: window.innerWidth - 18,
-      maxHeight: window.innerHeight - 184,
+      maxHeight: window.innerHeight - 195,
       fields: [
         {
           key: "ID",
