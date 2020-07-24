@@ -82,11 +82,20 @@ export default {
     this.$store.dispatch("getMatrixEntities");
   },
   computed: {
-    ...mapGetters(["matrixEntities", "isFetchingProgress"])
+    ...mapGetters(["matrixEntities", "isFetchingProgress", "flag"])
   },
   watch: {
+    flag() {
+      this.$store.dispatch("getMatrixEntities");
+
+    },
     matrixEntities(entities) {
-      this.entities = this.transofrmMatrixEntities(entities);
+      let result = entities.filter(item => {
+        if (item.net.toLowerCase() === this.flag.toLowerCase()) return true;
+        else return false;
+      });
+
+      this.entities = this.transofrmMatrixEntities(result);
       this.defaultEntites = this.entities.slice();
     },
     entities: {
