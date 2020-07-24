@@ -12,31 +12,31 @@
       </a-col>
       <a-col :span="7" class="clearfix">
         <div class="icons website">
-          <img width="24px" height="24px" src="../assets/icons/icon1.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon-website.png" />
         </div>
         <div class="icons twitter">
-          <img width="24px" height="24px" src="../assets/icons/icon2.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon-twitter.png" />
         </div>
         <div class="icons github">
-          <a href="http://github.com/alienworks"><img width="24px" height="24px" src="../assets/icons/icon3.png" /></a>
+          <a href="http://github.com/alienworks"><img width="24px" height="24px" src="../assets/icons/icon-github.png" /></a>
         </div>
         <div class="icons slack">
-          <img width="24px" height="24px" src="../assets/icons/icon4.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon-slack.png" />
         </div>
         <div class="icons reddit">
-          <img width="24px" height="24px" src="../assets/icons/icon5.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon-reddit.png" />
         </div>
         <div class="icons discord">
-          <img width="24px" height="24px" src="../assets/icons/icon6.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon-discord.png" />
         </div>
         <div class="icons wechat">
-          <img width="24px" height="24px" src="../assets/icons/icon7.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon-wechat.png" />
         </div>
         <div class="icons weibo">
-          <img width="24px" height="24px" src="../assets/icons/icon8.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon-weibo.png" />
         </div>
         <div class="icons youtube">
-          <img width="24px" height="24px" src="../assets/icons/icon9.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon-youtube.png" />
         </div>
 
       </a-col>
