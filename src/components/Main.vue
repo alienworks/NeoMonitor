@@ -102,7 +102,7 @@ export default {
       return "customCountryRow";
     },
     getRowKey(record) {
-      return record.text;
+      return record.text + new Date().getTime();
     },
     showMap(data) {
       // Clear
