@@ -49,6 +49,8 @@ export default {
       let footer = document.getElementById("footer");
       footer.style.position = "relative";
       footer.style.top = "345px";
+      let zztj = document.getElementById("cnzz_stat_icon_1279108481");
+      zztj.style.top = "310px";
     })
   },
   methods: {
@@ -202,6 +204,8 @@ export default {
       let footer = document.getElementById("footer");
       footer.style.position = "";
       footer.style.bottom = "";
+      let zztj = document.getElementById("cnzz_stat_icon_1279108481");
+      zztj.style.top = "-35px";
     })
   }
 };
