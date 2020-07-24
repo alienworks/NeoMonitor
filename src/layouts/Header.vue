@@ -62,6 +62,7 @@
 import { mapGetters } from "vuex";
 import Toolbar from "./Toolbar"
 export default {
+  name: "NHeader",
   data() {
     return {
       current: ["home"],

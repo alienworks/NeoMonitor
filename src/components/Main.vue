@@ -7,7 +7,7 @@
     </div>-->
     <div class="table_wrapper" :style="{width:listWidth,paddingTop:'1.5rem'}">
       <a-table :rowKey="getRowKey" :rowClassName="generateRowClass" :columns="fields" :data-source="rankTableData"
-        :pagination="false" size="small" :style="{height:maxHeight}"></a-table>
+        :pagination="false" size="small"></a-table>
     </div>
 
     <!--

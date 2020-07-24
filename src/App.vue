@@ -3,6 +3,7 @@
     <n-header></n-header>
 
     <router-view />
+    <n-footer></n-footer>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 <script>
 import * as am4core from "@amcharts/amcharts4/core";
 import NHeader from "@/layouts/Header";
+import NFooter from "@/layouts/Footer";
 import { mapGetters } from "vuex";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import NodeService from "@/services/NodeService";
@@ -20,7 +22,10 @@ export let connection = null;
 
 export default {
   name: "App",
-  components: { NHeader },
+  components: {
+    [NHeader.name]: NHeader,
+    [NFooter.name]: NFooter
+  },
   watch: {
     $route(current, old) {
       if (old.name === "Main") {

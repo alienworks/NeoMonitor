@@ -1,19 +1,21 @@
 <template>
-  <footer>
+  <div class="footer">
 
-  </footer>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            
-        }
+  name: "NFooter",
+  data() {
+    return {
+
     }
+  }
 }
 </script>
 
-<style lang="scss" scope>
-
+<style lang="scss" scoped>
+.footer {
+}
 </style>
