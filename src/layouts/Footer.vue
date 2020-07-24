@@ -3,7 +3,8 @@
     <a-row>
       <a-col :span="7">
         <div class="logo">
-          <router-link to="/" @click.stop="onLogoClick"><img width="155px" height="21px" src="logo1.png" /></router-link>
+          <router-link to="/" @click.stop="onLogoClick"><img width="155px" height="21px" src="../assets/icons/logo1.png" />
+          </router-link>
         </div>
       </a-col>
       <a-col :span="10">
@@ -11,31 +12,31 @@
       </a-col>
       <a-col :span="7" class="clearfix">
         <div class="icons">
-          <img width="24px" height="24px" src="icon1.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon1.png" />
         </div>
         <div class="icons">
-          <img width="24px" height="24px" src="icon2.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon2.png" />
         </div>
         <div class="icons">
-          <img width="24px" height="24px" src="icon3.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon3.png" />
         </div>
         <div class="icons">
-          <img width="24px" height="24px" src="icon4.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon4.png" />
         </div>
         <div class="icons">
-          <img width="24px" height="24px" src="icon5.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon5.png" />
         </div>
         <div class="icons">
-          <img width="24px" height="24px" src="icon6.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon6.png" />
         </div>
         <div class="icons">
-          <img width="24px" height="24px" src="icon7.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon7.png" />
         </div>
         <div class="icons">
-          <img width="24px" height="24px" src="icon8.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon8.png" />
         </div>
         <div class="icons">
-          <img width="24px" height="24px" src="icon9.png" />
+          <img width="24px" height="24px" src="../assets/icons/icon9.png" />
         </div>
 
       </a-col>

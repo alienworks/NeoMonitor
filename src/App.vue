@@ -66,7 +66,7 @@ export default {
         //this.$store.commit("setTimerCount", 0);
         this.$store.commit("setNodes", this.mapMemPoolsToNodes(rawMemPools));
       });
-      
+
       if (connection.HubConnectionState == 'Connected') {
         await connection.start().then(() => {
           Vue.prototype.$connection = connection;
@@ -112,6 +112,12 @@ export default {
 </script>
 
 <style lang="scss">
+#cnzz_stat_icon_1279108481 {
+  position: relative;
+  top: -35px;
+  float: right;
+  right: 20px;
+}
 body {
   overflow: auto;
   a {

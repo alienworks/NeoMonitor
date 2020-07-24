@@ -30,7 +30,7 @@
     <a-row>
       <a-col :span="10">
         <div class="logo">
-          <router-link to="/" @click.stop="onLogoClick"><img width="164px" height="48px" src="logo.png"
+          <router-link to="/" @click.stop="onLogoClick"><img width="164px" height="48px" src="../assets/icons/logo.png"
               style="margin-left:7rem" /></router-link>
         </div>
       </a-col>
