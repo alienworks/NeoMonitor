@@ -1,9 +1,9 @@
 <template>
   <div class="chart-wrapper container col-12 mt-5">
     <div v-if="chartScatterOptions" class="title">Exception - Interval</div>
-    <echarts v-if="chartScatterOptions" :options="chartScatterOptions" :autoresize="true"></echarts>
+    <echarts v-if="chartScatterOptions" :options="chartScatterOptions" :autoresize="true" style="height:700px;"></echarts>
     <div v-if="chartHeatmapOptions" class="title" style="margin-top:18px;">Exception - Count</div>
-    <echarts v-if="chartHeatmapOptions" :options="chartHeatmapOptions" :autoresize="true"></echarts>
+    <echarts v-if="chartHeatmapOptions" :options="chartHeatmapOptions" :autoresize="true" style="height:320px;"></echarts>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   name: "Statistics",
 
   mounted() {
-    Date.prototype.Format = function(fmt) {
+    Date.prototype.Format = function (fmt) {
       var o = {
         "M+": this.getMonth() + 1,
         "d+": this.getDate(), //Day
@@ -45,10 +45,15 @@ export default {
       this.setOptionScatter();
       this.setOptionHeatmap();
     }
+    this.$nextTick(() => {
+      let footer = document.getElementById("footer");
+      footer.style.position = "relative";
+      footer.style.top = "345px";
+    })
   },
   methods: {
     objectArraySort() {
-      return function(objectN, objectM) {
+      return function (objectN, objectM) {
         var valueN = objectN[1];
         var valueM = objectM[1];
         if (valueN < valueM) return 1;
@@ -100,7 +105,7 @@ export default {
         },
         tooltip: {
           trigger: "item",
-          formatter: function(params) {
+          formatter: function (params) {
             let res = "<p> Time: " + params.data[0] + "</p>";
             res += "<p> Interval: " + params.data[1] + "s</p>";
             return res;
@@ -108,7 +113,7 @@ export default {
         },
         xAxis: {
           axisLabel: {
-            formatter: function(value) {
+            formatter: function (value) {
               return moment(value).format("M/D/Y");
             },
             rotate: 60
@@ -140,7 +145,7 @@ export default {
         },
         tooltip: {
           trigger: "item",
-          formatter: function(params) {
+          formatter: function (params) {
             let res = "<p> Time: " + params.data[0] + "</p>";
             res += "<p> Count: " + params.data[1] + "</p>";
             return res;
@@ -156,7 +161,7 @@ export default {
           textStyle: {
             color: "#000"
           },
-          formatter: function(minValue, maxValue) {
+          formatter: function (minValue, maxValue) {
             return parseInt(minValue) + " - " + parseInt(maxValue);
           }
         },
@@ -191,6 +196,13 @@ export default {
       chartHeatmapOptions: null,
       chartScatterOptions: null
     };
+  },
+  destroyed() {
+    this.$nextTick(() => {
+      let footer = document.getElementById("footer");
+      footer.style.position = "";
+      footer.style.bottom = "";
+    })
   }
 };
 </script>

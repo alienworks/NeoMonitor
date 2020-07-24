@@ -3,7 +3,7 @@
     <n-header></n-header>
 
     <router-view />
-    <n-footer></n-footer>
+    <n-footer id="footer"></n-footer>
   </div>
 </template>
 
