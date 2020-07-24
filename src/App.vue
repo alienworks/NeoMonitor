@@ -30,7 +30,7 @@ export default {
     },
 
     async nodeID(current) {
-      current &&
+      current && connection.HubConnectionState == 'Connected' &&
         (await connection.send("SubscribeRawMemPoolItemsInfo", current));
     }
   },
@@ -61,14 +61,16 @@ export default {
         //this.$store.commit("setTimerCount", 0);
         this.$store.commit("setNodes", this.mapMemPoolsToNodes(rawMemPools));
       });
+      
+      if (connection.HubConnectionState == 'Connected') {
+        await connection.start().then(() => {
+          Vue.prototype.$connection = connection;
+        });
+        // Activate subscribe method.
+        await connection.send("SubscribeNodesInfo");
+        await connection.send("SubscribeRawMemPoolSizeInfo");
+      }
 
-      await connection.start().then(() => {
-        Vue.prototype.$connection = connection;
-      });
-
-      // Activate subscribe method.
-      await connection.send("SubscribeNodesInfo");
-      await connection.send("SubscribeRawMemPoolSizeInfo");
     },
     async registerAnalysis() {
       await NodeService.registerAnalysis();
