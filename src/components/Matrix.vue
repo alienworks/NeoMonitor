@@ -3,7 +3,7 @@
     <search :doFilter="doFilter" :loading="loading"></search>
     <a-spin :spinning="isFetchingProgress">
       <a-table :columns="fields" :data-source="myEntities" :pagination="false" :scroll="{ x: maxWidth ,y:maxHeight}" size="small"
-        class="matrix_table" :style="{maxWidth: maxWidth+'px',minHeight:tableMinH}" :rowKey="generateRowKey">
+        class="matrix_table" :style="{maxWidth: maxWidth+'px',minHeight:tableMinH,height:tableMaxH}" :rowKey="generateRowKey">
         <div slot="method" slot-scope="avilable" :class="[avilable ? 'red' : 'green']" v-if="avilable">
           <a-icon type="check" />
         </div>
@@ -28,10 +28,11 @@ export default {
   },
   data: function () {
     return {
-      tableMinH: window.innerHeight - 90 + "px",
+      tableMinH: window.innerHeight - 144 + "px",
+      tableMaxH: window.innerHeight - 158 + "px",
       loading: false,
       maxWidth: window.innerWidth - 18,
-      maxHeight: window.innerHeight - 138,
+      maxHeight: window.innerHeight - 184,
       fields: [
         {
           key: "ID",
