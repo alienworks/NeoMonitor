@@ -1,9 +1,20 @@
 <template>
   <div style="overflow:hidden">
-    <search :doFilter="doFilter" :loading="loading"></search>
+    <div class="search">
+      <a-row type="flex" justify="end" class="search-wrapper">
+
+        <a-input-search :readonly="isFetchingProgress" v-model="searchText" placeholder="filter by name" style="width: 200px"
+          :loading="loading" />
+
+      </a-row>
+    </div>
+
     <a-spin :spinning="isFetchingProgress">
-      <a-table :columns="fields" :data-source="myEntities" :pagination="false" :scroll="{ x: maxWidth ,y:maxHeight}" size="small"
-        class="matrix_table" :style="{maxWidth: maxWidth+'px',minHeight:tableMinH,height:tableMaxH}" :rowKey="generateRowKey">
+      <a-pagination style="margin-top:12px;margin-bottom:12px;" v-if="apisList && apisList.length>0" @change="changePage"
+        v-model="current" :total="apisList.length" :page-size.sync="pageSize" />
+      <a-table id="m-table" :columns="myFields" :data-source="myEntities" :pagination="false"
+        :scroll="{ x: maxWidth ,y:maxHeight}" size="small" class="m-table"
+        :style="{maxWidth: maxWidth+'px',minHeight:tableMaxH,height:tableMaxH}" :rowKey="generateRowKey">
         <div slot="method" slot-scope="avilable" :class="[avilable ? 'red' : 'green']" v-if="avilable">
           <a-icon type="check" />
         </div>
@@ -28,11 +39,16 @@ export default {
   },
   data: function () {
     return {
-      tableMinH: window.innerHeight - 144 + "px",
-      tableMaxH: window.innerHeight - 158 + "px",
+      apisList: [],
+      currentAPIs: [],
+      current: 1,
+      pageSize: 7,
+      searchText: null,
+      tableDefaultH: window.innerHeight - 144 + "px",
+      tableMaxH: window.innerHeight - 192 + "px",
       loading: false,
       maxWidth: window.innerWidth - 18,
-      maxHeight: window.innerHeight - 195,
+      maxHeight: window.innerHeight - 234,
       fields: [
         {
           key: "ID",
@@ -61,6 +77,7 @@ export default {
           width: name.length * 9 + 12
         }))
       ],
+      myFields: [],
       entities: [],
       myEntities: [],
       defaultEntites: [],
@@ -75,11 +92,16 @@ export default {
         });
         this.loading = false;
       }),
-      logDebounce: debounce(val => console.log("debounced", val, arguments))
+      logDebounce: debounce(val => console.log("debounced", val, arguments)),
+
     };
   },
   mounted() {
     this.$store.dispatch("getMatrixEntities");
+    this.$nextTick(() => {
+      document.getElementById("footer").style.display = "none";
+      document.getElementById("cnzz_stat_icon_1279108481").style.display = "none";
+    });
   },
   computed: {
     ...mapGetters(["matrixEntities", "isFetchingProgress", "flag"])
@@ -87,7 +109,6 @@ export default {
   watch: {
     flag() {
       this.$store.dispatch("getMatrixEntities");
-
     },
     matrixEntities(entities) {
       let result = entities.filter(item => {
@@ -99,27 +120,81 @@ export default {
       this.defaultEntites = this.entities.slice();
     },
     entities: {
-      deep: true,
       handler: function (newVal) {
         for (let i = 0; i < newVal.length; i++) {
           newVal[i]["ID"] = i + 1;
         }
-        this.myEntities = newVal;
+
+        this.apisList = [];
+        for (let i = 0; i < this.fields.length; i++) {
+          this.apisList.push(this.fields[i].key);
+        }
+        this.changePage(1, this.pageSize);
+      }
+    },
+    currentAPIs(val) {
+      if (val && val.length > 0) {
+        this.myEntities = [];
+        this.myFields = [];
+        //fields
+        for (let i = 0; i < this.fields.length; i++) {
+          let currKey = this.fields[i].key;
+          for (let j = 0; j < val.length; j++) {
+            if (currKey === val[j]) {
+              this.myFields.push(this.fields[i]);
+
+            }
+          }
+
+        }
+        //entities
+        for (let i = 0; i < this.entities.length; i++) {
+          let currEntity = this.entities[i];
+          let resultEntity = {};
+          for (let j = 0; j < val.length; j++) {
+            if (val[j] !== "ID" && val[j] !== "url") {
+              resultEntity[val[j]] = currEntity[val[j]];
+            }
+          }
+          resultEntity["ID"] = currEntity.ID;
+          resultEntity["url"] = currEntity.url;
+          this.myEntities.push(resultEntity);
+        }
+      }
+    },
+    searchText(val) {
+      this.doFilter(val);
+    },
+    myEntities(val) {
+      if (val && val.length > 0) {
+        this.$nextTick(() => {
+          document.getElementById("footer").style.display = "block";
+          document.getElementById("cnzz_stat_icon_1279108481").style.display = "block";
+        });
+
       }
     }
   },
   methods: {
+    changePage(page, size) {
+      this.currentAPIs = Array.from(new Set(["ID", "url", ...this.apisList.slice((page - 1) * size, page * size)]));
+
+    },
     generateRowKey(record) {
-      return record["url"] || Math.random() * 10000 + 10000;
+      return record.ID;
     },
     doFilter(val) {
       val = val.toLowerCase();
-      this.loading = true;
+
       if (val) {
-        this.filterDebounce(val);
-      } else {
-        this.myEntities = this.entities;
-        this.loading = false;
+        let result = this.entities.filter(item => {
+          if (item.url.toLowerCase().includes(val)) return true;
+          else return false;
+        });
+        this.myEntities = result;
+      }
+      else {
+        this.$store.dispatch("getMatrixEntities");
       }
     },
     transofrmMatrixEntities(data) {
@@ -152,12 +227,11 @@ export default {
       return row.url.toLowerCase().includes(filter.toLowerCase());
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
-.matrix-table {
-  min-height: 50rem;
+.m-table {
 }
 .has-search .form-control {
   padding-left: 2.375rem;
@@ -195,5 +269,10 @@ export default {
 }
 .ant-table-body {
   overflow: auto;
+}
+.search {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 18px;
 }
 </style>
