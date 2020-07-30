@@ -11,14 +11,10 @@ axios.interceptors.response.use((data) => {
   return data;
 });
 
-let mockMode = process.env.VUE_APP_MOCK_MODE;
-
+let mockMode = JSON.parse(process.env.VUE_APP_MOCK_MODE);
 let nodesUrl, memPoolUrl, matrixUrl, analysisUrl;
-// const baseUrl = process.env.VUE_MOCK_RESTAPI
 
-const baseUrl = !mockMode
-  ? process.env.VUE_APP_RESTAPI
-  : process.env.VUE_APP_MOCK_RESTAPI;
+const baseUrl = mockMode ? process.env.VUE_APP_MOCK_RESTAPI : process.env.VUE_APP_RESTAPI;
 
 if (mockMode) {
   nodesUrl = baseUrl + "-nodes";
