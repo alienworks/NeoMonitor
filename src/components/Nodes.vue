@@ -7,7 +7,7 @@
       </a-col>
     </a-row>
 
-    <a-table :columns="columns" :data-source="filteredNodes" :pagination="false" :loading="isFetchingProgress"
+    <a-table :rowKey="getRowKey" :columns="columns" :data-source="filteredNodes" :pagination="false" :loading="isFetchingProgress"
       :rowClassName="nodeColor" size="small" :style="{minHeight:tableMinH}">
       <div slot="height" slot-scope="h">{{ `${h} ${h === maxBlock || h === 0 ? '' : `(-${maxBlock - h})`}` }}</div>
 
@@ -166,6 +166,10 @@ export default {
     }
   },
   methods: {
+    getRowKey(record) {
+      // console.log(record)
+      return record.id;
+    },
     filterNode(node, filter) {
       return node.url.toLowerCase().includes(filter.toLowerCase());
     },
