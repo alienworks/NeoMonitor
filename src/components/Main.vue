@@ -52,7 +52,7 @@ export default {
         {
           key: "no",
           dataIndex: "no",
-          title: "No",
+          title: "No.",
           sorter: (a, b) => a.no - b.no,
           sortDirections: ["descend", "ascend"],
           customRender: function (text) {
@@ -102,7 +102,7 @@ export default {
       return "customCountryRow";
     },
     getRowKey(record) {
-      return record.text + new Date().getTime();
+      return record.no;
     },
     showMap(data) {
       // Clear
