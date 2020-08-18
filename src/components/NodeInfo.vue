@@ -8,12 +8,9 @@
     </a-row>
 
     <a-spin :spinning="isFetchingProgress">
-      <a-table v-if="myNodeInfo" :columns="fields" :data-source="myNodeInfo" :pagination="false"
+      <a-table  v-if="myNodeInfo" :columns="fields" :data-source="myNodeInfo" :pagination="false"
         :scroll="{ x: 'max-content', y: 'max-content' }" size="small" :style="{minHeight:tableMinH}">
         <a :href="`//neoscan.io/block/${h}`" target="_blank" slot="height" slot-scope="h">{{ h }}</a>
-        {{
-        t
-        }}
       </a-table>
       <a-pagination style="margin-top:12px;margin-bottom:12px;" v-if="nodeInfo && nodeInfo.length>0" @change="changePage"
         v-model="current" :total="nodeInfo.length" pagesize.sync="10" />
@@ -99,7 +96,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
 .has-search .form-control {
   padding-left: 2.375rem;
 }
