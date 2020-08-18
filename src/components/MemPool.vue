@@ -21,8 +21,8 @@
         </a-list-item>
       </a-list>
       <div class="pagination_wrapper">
-        <a-pagination style="margin-top:12px;" v-if="myPool && myPool.length > 0" @change="changePage" :default-current="1" v-model="current"
-          :total="pools.length" :show-total="total => `Total ${total} items`" pagesize.sync="10" />
+        <a-pagination style="margin-top:12px;" v-if="myPool && myPool.length > 0" @change="changePage" :default-current="1"
+          v-model="current" :total="pools.length" :show-total="total => `Total ${total} items`" pagesize.sync="10" />
       </div>
     </div>
   </a-page-header>
@@ -35,6 +35,10 @@ import { hubConnection } from "@/App";
 import copy from "clipboard-copy";
 export default {
   created() {
+    if (sessionStorage.getItem("store") ) {
+        this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem("store"))))
+    }
+    window.addEventListener('beforeunload', this.saveState)
     this.$store.dispatch("getPool");
   },
   mounted() {
@@ -51,6 +55,9 @@ export default {
   beforeDestroy() {
     console.log('UnsubscribeRawMemPoolItemsInfo', `${this.nodeID}`)
     hubConnection.send('UnsubscribeRawMemPoolItemsInfo', `${this.nodeID}`)
+  },
+  destroyed() {
+    window.removeEventListener('beforeunload', this.saveState)
   },
   watch: {
     // current(newVal, oldVal){
@@ -83,6 +90,9 @@ export default {
 
   },
   methods: {
+    saveState() {
+      sessionStorage.setItem("store", JSON.stringify(this.$store.state))
+    },
     nodeUrl() {
       if (this.getNodeFromId(this.nodeID).length != 1) return
       this.getNodeFromId(this.nodeID)[0]['url']
