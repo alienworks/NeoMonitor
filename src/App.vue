@@ -13,12 +13,13 @@ import * as am4core from "@amcharts/amcharts4/core";
 import NHeader from "@/layouts/Header";
 import NFooter from "@/layouts/Footer";
 import { mapGetters } from "vuex";
-import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import { HubConnectionBuilder, LogLevel, HubConnectionState } from "@microsoft/signalr";
 import NodeService from "@/services/NodeService";
-import Vue from "vue";
+// import signalR from "@microsoft/signalr";
+// import Vue from "vue";
 
 // Connection instance for signalr. Exposed for other to use.
-export let connection = null;
+export let hubConnection = null;
 
 export default {
   name: "App",
@@ -27,55 +28,103 @@ export default {
     [NFooter.name]: NFooter
   },
   watch: {
-    $route(current, old) {
-      if (old.name === "Main") {
+    $route(to, from) {
+      if (from.name === "Main") {
         // Clear
         am4core.disposeAllCharts();
       }
     },
 
-    async nodeID(current) {
-      current && connection.HubConnectionState == 'Connected' &&
-        (await connection.send("SubscribeRawMemPoolItemsInfo", current));
+    // eslint-disable-next-line no-unused-vars
+    async nodeID(currentID, oldID) {
+      // console.log('oldID', oldID)
+      if (currentID && hubConnection.state === HubConnectionState.Connected) {
+        // console.log('currentID', currentID)
+        await hubConnection.send("SubscribeRawMemPoolItemsInfo", `${currentID}`)
+      }
     }
   },
   created() {
-    this.$store.dispatch("getNodes");
+    this.initData()
+    this.setUpSignalR()
+    // this.registerAnalysis();
 
-    this.setUpSignalR();
-    this.registerAnalysis();
   },
   methods: {
+    async initData() {
+      await this.$store.dispatch("getNodes")
+      await this.updateHeight(true)
+    },
+    async updateHeight(init = false) {
+      await this.$store.dispatch('updateMaxHeight', init)
+      setTimeout(this.updateHeight, 15000);
+    },
     async setUpSignalR() {
+      console.log('NodeService.baseSocketUrl', NodeService.baseSocketUrl)
+
       // Connect to the hub
-      connection = new HubConnectionBuilder()
-        .withUrl(process.env.VUE_APP_MOCK_MODE ? process.env.VUE_APP_MOCK_SOCKETAPI : process.env.VUE_APP_SOCKETAPI)
+      hubConnection = new HubConnectionBuilder()
+        .withUrl(NodeService.baseSocketUrl)
         .configureLogging(LogLevel.Information)
         .withAutomaticReconnect()
         .build();
 
-      // On Receiving Nodes.
-      connection.on("UpdateNodes", async data => {
-        this.$store.commit("setTimerCount", 0);
+      // On receiving nodes
+      hubConnection.on("UpdateNodes", async data => {
+        // console.log('websocket UpdateNodes', data)
         this.$store.commit("setNodes", data);
-        await connection.send("SubscribeRawMemPoolItemsInfo", this.nodeID);
       });
 
-      // On Receiving RawMemPools
-      connection.on("UpdateRawMemPoolSizeInfo", rawMemPools => {
-        //this.$store.commit("setTimerCount", 0);
-        this.$store.commit("setNodes", this.mapMemPoolsToNodes(rawMemPools));
+      // // On Receiving RawMemPools
+      // hubConnection.on("UpdateRawMemPoolSizeInfo", rawMemPools => {
+      //   this.$store.commit("setNodes", this.mapMemPoolsToNodes(rawMemPools));
+      // });
+
+      hubConnection.on("UpdateRawMemPoolItems", async data => {
+        console.log('Websocket UpdateRawMemPoolItems', data)
+        let testArray = []
+        // for (let i = 0; i < 7; i++) {
+        //   testArray.push(`hash ${i + 1}`)
+        // }
+        const pool = data.concat(testArray)
+        this.$store.commit("setPool", pool);
       });
 
-      if (connection.HubConnectionState == 'Connected') {
-        await connection.start().then(() => {
-          Vue.prototype.$connection = connection;
-        });
-        // Activate subscribe method.
-        await connection.send("SubscribeNodesInfo");
-        await connection.send("SubscribeRawMemPoolSizeInfo");
+      hubConnection.onclose(error => {
+        console.assert(hubConnection.state === HubConnectionState.Disconnected, error)
+        console.log('websocket onclose')
+      })
+
+      try {
+        const isConnected = await this.websocketConnect()
+        if (typeof isConnected === 'boolean' && isConnected) {
+          console.log('hubConnection.state', hubConnection.state)
+          // Activate subscribe method.
+          await hubConnection.send("SubscribeNodesInfo")
+        } else {
+          console.log('isConnected', isConnected)
+        }
+      } catch (error) {
+        console.log(error)
       }
 
+    },
+    async websocketConnect() {
+      try {
+        await hubConnection.start();
+        return new Promise((resolve, reject) => {
+          if (hubConnection.state === HubConnectionState.Connected) {
+            console.log("websocket connected");
+            resolve(true)
+          } else {
+            console.log('websocket fail to connect')
+            reject(hubConnection.state)
+          }
+        })
+      } catch (err) {
+        console.log('websocketConnect error', err);
+        setTimeout(() => this.start(), 5000);
+      }
     },
     async registerAnalysis() {
       await NodeService.registerAnalysis();
