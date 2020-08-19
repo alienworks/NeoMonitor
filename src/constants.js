@@ -1,6 +1,7 @@
-// flags are reusable most of the time
-export const mainNetFlag = 'MainNet'
-export const testNetFlag = 'TestNet'
+export const netFlag = {
+	MAIN: 'MainNet',
+	TEST: 'TestNet',
+}
 
 
 export const avaliableApiNames = [
