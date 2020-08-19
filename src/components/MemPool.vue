@@ -31,7 +31,6 @@
 <script>
 import { mapGetters } from "vuex";
 import { hubConnection } from "@/App";
-
 import copy from "clipboard-copy";
 export default {
   created() {
@@ -102,7 +101,7 @@ export default {
     copySingleHash(item) {
       let self = this;
       copy(item.value).then(() => {
-        self.$message.success("The Transaction Hash has been copied.");
+        self.$message.success("The Transaction Hash has been copied.", 0.8);
       });
     },
     copyAll(pools) {
