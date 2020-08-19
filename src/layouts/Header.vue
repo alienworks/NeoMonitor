@@ -75,9 +75,35 @@ export default {
     [Toolbar.name]: Toolbar
   },
   computed: {
-    ...mapGetters({
-      flag: "flag"
-    })
+    ...mapGetters(['flag'])
+  },
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    $route(to, from) {
+      switch (to.name) {
+        case 'Main':
+          this.current = ['home']
+          break;
+        case 'Nodes':
+          this.current = ['nodes']
+          break;
+        case 'MemPool':
+          this.current = ['nodes']
+          break;
+        case 'NodeInfo':
+          this.current = ['nodes']
+          break;
+        case 'Statistics':
+          this.current = ['nodes']
+          break;
+        case 'Matrix':
+          this.current = ['matrix']
+          break;
+        default:
+          this.current = ['home']
+          break;
+      }
+    }
   },
   methods: {
     onSetFlagNet(flag) {
