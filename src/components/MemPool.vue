@@ -35,10 +35,6 @@ import { hubConnection } from "@/App";
 import copy from "clipboard-copy";
 export default {
   created() {
-    if (sessionStorage.getItem("store") ) {
-        this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem("store"))))
-    }
-    window.addEventListener('beforeunload', this.saveState)
     this.$store.dispatch("getPool");
   },
   mounted() {
@@ -57,7 +53,6 @@ export default {
     hubConnection.send('UnsubscribeRawMemPoolItemsInfo', `${this.nodeID}`)
   },
   destroyed() {
-    window.removeEventListener('beforeunload', this.saveState)
   },
   watch: {
     // current(newVal, oldVal){
@@ -90,9 +85,6 @@ export default {
 
   },
   methods: {
-    saveState() {
-      sessionStorage.setItem("store", JSON.stringify(this.$store.state))
-    },
     nodeUrl() {
       if (this.getNodeFromId(this.nodeID).length != 1) return
       this.getNodeFromId(this.nodeID)[0]['url']
