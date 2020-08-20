@@ -130,7 +130,6 @@ const actions = {
     commit("setStatInterval", arrIntervals);
   },
   async getPool({ commit, getters }) {
-    console.log('getters.nodeID',getters.nodeID)
     const response = await NodeService.getMemPoolDetail(getters.nodeID);
     const pools = response.status === 200 ? response.data : [];
     commit("setPool", pools);

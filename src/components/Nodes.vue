@@ -11,7 +11,7 @@
       :rowClassName="nodeColor" size="small" :style="{minHeight:tableMinH}">
       <div slot="height" slot-scope="h">{{ `${h} ${h === maxBlock || h === 0 ? '' : `(-${maxBlock - h})`}` }}</div>
 
-      <router-link to="/rawmempool" slot="pool" slot-scope="p, record" class="table-link">
+      <router-link to="/mempool" slot="pool" slot-scope="p, record" class="table-link">
         <span @click="setNodeID(record.id)">
           <a-button type="default" size="small">
             <a-icon type="unordered-list" style="position:relative;top:-2.75px;" />
@@ -116,17 +116,17 @@ export default {
   },
   computed: {
     ...mapGetters({
+      flag: "flag",
       nodeID: "nodeID",
-      refreshNodes: "nodes",
-      isFetchingProgress: "isFetchingProgress",
-      flag: "flag"
+      updatedNodes: "nodes",
+      isFetchingProgress: "isFetchingProgress"
     }),
     nodes() {
-      const { refreshNodes } = this;
+      const { updatedNodes } = this;
 
-      if (refreshNodes.length === 0) return [];
+      if (updatedNodes.length === 0) return [];
 
-      const result = refreshNodes.map(node => {
+      const result = updatedNodes.map(node => {
         if (!node.latency) {
           return {
             ...node,

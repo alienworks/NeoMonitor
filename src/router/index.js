@@ -4,7 +4,7 @@ import Main from "@/components/Main";
 import Nodes from "@/components/Nodes";
 import NodeInfo from "@/components/NodeInfo";
 import Statistics from "@/components/Statistics";
-import RawMempool from "@/components/RawMemPool";
+import Mempool from "@/components/MemPool";
 import Matrix from "@/components/Matrix";
 import Analysis from "@/components/Analysis";
 
@@ -36,9 +36,9 @@ export default new Router({
       component: Statistics
     },
     {
-      path: "/rawmempool",
-      name: "RawMemPool",
-      component: RawMempool
+      path: "/mempool",
+      name: "MemPool",
+      component: Mempool
     },
     {
       path: "/matrix",
