@@ -3,11 +3,9 @@
     <a-row>
       <a-col :span="24" class="menu-row">
         <a-col class="summary-block" :span="16">
-          <!-- <a-statistic title="Latest block" :value="maxBlock"></a-statistic> -->
           <p>Latest block</p>
-          <h6>{{ maxBlock }}</h6>
+          <h6>{{ height }}</h6>
         </a-col>
-
         <a-col class="summary-block" :span="8">
           <div id="container">
             <div id="glass-container" ref="hourglass">
@@ -48,7 +46,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { pipe, max, prop, map, reduce, filter, equals } from "ramda";
 export default {
   name: "Toolbar",
   data() {
@@ -56,7 +53,7 @@ export default {
       current: ["home"],
       timer: null,
       seconds: 0,
-      maxBlock: 0,
+      toolbarHeight: 0,
       needRotate: false
     };
   },
@@ -64,76 +61,29 @@ export default {
   computed: {
     ...mapGetters({
       flag: "flag",
-      refreshNodes: "nodes",
-      maxHeight: "maxHeight"
-
+      maxHeight: "maxHeight",
     }),
-    nodes() {
-      const { refreshNodes } = this;
-
-      if (refreshNodes.length === 0) return [];
-
-      const result = refreshNodes.map(node => {
-        if (!node.latency) {
-          return {
-            ...node,
-            key: node.id,
-            height: -1,
-            version: "-",
-            latency: -1,
-            peers: -1,
-            memoryPool: -1
-          };
-        }
-
-        return node;
-      });
-
-      return result;
-    },
-    filteredNodes() {
-      const { filter: hasFilter, flag, nodes } = this;
-
-      const filteredNodes = filter(pipe(prop("net"), equals(flag)), nodes);
-
-      if (!hasFilter) return filteredNodes || [];
-
-      return filteredNodes.filter(node => this.filterNode(node, hasFilter));
+    height() {
+      const flag = this.flag
+      return this.maxHeight[flag]
     },
 
   },
   methods: {
-    onSetFlagNet(flag) {
-      this.$store.commit("setFlag", flag);
-    },
-    onLogoClick() {
-      this.current = ["home"];
-    },
-    callRPC() {
-      this.$store.dispatch("fetchRPCNodes");
-    }
   },
   mounted() {
     let self = this;
-    self.callRPC();
     self.timer = setInterval(() => {
-      if (self.maxHeight > self.maxBlock) {
+      if (self.height > self.toolbarHeight) {
         self.seconds = 0;
-        self.maxBlock = self.maxHeight;
-        self.$refs.hourglass.style = " -webkit-animation: spin 3s ease-in infinite normal running;  animation: spin 3s ease-in  infinite normal running";
-        setTimeout(() => {
-          self.$refs.hourglass.style = " -webkit-animation: spin 3s ease-in infinite normal paused;  animation: spin 3s ease-in  infinite normal paused";
-        }, 3500);
-
+        self.toolbarHeight = self.height;
+        // self.$refs.hourglass.style = " -webkit-animation: spin 3s ease-in infinite normal running;  animation: spin 3s ease-in  infinite normal running";
+        // setTimeout(() => {
+        //   self.$refs.hourglass.style = " -webkit-animation: spin 3s ease-in infinite normal paused;  animation: spin 3s ease-in  infinite normal paused";
+        // }, 1500);
       }
       self.seconds++;
     }, 1000);
-    setInterval(() => {
-      self.callRPC();
-    }, 15000);
-    self.maxBlock = pipe(map(prop("height")), reduce(max, 0))(self.filteredNodes) != 0
-      ? pipe(map(prop("height")), reduce(max, 0))(self.filteredNodes)
-      : "-"
   },
   destroyed() {
     let self = this;

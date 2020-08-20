@@ -1,6 +1,6 @@
 import axios from "axios";
 import { combine } from "@/utils";
-import { store } from "@/store";
+import store from "@/store";
 axios.interceptors.request.use((config) => {
   store.commit("setIsFetchingProgress", true);
   return config;
@@ -14,37 +14,59 @@ axios.interceptors.response.use((data) => {
 let mockMode = JSON.parse(process.env.VUE_APP_MOCK_MODE);
 let nodesUrl, memPoolUrl, matrixUrl, analysisUrl;
 
-const baseUrl = mockMode ? process.env.VUE_APP_MOCK_RESTAPI : process.env.VUE_APP_RESTAPI;
+const baseRestUrl = mockMode ? process.env.VUE_APP_MOCK_RESTAPI : process.env.VUE_APP_RESTAPI;
+const baseSocketUrl = mockMode ? process.env.VUE_APP_MOCK_SOCKETAPI : process.env.VUE_APP_SOCKETAPI;
 
 if (mockMode) {
-  nodesUrl = baseUrl + "-nodes";
+  nodesUrl = baseRestUrl + "-nodes";
   memPoolUrl = nodesUrl + "-rawmempool";
-  matrixUrl = baseUrl + "-matrix";
+  matrixUrl = baseRestUrl + "-matrix";
 } else {
   //http://*.*.*.*/api/nodes
-  nodesUrl = combine(baseUrl, "nodes");
+  nodesUrl = combine(baseRestUrl, "nodes");
   //http://*.*.*.*/api/nodes/rawmempool
   memPoolUrl = combine(nodesUrl, "rawmempool");
   //http://*.*.*.*/api/matrix
-  matrixUrl = combine(baseUrl, "matrix");
+  matrixUrl = combine(baseRestUrl, "matrix");
   //http://*.*.*.*/api/analysis
-  analysisUrl = combine(baseUrl, "analysis");
+  analysisUrl = combine(baseRestUrl, "analysis");
+}
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
 }
 
 export default {
+  mockMode,
+  baseRestUrl,
+  baseSocketUrl,
+
   //rpc nodes
-  async fetchRPCNodes() {
+  async fetchLatestHeight(flag) {
+    // const flag = store.state.flag;
     let filtered = [];
     let nodes = store.state.nodes;
-    let flag = store.state.flag;
+    if (nodes.length === 0) return
     nodes = nodes.filter((item) => {
       if (item.net === flag) {
         return true;
       } else {
         return false;
       }
-    });
-    for (let i = 0; i < nodes.length; i++) {
+    })
+    shuffle(nodes)
+    for (let i = 0; i < 5; i++) {
       let currNodeUrl = nodes[i].url;
       if (currNodeUrl.indexOf("ngd") != -1) {
         const request = {
@@ -59,22 +81,33 @@ export default {
             body: JSON.stringify(request),
           }).then((resp) => {
             return resp.json();
-          })
-        );
+          }).catch(error => { console.log(error) })
+        )
       }
     }
-    Promise.all(filtered).then((resps) => {
-      if (resps.length > 0) {
-        let maxResult = resps[0].result;
-        for (let i = 0; i < resps.length; i++) {
-          let currResult = resps[i].result;
-          if (currResult > maxResult) {
-            maxResult = currResult;
-          }
-        }
-        store.commit("setMaxHeight", maxResult);
-      }
-    });
+    // return Promise.all(filtered).then((resps) => {
+    //   let latestResult = -1
+    //   let heights = []
+    //   resps.forEach(resp=>{
+    //     heights.push(resp.result)
+    //   })
+    //   if (resps.length > 0) latestResult = Math.max(...heights)
+    //   console.log('latestResult', latestResult)
+    //   return new Promise((resolve, reject) => {
+    //     latestResult === -1 ? reject('no response') : resolve(latestResult)
+    //   })
+    // }).catch(error => {
+    //   console.log(error)
+    // })
+
+    const resps = await Promise.all(filtered)
+    let latestResult = -1
+    let heights = []
+    resps.forEach(resp => { if (resp != undefined) heights.push(resp.result) })
+    latestResult = Math.max(...heights)
+    return new Promise((resolve, reject) => {
+      latestResult === -1 ? reject('no response') : resolve(latestResult)
+    })
   },
   // api/nodes
   async getNodesInfo() {
