@@ -3,7 +3,7 @@
     <div class="search">
       <a-row type="flex" justify="end" class="search-wrapper">
 
-        <a-input-search :readonly="isFetchingProgress" v-model="searchText" placeholder="filter by name" style="width: 200px"
+        <a-input-search :readOnly="isFetchingProgress" v-model="searchText" placeholder="filter by name" style="width: 200px"
           :loading="loading" />
 
       </a-row>

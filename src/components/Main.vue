@@ -94,8 +94,7 @@ export default {
   },
   mounted() {
     this.neoMapLocations = this.$store.getters.nodes;
-    console.log(this.$refs.chart);
-    console.log(this.paddingTop);
+    // console.log(this.$refs.chart);
   },
   methods: {
     generateRowClass() {
