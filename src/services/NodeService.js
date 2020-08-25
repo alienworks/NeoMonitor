@@ -54,51 +54,36 @@ export default {
 
   //rpc nodes
   async fetchLatestHeight(flag) {
-    // const flag = store.state.flag;
     let filtered = [];
-    let nodes = store.state.nodes;
+    let nodes = store.state.nodes
     if (nodes.length === 0) return
     nodes = nodes.filter((item) => {
       if (item.net === flag) {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
     })
     shuffle(nodes)
     for (let i = 0; i < 5; i++) {
-      let currNodeUrl = nodes[i].url;
+      let currNodeUrl = nodes[i].url
       if (currNodeUrl.indexOf("ngd") != -1) {
         const request = {
           jsonrpc: "2.0",
           method: "getblockcount",
           id: 3,
           params: [],
-        };
+        }
         filtered.push(
           fetch(currNodeUrl, {
             method: "post",
             body: JSON.stringify(request),
           }).then((resp) => {
-            return resp.json();
+            return resp.json()
           }).catch(error => { console.log(error) })
         )
       }
     }
-    // return Promise.all(filtered).then((resps) => {
-    //   let latestResult = -1
-    //   let heights = []
-    //   resps.forEach(resp=>{
-    //     heights.push(resp.result)
-    //   })
-    //   if (resps.length > 0) latestResult = Math.max(...heights)
-    //   console.log('latestResult', latestResult)
-    //   return new Promise((resolve, reject) => {
-    //     latestResult === -1 ? reject('no response') : resolve(latestResult)
-    //   })
-    // }).catch(error => {
-    //   console.log(error)
-    // })
 
     const resps = await Promise.all(filtered)
     let latestResult = -1
