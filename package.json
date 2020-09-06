@@ -2,10 +2,25 @@
   "name": "neo-seed-nodes-monitor",
   "version": "1.3.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "prettier --write",
+      "vue-cli-service lint"
+    ],
+    "*.{md,json}": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "serve": "vue-cli-service serve --port 4200",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "prettier": "prettier '**/*.{js,json,css,scss,md,vue}' --write"
   },
   "dependencies": {
     "@amcharts/amcharts4": "^4.7.18",
@@ -29,6 +44,7 @@
   },
   "devDependencies": {
     "@babel/polyfill": "^7.6.0",
+    "@ddmxh/prettier-config": "0.0.5",
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
     "@vue/cli-plugin-router": "^4.0.0",
@@ -38,10 +54,13 @@
     "bootstrap": "^4.3.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.3.0",
     "mutationobserver-shim": "^0.3.3",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "popper.js": "^1.15.0",
     "portal-vue": "^2.1.4",
+    "prettier": "^2.1.1",
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-bootstrap-vue": "^0.5.0",
     "vue-template-compiler": "^2.6.10"

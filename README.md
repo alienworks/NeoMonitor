@@ -17,6 +17,7 @@ This project is the frontend website of the product NEO-nodes. NEO-nodes is a ne
 - vscode are preferred editor, but feel free to use whatever your familiars
 
 ## Local Development
+
 In order to run this project locally, you'll need to create a environment variables file `.env.local` (detail listed below) and a backend server to be running as well, which can be found on [NeoMonitor-Server](https://github.com/alienworks/NeoMonitor-Server) and the tool [NeoMatrix](https://github.com/alienworks/neo-matrix).
 
 To run the backend server, follow the instruction provided at each specific README file.
@@ -29,6 +30,7 @@ Below are the instruction for this project.
 - Start development `npm run serve`
 
 ### Environment variables
+
 The environment variables are provided using `.env.local` file, create it to setup API access. To learn more advanced usage of environment variables, please refers to [VueJS Guide: Mode and env](https://cli.vuejs.org/guide/mode-and-env.html#environment-variables) doc page.
 
 The following environment variables are available:
@@ -41,6 +43,7 @@ The following environment variables are available:
 **Note:** URL can be found on the backend project.
 
 ### Update notes
+
 For user have use version before 1.3, version >= 1.3 have to change environment variable's URL format. i.e.
 
 ```python

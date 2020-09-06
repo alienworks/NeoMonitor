@@ -7,31 +7,30 @@
   </div>
 </template>
 
-
 <script>
-import * as am4core from "@amcharts/amcharts4/core";
-import NHeader from "@/layouts/Header";
-import NFooter from "@/layouts/Footer";
-import { mapGetters } from "vuex";
-import { HubConnectionBuilder, LogLevel, HubConnectionState } from "@microsoft/signalr";
-import NodeService from "@/services/NodeService";
+import * as am4core from '@amcharts/amcharts4/core'
+import NHeader from '@/layouts/Header'
+import NFooter from '@/layouts/Footer'
+import { mapGetters } from 'vuex'
+import { HubConnectionBuilder, LogLevel, HubConnectionState } from '@microsoft/signalr'
+import NodeService from '@/services/NodeService'
 // import signalR from "@microsoft/signalr";
 // import Vue from "vue";
 
 // Connection instance for signalr. Exposed for other to use.
-export let hubConnection = null;
+export let hubConnection = null
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     [NHeader.name]: NHeader,
-    [NFooter.name]: NFooter
+    [NFooter.name]: NFooter,
   },
   watch: {
     $route(to, from) {
-      if (from.name === "Main") {
+      if (from.name === 'Main') {
         // Clear
-        am4core.disposeAllCharts();
+        am4core.disposeAllCharts()
       }
     },
 
@@ -40,24 +39,23 @@ export default {
       // console.log('oldID', oldID)
       if (currentID && hubConnection.state === HubConnectionState.Connected) {
         // console.log('currentID', currentID)
-        await hubConnection.send("SubscribeRawMemPoolItemsInfo", `${currentID}`)
+        await hubConnection.send('SubscribeRawMemPoolItemsInfo', `${currentID}`)
       }
-    }
+    },
   },
   created() {
     this.initData()
     this.setUpSignalR()
     // this.registerAnalysis();
-
   },
   methods: {
     async initData() {
-      await this.$store.dispatch("getNodes")
+      await this.$store.dispatch('getNodes')
       await this.updateHeight(true)
     },
     async updateHeight(init = false) {
       await this.$store.dispatch('updateMaxHeight', init)
-      setTimeout(this.updateHeight, 15000);
+      setTimeout(this.updateHeight, 15000)
     },
     async setUpSignalR() {
       console.log('NodeService.baseSocketUrl', NodeService.baseSocketUrl)
@@ -67,30 +65,30 @@ export default {
         .withUrl(NodeService.baseSocketUrl)
         .configureLogging(LogLevel.Information)
         .withAutomaticReconnect()
-        .build();
+        .build()
 
       // On receiving nodes
-      hubConnection.on("UpdateNodes", async data => {
+      hubConnection.on('UpdateNodes', async (data) => {
         // console.log('websocket UpdateNodes', data)
-        this.$store.commit("setNodes", data);
-      });
+        this.$store.commit('setNodes', data)
+      })
 
       // // On Receiving RawMemPools
       // hubConnection.on("UpdateRawMemPoolSizeInfo", rawMemPools => {
       //   this.$store.commit("setNodes", this.mapMemPoolsToNodes(rawMemPools));
       // });
 
-      hubConnection.on("UpdateRawMemPoolItems", async data => {
+      hubConnection.on('UpdateRawMemPoolItems', async (data) => {
         console.log('Websocket UpdateRawMemPoolItems', data)
         let testArray = []
         // for (let i = 0; i < 7; i++) {
         //   testArray.push(`hash ${i + 1}`)
         // }
         const pool = data.concat(testArray)
-        this.$store.commit("setPool", pool);
-      });
+        this.$store.commit('setPool', pool)
+      })
 
-      hubConnection.onclose(error => {
+      hubConnection.onclose((error) => {
         console.assert(hubConnection.state === HubConnectionState.Disconnected, error)
         console.log('websocket onclose')
       })
@@ -100,21 +98,20 @@ export default {
         if (typeof isConnected === 'boolean' && isConnected) {
           console.log('hubConnection.state', hubConnection.state)
           // Activate subscribe method.
-          await hubConnection.send("SubscribeNodesInfo")
+          await hubConnection.send('SubscribeNodesInfo')
         } else {
           console.log('isConnected', isConnected)
         }
       } catch (error) {
         console.log(error)
       }
-
     },
     async websocketConnect() {
       try {
-        await hubConnection.start();
+        await hubConnection.start()
         return new Promise((resolve, reject) => {
           if (hubConnection.state === HubConnectionState.Connected) {
-            console.log("websocket connected");
+            console.log('websocket connected')
             resolve(true)
           } else {
             console.log('websocket fail to connect')
@@ -122,42 +119,42 @@ export default {
           }
         })
       } catch (err) {
-        console.log('websocketConnect error', err);
-        setTimeout(() => this.start(), 5000);
+        console.log('websocketConnect error', err)
+        setTimeout(() => this.start(), 5000)
       }
     },
     async registerAnalysis() {
-      await NodeService.registerAnalysis();
+      await NodeService.registerAnalysis()
     },
     mapMemPoolsToNodes(rawMemPools) {
-      const nodes = this.nodes;
-      const updatedNodes = [];
+      const nodes = this.nodes
+      const updatedNodes = []
 
       for (let i = 0; i < nodes.length; i++) {
-        const node = nodes[i];
-        const rawMemPool = rawMemPools.find(pool => pool.id === node.id);
+        const node = nodes[i]
+        const rawMemPool = rawMemPools.find((pool) => pool.id === node.id)
 
         if (rawMemPool) {
           updatedNodes.push({
             ...node,
-            memoryPool: rawMemPool.memoryPool || 0
-          });
+            memoryPool: rawMemPool.memoryPool || 0,
+          })
         } else {
-          updatedNodes.push(node);
+          updatedNodes.push(node)
         }
       }
 
-      return updatedNodes;
-    }
+      return updatedNodes
+    },
   },
   computed: {
-    ...mapGetters(["nodeID", "nodes"]),
+    ...mapGetters(['nodeID', 'nodes']),
 
     showPage() {
-      return this.nodes.length !== 0;
-    }
-  }
-};
+      return this.nodes.length !== 0
+    },
+  },
+}
 </script>
 
 <style lang="scss">
@@ -177,7 +174,7 @@ body {
   box-shadow: none !important;
 }
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

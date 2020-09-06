@@ -12,8 +12,8 @@ module.exports = {
         // target: 'http://localhost:5000',
         target: 'http://172.16.50.193:5000',
         changeOrigin: true,
-        ws: true
-      }
+        ws: true,
+      },
     },
-  }
-};
+  },
+}
