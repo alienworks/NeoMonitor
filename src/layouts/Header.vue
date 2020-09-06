@@ -30,8 +30,9 @@
     <a-row>
       <a-col :span="10">
         <div class="logo">
-          <router-link to="/" @click.stop="onLogoClick"><img width="164px" height="48px" src="../assets/icons/logo.png"
-              style="margin-left:7rem" /></router-link>
+          <router-link to="/" @click.stop="onLogoClick"
+            ><img width="164px" height="48px" src="../assets/icons/logo.png" style="margin-left: 7rem"
+          /></router-link>
         </div>
       </a-col>
 
@@ -60,22 +61,21 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import Toolbar from "./Toolbar"
+import { mapGetters } from 'vuex'
+import Toolbar from './Toolbar'
 export default {
-  name: "NHeader",
+  name: 'NHeader',
   data() {
     return {
-      current: ["home"],
+      current: ['home'],
       seconds: 0,
-
-    };
+    }
   },
   components: {
-    [Toolbar.name]: Toolbar
+    [Toolbar.name]: Toolbar,
   },
   computed: {
-    ...mapGetters(['flag'])
+    ...mapGetters(['flag']),
   },
   watch: {
     // eslint-disable-next-line no-unused-vars
@@ -83,38 +83,37 @@ export default {
       switch (to.name) {
         case 'Main':
           this.current = ['home']
-          break;
+          break
         case 'Nodes':
           this.current = ['nodes']
-          break;
+          break
         case 'MemPool':
           this.current = ['nodes']
-          break;
+          break
         case 'NodeInfo':
           this.current = ['nodes']
-          break;
+          break
         case 'Statistics':
           this.current = ['nodes']
-          break;
+          break
         case 'Matrix':
           this.current = ['matrix']
-          break;
+          break
         default:
           this.current = ['home']
-          break;
+          break
       }
-    }
+    },
   },
   methods: {
     onSetFlagNet(flag) {
-      this.$store.commit("setFlag", flag);
+      this.$store.commit('setFlag', flag)
     },
     onLogoClick() {
-      this.current = ["home"];
-    }
+      this.current = ['home']
+    },
   },
-
-};
+}
 </script>
 
 <style lang="scss">

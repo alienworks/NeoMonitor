@@ -3,7 +3,8 @@
     <a-row>
       <a-col :span="7">
         <div class="logo">
-          <router-link to="/" @click.stop="onLogoClick"><img width="155px" height="21px" src="../assets/icons/logo1.png" />
+          <router-link to="/" @click.stop="onLogoClick"
+            ><img width="155px" height="21px" src="../assets/icons/logo1.png" />
           </router-link>
         </div>
       </a-col>
@@ -18,7 +19,9 @@
           <img width="24px" height="24px" src="../assets/icons/icon-twitter.png" />
         </div> -->
         <div class="icons github">
-          <a href="http://github.com/alienworks"><img width="24px" height="24px" src="../assets/icons/icon-github.png" /></a>
+          <a href="http://github.com/alienworks"
+            ><img width="24px" height="24px" src="../assets/icons/icon-github.png"
+          /></a>
         </div>
         <!-- <div class="icons slack">
           <img width="24px" height="24px" src="../assets/icons/icon-slack.png" />
@@ -45,17 +48,17 @@
 
 <script>
 export default {
-  name: "NFooter",
+  name: 'NFooter',
   data() {
     return {
-      current: ["home"],
+      current: ['home'],
     }
   },
   methods: {
     onLogoClick() {
-      this.current = ["home"];
-    }
-  }
+      this.current = ['home']
+    },
+  },
 }
 </script>
 

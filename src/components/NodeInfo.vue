@@ -1,98 +1,111 @@
 <template>
   <div class="contanier mt-3 col-12">
     <a-row type="flex" justify="end" class="search-wrapper">
-      <a-button type="default" @click="gotoStatistics()" style="margin-right:12px;">
-        <a-icon type="dot-chart" style="position:relative;top:-2.75px;" />View Charts
+      <a-button type="default" @click="gotoStatistics()" style="margin-right: 12px">
+        <a-icon type="dot-chart" style="position: relative; top: -2.75px" />View Charts
       </a-button>
       <a-input-search v-model="filter" placeholder="filter by nodes or height" style="width: 200px" />
     </a-row>
 
     <a-spin :spinning="isFetchingProgress">
-      <a-table  v-if="myNodeInfo" :columns="fields" :data-source="myNodeInfo" :pagination="false"
-        :scroll="{ x: 'max-content', y: 'max-content' }" size="small" :style="{minHeight:tableMinH}">
+      <a-table
+        v-if="myNodeInfo"
+        :columns="fields"
+        :data-source="myNodeInfo"
+        :pagination="false"
+        :scroll="{ x: 'max-content', y: 'max-content' }"
+        size="small"
+        :style="{ minHeight: tableMinH }"
+      >
         <a :href="`//neoscan.io/block/${h}`" target="_blank" slot="height" slot-scope="h">{{ h }}</a>
       </a-table>
-      <a-pagination style="margin-top:12px;margin-bottom:12px;" v-if="nodeInfo && nodeInfo.length>0" @change="changePage"
-        v-model="current" :total="nodeInfo.length" pagesize.sync="10" />
+      <a-pagination
+        style="margin-top: 12px; margin-bottom: 12px"
+        v-if="nodeInfo && nodeInfo.length > 0"
+        @change="changePage"
+        v-model="current"
+        :total="nodeInfo.length"
+        pagesize.sync="10"
+      />
     </a-spin>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { sorter, debounce } from "@/utils";
+import { mapGetters } from 'vuex'
+import { sorter, debounce } from '@/utils'
 
 export default {
-  name: "NodeInfo",
+  name: 'NodeInfo',
   data() {
     return {
-      tableMinH: window.innerHeight - 122 + "px",
+      tableMinH: window.innerHeight - 122 + 'px',
       fields: [
         {
-          key: "id",
-          dataIndex: "id",
-          title: "ID",
-          sorter: sorter("id")
+          key: 'id',
+          dataIndex: 'id',
+          title: 'ID',
+          sorter: sorter('id'),
         },
         {
-          key: "nodeName",
-          dataIndex: "nodeName",
-          title: "Nodes",
-          sorter: sorter("nodeName")
+          key: 'nodeName',
+          dataIndex: 'nodeName',
+          title: 'Nodes',
+          sorter: sorter('nodeName'),
         },
         {
-          key: "exceptionHeight",
-          dataIndex: "exceptionHeight",
-          title: "Height",
-          sorter: sorter("exceptionHeight"),
-          scopedSlots: { customRender: "height" }
+          key: 'exceptionHeight',
+          dataIndex: 'exceptionHeight',
+          title: 'Height',
+          sorter: sorter('exceptionHeight'),
+          scopedSlots: { customRender: 'height' },
         },
         {
-          key: "exceptionTime",
-          dataIndex: "exceptionTime",
-          title: "Generate Time(GMT +8)",
-          sorter: sorter("exceptionTime"),
-          scopedSlots: { customRender: "time" }
+          key: 'exceptionTime',
+          dataIndex: 'exceptionTime',
+          title: 'Generate Time(GMT +8)',
+          sorter: sorter('exceptionTime'),
+          scopedSlots: { customRender: 'time' },
         },
         {
-          key: "intervals",
-          dataIndex: "intervals",
-          title: "Interval(s)",
-          sorter: sorter("intervals")
-        }
+          key: 'intervals',
+          dataIndex: 'intervals',
+          title: 'Interval(s)',
+          sorter: sorter('intervals'),
+        },
       ],
       filter: null,
-      filterBouncer: debounce(val => this.filterTable(val)),
+      filterBouncer: debounce((val) => this.filterTable(val)),
       current: 1,
-      myNodeInfo: []
-    };
+      myNodeInfo: [],
+    }
   },
   mounted() {
-    this.$store.dispatch("getNodeInfo");
+    this.$store.dispatch('getNodeInfo')
   },
   computed: {
-    ...mapGetters(["nodeInfo", "isFetchingProgress"])
+    ...mapGetters(['nodeInfo', 'isFetchingProgress']),
   },
   methods: {
     gotoStatistics() {
       this.$router.push({
-        path: "/statistics"
-      });
+        path: '/statistics',
+      })
     },
     changePage(page, size) {
-      this.myNodeInfo = this.nodeInfo.slice((page - 1) * size, page * size);
-    }
+      this.myNodeInfo = this.nodeInfo.slice((page - 1) * size, page * size)
+    },
   },
   watch: {
     nodeInfo(val) {
       if (val && val.length >= 10) {
-        this.myNodeInfo = val.slice(0, 10);
+        this.myNodeInfo = val.slice(0, 10)
       } else {
-        this.myNodeInfo = val.slice(0, val.length);
+        this.myNodeInfo = val.slice(0, val.length)
       }
-    }
-  }
-};
+    },
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

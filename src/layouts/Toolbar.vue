@@ -33,11 +33,10 @@
               <div id="bond">
                 <div class="top bond triangle"></div>
                 <div class="bottom bond triangle"></div>
-                <div class="seconds">{{seconds}}s</div>
+                <div class="seconds">{{ seconds }}s</div>
               </div>
             </div>
           </div>
-
         </a-col>
       </a-col>
     </a-row>
@@ -45,59 +44,57 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex'
 export default {
-  name: "Toolbar",
+  name: 'Toolbar',
   data() {
     return {
-      current: ["home"],
+      current: ['home'],
       timer: null,
       seconds: 0,
       toolbarHeight: 0,
-      needRotate: false
-    };
+      needRotate: false,
+    }
   },
 
   computed: {
     ...mapGetters({
-      flag: "flag",
-      maxHeight: "maxHeight",
+      flag: 'flag',
+      maxHeight: 'maxHeight',
     }),
     height() {
       const flag = this.flag
       return this.maxHeight[flag]
     },
-
   },
-  methods: {
-  },
+  methods: {},
   mounted() {
-    let self = this;
+    let self = this
     self.timer = setInterval(() => {
       if (self.height > self.toolbarHeight) {
-        self.seconds = 0;
-        self.toolbarHeight = self.height;
+        self.seconds = 0
+        self.toolbarHeight = self.height
         // self.$refs.hourglass.style = " -webkit-animation: spin 3s ease-in infinite normal running;  animation: spin 3s ease-in  infinite normal running";
         // setTimeout(() => {
         //   self.$refs.hourglass.style = " -webkit-animation: spin 3s ease-in infinite normal paused;  animation: spin 3s ease-in  infinite normal paused";
         // }, 1500);
       }
-      self.seconds++;
-    }, 1000);
+      self.seconds++
+    }, 1000)
   },
   destroyed() {
-    let self = this;
+    let self = this
     if (self.timer) {
-      clearInterval(self.timer);
+      clearInterval(self.timer)
     }
   },
   deactivated() {
-    let self = this;
+    let self = this
     if (self.timer) {
-      clearInterval(self.timer);
+      clearInterval(self.timer)
     }
-  }
-};
+  },
+}
 </script>
 
 <style lang="scss">
